@@ -9,13 +9,13 @@ if CLIENT then
 
    local detectiontrace_front = util.TraceLine({
      start = thisobjectpos,
-     endpos = thisobjectpos + (thisobjectangles):Forward() * GetConVar("Optics_LensMaxDetectionDistanceFront"):GetInt() ,
+     endpos = thisobjectpos + (thisobjectangles):Right() * GetConVar("Optics_LensMaxDetectionDistanceFront"):GetInt() ,
 
      filter = function( ent ) return ( ent:GetClass() == "prop_physics"  ) end
    })
    local detectiontrace_back = util.TraceLine({
      start = thisobjectpos,
-     endpos = thisobjectpos + (thisobjectangles):Right() * GetConVar("Optics_LensMaxDetectionDistanceBack"):GetInt() ,
+     endpos = thisobjectpos - (thisobjectangles):Right() * GetConVar("Optics_LensMaxDetectionDistanceBack"):GetInt() ,
 
      filter = function( ent ) return ( ent:GetClass() == "prop_physics"  ) end
    })
@@ -24,9 +24,8 @@ if CLIENT then
  local color_red = Color(255, 0, 0)
 
  hook.Add( "PostDrawTranslucentRenderables", "baseline0", function()
-     render.DrawLine( thisobjectpos, thisobjectpos + thisobjectangles:Forward() * 128, color_red )
-     render.DrawLine( thisobjectpos, thisobjectpos + thisobjectangles:Right() * 128, color_black )
-     render.DrawLine( thisobjectpos, thisobjectpos - thisobjectangles:Right() * 128, color_black )
+     render.DrawLine( thisobjectpos, thisobjectpos + thisobjectangles:Right() * GetConVar("Optics_LensMaxDetectionDistanceFront"):GetInt(), color_black )
+     render.DrawLine( thisobjectpos, thisobjectpos - thisobjectangles:Right() * GetConVar("Optics_LensMaxDetectionDistanceBack"):GetInt(), color_black )
  end )   
 
  end
