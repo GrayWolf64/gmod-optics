@@ -71,12 +71,4 @@ end
     return false
  end
 
- local color_red = Color(255, 0, 0)
-
- hook.Add( "PostDrawTranslucentRenderables", "eyeline0", function()
-	 local eyePos = LocalPlayer():EyePos()
-
-     render.DrawLine( eyePos, eyePos + LocalPlayer():EyeAngles():Forward() * 500, color_red )
- end )
-
 end
