@@ -8,6 +8,8 @@ cleanup.Register("Concave lens")
 
 if CLIENT then
 
+ MsgC(Color(152 ,251 ,152), "[ OPTICS ] Concave lens tool script loaded!\n")
+
   TOOL.Information = { "left", "right" }
   language.Add("tool.concavelens_tool.name", "Concave Lens Tool")
   language.Add("tool.concavelens_tool.desc", "Create or modify a concave lens.")

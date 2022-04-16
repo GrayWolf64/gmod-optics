@@ -2,7 +2,7 @@ AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("shared.lua")
 include("shared.lua")
 
-print("[Optics]Concave lens lua loaded!")
+MsgC(Color(152 ,251 ,152), "[ OPTICS ] Concave lens Entity script loaded!\n")
 
 function ENT:Initialize()
   self:SetModel("models/optics/lens/concavelens.mdl")

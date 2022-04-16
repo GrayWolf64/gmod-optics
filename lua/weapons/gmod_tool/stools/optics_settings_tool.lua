@@ -5,6 +5,9 @@ TOOL.Command		= nil
 TOOL.ConfigName		= ""
 
 if CLIENT then
+
+ MsgC(Color(152 ,251 ,152), "[ OPTICS ] Settings tool script loaded!\n")
+
   TOOL.Information = { "reload" }
   language.Add("tool.optics_settings_tool.name", "General Settings Tool")
   language.Add("tool.optics_settings_tool.desc", "Modify general settings.")
@@ -60,11 +63,20 @@ if CLIENT then
   net.Receive("optics_opengeneralsettingsmenu", optics_opengeneralsettingsmenu)
 end
 
-function TOOL:Reload()     return true end
-if SERVER then
-  util.AddNetworkString("optics_opengeneralsettingsmenu")
- function TOOL:Reload( trace )
-   net.Start("optics_opengeneralsettingsmenu") net.Send(self:GetOwner())
-   return false
+ function TOOL:Reload()     return true end
+ if SERVER then
+   util.AddNetworkString("optics_opengeneralsettingsmenu")
+  function TOOL:Reload( trace )
+    net.Start("optics_opengeneralsettingsmenu") net.Send(self:GetOwner())
+    return false
  end
+
+ local color_red = Color(255, 0, 0)
+
+ hook.Add( "PostDrawTranslucentRenderables", "eyeline0", function()
+	 local eyePos = LocalPlayer():EyePos()
+
+     render.DrawLine( eyePos, eyePos + LocalPlayer():EyeAngles():Forward() * 500, color_red )
+ end )
+
 end
