@@ -16,32 +16,6 @@ if CLIENT then
 	language.Add("tool.concavelens_tool.left", "Create a concave lens.")
   language.Add("tool.concavelens_tool.right", "Apply changes to a concave lens.")
   language.Add("Undone_concavelens_tool", "The concave lens has been undone.")
-  surface.CreateFont( "opticsdefaultfont", {
-  font = "Times New Roman",
-  extended = false,
-  size = 80,
-  weight = 500,
-  blursize = 0,
-  scanlines = 4,
-  antialias = false,
-  italic = false,
-  strikeout = false,
-  shadow = true,
-  outline = false,
- } )
-  surface.CreateFont( "opticsdefaultfontbd", {
-  font = "Times New Roman Bold",
-  extended = false,
-  size = 40,
-  weight = 500,
-  blursize = 0,
-  scanlines = 4,
-  antialias = true,
-  italic = false,
-  strikeout = false,
-  shadow = true,
-  outline = false,
- } )
 
     function TOOL:DrawToolScreen( width, height )
 	    surface.SetDrawColor( Color( 143 ,188 ,143 ) )

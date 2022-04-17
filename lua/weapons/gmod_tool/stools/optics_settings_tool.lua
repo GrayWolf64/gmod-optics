@@ -6,7 +6,7 @@ TOOL.ConfigName		= ""
 
 if CLIENT then
 
- MsgC(Color(152 ,251 ,152), "[ OPTICS ] Settings tool script loaded!\n")
+  MsgC(Color(152 ,251 ,152), "[ OPTICS ] Settings tool script loaded!\n")
 
   TOOL.Information = { "reload" }
   language.Add("tool.optics_settings_tool.name", "General Settings Tool")
@@ -25,7 +25,7 @@ if CLIENT then
       local label0 = vgui.Create("DLabel", basepanel0)
       label0:Dock(TOP)
       label0:DockMargin(5, 2.5, 5, 5)
-      label0:SetText("This is the header")
+      label0:SetText("Point at a concave lens to show something.")
       label0:SetTextColor(color_black)
     end
   function optics_opengeneralsettingsmenu()
@@ -60,15 +60,57 @@ if CLIENT then
      lens_maxdetectiondistanceback_slider:SetConVar( "Optics_LensMaxDetectionDistanceback" )
 
   end
+
+  function TOOL:Think()
+   local thing = self:GetOwner():GetEyeTrace().Entity
+     if thing:IsValid() == true and thing:GetClass() == "optics_concavelens" then
+
+       local linecolor0 = Color(0, 0, 0)
+       hook.Add( "PostDrawTranslucentRenderables", "baseline0", function()
+         if thing:IsValid() == true then
+           render.DrawLine( thing:GetPos(), thing:GetPos() + thing:GetAngles():Right() * GetConVar("Optics_LensMaxDetectionDistanceFront"):GetInt(), linecolor0 )
+           render.DrawLine( thing:GetPos(), thing:GetPos() - thing:GetAngles():Right() * GetConVar("Optics_LensMaxDetectionDistanceBack"):GetInt(), linecolor0 )
+         end
+       end )   
+  
+       local spritecolor0 = Color(255 ,0 , 0)
+       hook.Add( "PostDrawTranslucentRenderables", "pointsprites0", function()
+         if thing:IsValid() == true then
+          render.DrawWireframeSphere( thing:GetPos(), 2, 4, 4, spritecolor0 )
+         end
+       end )
+
+          hook.Add("PostDrawOpaqueRenderables", "concavelensinfo0", function()
+
+            if thing:IsValid() == true then
+             local pos0 = thing:GetPos()
+             local ang0 = self:GetOwner():EyeAngles()
+             local ang1 = Angle( ang0.x, ang0.y, - ang0.z )
+             ang1:RotateAroundAxis( ang1:Up(), -90 )
+             ang1:RotateAroundAxis( ang1:Forward(), 90 )
+           
+             cam.Start3D2D( pos0, ang1, 0.1 )
+               draw.SimpleText( "Concave Lens", "opticsdefaultfontbd", 16, 0, color_white )
+             cam.End3D2D()
+            end
+
+          end )
+
+     end
+
+  end
+
   net.Receive("optics_opengeneralsettingsmenu", optics_opengeneralsettingsmenu)
+
 end
 
  function TOOL:Reload()     return true end
- if SERVER then
-   util.AddNetworkString("optics_opengeneralsettingsmenu")
-  function TOOL:Reload( trace )
-    net.Start("optics_opengeneralsettingsmenu") net.Send(self:GetOwner())
-    return false
- end
 
-end
+  if SERVER then
+    util.AddNetworkString("optics_opengeneralsettingsmenu")
+   function TOOL:Reload( trace )
+     net.Start("optics_opengeneralsettingsmenu") net.Send(self:GetOwner())
+     return false
+    end
+  end
+
