@@ -96,6 +96,20 @@ if CLIENT then
 
           end )
 
+           hook.Add( "PostDrawTranslucentRenderables", "sidebox", function()
+            if thing:IsValid() == true then
+             local pos1 = thing:GetPos() + thing:GetAngles():Right() * GetConVar("Optics_LensMaxDetectionDistanceFront"):GetInt()
+             local x0 = Vector( 1, 1, 1 )
+             box_front = render.DrawBox( pos1, angle_zero, x0, -x0, color_black )
+            end
+            if thing:IsValid() == true then
+             local pos2 = thing:GetPos() - thing:GetAngles():Right() * GetConVar("Optics_LensMaxDetectionDistanceBack"):GetInt()
+             local x1 = Vector( 1, 1, 1 )
+             box_back = render.DrawBox( pos2, angle_zero, x1, -x1, color_black )
+            end
+           end )
+          
+
      end
 
   end
