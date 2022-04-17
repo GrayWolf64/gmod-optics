@@ -25,4 +25,30 @@ if CLIENT then
         shadow = true,
         outline = false,
        } )
+       surface.CreateFont( "opticsdefaultfontita", {
+        font = "Times New Roman Italic",
+        extended = false,
+        size = 40,
+        weight = 500,
+        blursize = 0,
+        scanlines = 4,
+        antialias = true,
+        italic = false,
+        strikeout = false,
+        shadow = true,
+        outline = false,
+       } )
+       surface.CreateFont( "opticsdefaultfontbdita", {
+        font = "Times New Roman Bold Italic",
+        extended = false,
+        size = 40,
+        weight = 500,
+        blursize = 0,
+        scanlines = 4,
+        antialias = true,
+        italic = false,
+        strikeout = false,
+        shadow = true,
+        outline = false,
+       } )
 end
