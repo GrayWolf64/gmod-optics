@@ -60,7 +60,7 @@ if CLIENT then
       modellist0:SetTall(basepanel1:GetTall() - 25 * monitor_ratioh)
 
       modellist0:AddLine("Model 1","Default Concave Lens Model")
-      
+
       local collapsible0 = vgui.Create("DCollapsibleCategory", basepanel2)
       basepanel0:AddItem(collapsible0)
       collapsible0:SetPos(10 * monitor_ratiow,450 * monitor_ratioh)
@@ -85,7 +85,7 @@ if CLIENT then
       collapsible0_content1:SetTextColor( color_black )
       collapsible0_content1:SizeToContents()
       collapsible0_content1:Dock(TOP)
-    
+
       local collapsible0_content2 = vgui.Create("DNumSlider", basepanel2)
       collapsible0_content2:Dock(TOP)
       collapsible0_content2:DockMargin(5 * monitor_ratiow, 7.5 * monitor_ratioh, 5 * monitor_ratiow, 7.5 * monitor_ratioh)

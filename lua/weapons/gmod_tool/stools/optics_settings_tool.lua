@@ -17,8 +17,8 @@ if CLIENT then
 	    surface.SetDrawColor( Color( 141 ,238 ,238 ) )
 	    surface.DrawRect( 0, 0, width, height )
 	    draw.SimpleText( "Optics", "opticsdefaultfont", width / 2, height / 5.5, Color( 255, 20, 20 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
-        draw.SimpleText( "--General", "opticsdefaultfontbd", width / 2, height / 2, Color( 255, 20, 20 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
-        draw.SimpleText( "Settings", "opticsdefaultfontbd", width / 2, height / 1.5, Color( 255, 20, 20 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
+      draw.SimpleText( "--General", "opticsdefaultfontbd", width / 2, height / 2, Color( 255, 20, 20 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
+      draw.SimpleText( "Settings", "opticsdefaultfontbd", width / 2, height / 1.5, Color( 255, 20, 20 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
     end
 
     function TOOL.BuildCPanel(basepanel0)
@@ -28,36 +28,36 @@ if CLIENT then
       label0:SetText("Point at a concave lens to show something.")
       label0:SetTextColor(color_black)
     end
+    
   function optics_opengeneralsettingsmenu()
+	 local generalsettingsmenu = vgui.Create("DFrame")
+   generalsettingsmenu:SetTitle("General Settings")
+   generalsettingsmenu:MakePopup()
+   generalsettingsmenu:Center()
+   generalsettingsmenu:SetSize(450 * monitor_ratiow,350 * monitor_ratioh)
 
-	   local generalsettingsmenu = vgui.Create("DFrame")
-     generalsettingsmenu:SetTitle("General Settings")
-     generalsettingsmenu:MakePopup()
-     generalsettingsmenu:Center()
-     generalsettingsmenu:SetSize(450 * monitor_ratiow,350 * monitor_ratioh)
+   local background0 = vgui.Create("DPanel", generalsettingsmenu)
+   background0:Dock(FILL)
 
-     local background0 = vgui.Create("DPanel", generalsettingsmenu)
-     background0:Dock(FILL)
-     
-     local lens_maxdetectiondistancefront_slider = vgui.Create( "DNumSlider", background0)
-     lens_maxdetectiondistancefront_slider:Dock(TOP)
-     lens_maxdetectiondistancefront_slider:SetDark(true)
-     lens_maxdetectiondistancefront_slider:DockMargin(5, 2.5, 5, 5)
-     lens_maxdetectiondistancefront_slider:SetText( "Lens Max Detection Distance Front" )
-     lens_maxdetectiondistancefront_slider:SetMin( 0 )	
-     lens_maxdetectiondistancefront_slider:SetMax( 100000 )
-     lens_maxdetectiondistancefront_slider:SetDecimals( 0 )
-     lens_maxdetectiondistancefront_slider:SetConVar( "Optics_LensMaxDetectionDistanceFront" )
+   local lens_maxdetectiondistancefront_slider = vgui.Create( "DNumSlider", background0)
+   lens_maxdetectiondistancefront_slider:Dock(TOP)
+   lens_maxdetectiondistancefront_slider:SetDark(true)
+   lens_maxdetectiondistancefront_slider:DockMargin(5, 2.5, 5, 5)
+   lens_maxdetectiondistancefront_slider:SetText( "Lens Max Detection Distance Front" )
+   lens_maxdetectiondistancefront_slider:SetMin( 0 )	
+   lens_maxdetectiondistancefront_slider:SetMax( 100000 )
+   lens_maxdetectiondistancefront_slider:SetDecimals( 0 )
+   lens_maxdetectiondistancefront_slider:SetConVar( "Optics_LensMaxDetectionDistanceFront" )
 
-     local lens_maxdetectiondistanceback_slider = vgui.Create( "DNumSlider", background0)
-     lens_maxdetectiondistanceback_slider:Dock(TOP)
-     lens_maxdetectiondistanceback_slider:SetDark(true)
-     lens_maxdetectiondistanceback_slider:DockMargin(5, 10, 5, 5)
-     lens_maxdetectiondistanceback_slider:SetText( "Lens Max Detection Distance Back" )
-     lens_maxdetectiondistanceback_slider:SetMin( 0 )	
-     lens_maxdetectiondistanceback_slider:SetMax( 100000 )
-     lens_maxdetectiondistanceback_slider:SetDecimals( 0 )
-     lens_maxdetectiondistanceback_slider:SetConVar( "Optics_LensMaxDetectionDistanceback" )
+   local lens_maxdetectiondistanceback_slider = vgui.Create( "DNumSlider", background0)
+   lens_maxdetectiondistanceback_slider:Dock(TOP)
+   lens_maxdetectiondistanceback_slider:SetDark(true)
+   lens_maxdetectiondistanceback_slider:DockMargin(5, 10, 5, 5)
+   lens_maxdetectiondistanceback_slider:SetText( "Lens Max Detection Distance Back" )
+   lens_maxdetectiondistanceback_slider:SetMin( 0 )	
+   lens_maxdetectiondistanceback_slider:SetMax( 100000 )
+   lens_maxdetectiondistanceback_slider:SetDecimals( 0 )
+   lens_maxdetectiondistanceback_slider:SetConVar( "Optics_LensMaxDetectionDistanceback" )
 
   end
 
@@ -65,32 +65,29 @@ if CLIENT then
    local thing = self:GetOwner():GetEyeTrace().Entity
      if thing:IsValid() == true and thing:GetClass() == "optics_concavelens" then
 
-       local linecolor0 = Color(0, 0, 0)
-       hook.Add( "PostDrawTranslucentRenderables", "baseline0", function()
-         if thing:IsValid() == true then
-           render.DrawLine( thing:GetPos(), thing:GetPos() + thing:GetAngles():Right() * GetConVar("Optics_LensMaxDetectionDistanceFront"):GetInt(), linecolor0 )
-           render.DrawLine( thing:GetPos(), thing:GetPos() - thing:GetAngles():Right() * GetConVar("Optics_LensMaxDetectionDistanceBack"):GetInt(), linecolor0 )
-         end
-       end )   
-  
-       local spritecolor0 = Color(255 ,0 , 0)
-       hook.Add( "PostDrawTranslucentRenderables", "pointsprites0", function()
-         if thing:IsValid() == true then
-          render.DrawWireframeSphere( thing:GetPos(), 2, 4, 4, spritecolor0 )
-         end
+       local linecolor0 = Color(0, 0, 0, 125)
+       local spritecolor0 = Color(255 ,0 , 0, 200)
+       hook.Add( "PostDrawTranslucentRenderables", "baseline_and_ball0", function()
+          local x2 = Vector( 12, 2, 12 )
+          if thing:IsValid() == true then
+           render.DrawLine( thing:GetPos(), thing:GetPos() + thing:GetAngles():Right() * GetConVar("Optics_LensMaxDetectionDistanceFront"):GetInt(), spritecolor0 )
+           render.DrawLine( thing:GetPos(), thing:GetPos() - thing:GetAngles():Right() * GetConVar("Optics_LensMaxDetectionDistanceBack"):GetInt(), spritecolor0 )
+           render.DrawBox(thing:GetPos(),thing:GetAngles(),x2,-x2,linecolor0)
+           render.DrawSphere( thing:GetPos(), 2.5, 4, 4, spritecolor0 )
+          end
        end )
 
-          hook.Add("PostDrawOpaqueRenderables", "concavelensinfo0", function()
-
+          hook.Add("PostDrawTranslucentRenderables", "concavelensinfo0", function()
+            local textcolor0 = Color(255,255,255,100)
             if thing:IsValid() == true then
              local pos0 = thing:GetPos()
+             local pos0a = Vector(pos0.x , pos0.y, pos0.z + 16)
              local ang0 = self:GetOwner():EyeAngles()
              local ang1 = Angle( ang0.x, ang0.y, - ang0.z )
              ang1:RotateAroundAxis( ang1:Up(), -90 )
              ang1:RotateAroundAxis( ang1:Forward(), 90 )
-           
-             cam.Start3D2D( pos0, ang1, 0.1 )
-               draw.SimpleText( "Concave Lens", "opticsdefaultfontbd", 16, 0, color_white )
+             cam.Start3D2D( pos0a, ang1, 0.1 )
+               draw.SimpleText( "Concave Lens", "opticsdefaultfontbd", 16, 0, textcolor0 )
              cam.End3D2D()
             end
 
@@ -100,15 +97,14 @@ if CLIENT then
             if thing:IsValid() == true then
              local pos1 = thing:GetPos() + thing:GetAngles():Right() * GetConVar("Optics_LensMaxDetectionDistanceFront"):GetInt()
              local x0 = Vector( 1, 1, 1 )
-             box_front = render.DrawBox( pos1, angle_zero, x0, -x0, color_black )
+             box_front = render.DrawBox( pos1, angle_zero, x0, -x0, spritecolor0 )
             end
             if thing:IsValid() == true then
              local pos2 = thing:GetPos() - thing:GetAngles():Right() * GetConVar("Optics_LensMaxDetectionDistanceBack"):GetInt()
              local x1 = Vector( 1, 1, 1 )
-             box_back = render.DrawBox( pos2, angle_zero, x1, -x1, color_black )
+             box_back = render.DrawBox( pos2, angle_zero, x1, -x1, spritecolor0 )
             end
            end )
-          
 
      end
 
