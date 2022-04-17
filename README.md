@@ -8,4 +8,4 @@ Optics for Garry's Mod
 
 
 
-Used IBM Plex fonts. https://github.com/IBM/plex
+Used Times New Roman fonts.
