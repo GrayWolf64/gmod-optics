@@ -21,12 +21,15 @@ if CLIENT then
    })
    print( detectiontrace_front.HitPos, detectiontrace_front.Entity, detectiontrace_back.HitPos, detectiontrace_back.Entity )
 
- local color_red = Color(255, 0, 0)
+    local linecolor0 = Color(0, 0, 0)
+    hook.Add( "PostDrawTranslucentRenderables", "baseline0", function()
+        render.DrawLine( thisobjectpos, thisobjectpos + thisobjectangles:Right() * GetConVar("Optics_LensMaxDetectionDistanceFront"):GetInt(), linecolor0 )
+        render.DrawLine( thisobjectpos, thisobjectpos - thisobjectangles:Right() * GetConVar("Optics_LensMaxDetectionDistanceBack"):GetInt(), linecolor0 )
+    end )   
 
- hook.Add( "PostDrawTranslucentRenderables", "baseline0", function()
-     render.DrawLine( thisobjectpos, thisobjectpos + thisobjectangles:Right() * GetConVar("Optics_LensMaxDetectionDistanceFront"):GetInt(), color_black )
-     render.DrawLine( thisobjectpos, thisobjectpos - thisobjectangles:Right() * GetConVar("Optics_LensMaxDetectionDistanceBack"):GetInt(), color_black )
- end )   
-
+    local spritecolor0 = Color(255 ,0 , 0)
+    hook.Add( "PostDrawTranslucentRenderables", "pointsprites0", function()
+      render.DrawWireframeSphere( thisobjectpos, 2, 8, 8, spritecolor0 )
+    end )
  end
 end
