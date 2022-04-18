@@ -65,44 +65,64 @@ if CLIENT then
    local thing = self:GetOwner():GetEyeTrace().Entity
      if thing:IsValid() == true and thing:GetClass() == "optics_concavelens" then
 
-       local linecolor0 = Color(0, 0, 0, 125)
+       local linecolor0 = Color(0, 0, 0, 175)
        local spritecolor0 = Color(255 ,0 , 0, 200)
        hook.Add( "PostDrawTranslucentRenderables", "baseline_and_ball0", function()
           local x2 = Vector( 12, 2, 12 )
           if thing:IsValid() == true then
            render.DrawLine( thing:GetPos(), thing:GetPos() + thing:GetAngles():Right() * GetConVar("Optics_LensMaxDetectionDistanceFront"):GetInt(), spritecolor0 )
            render.DrawLine( thing:GetPos(), thing:GetPos() - thing:GetAngles():Right() * GetConVar("Optics_LensMaxDetectionDistanceBack"):GetInt(), spritecolor0 )
-           render.DrawBox(thing:GetPos(),thing:GetAngles(),x2,-x2,linecolor0)
-           render.DrawSphere( thing:GetPos(), 2.5, 4, 4, spritecolor0 )
+           render.DrawWireframeBox(thing:GetPos(),thing:GetAngles(),x2,-x2,linecolor0)
+           render.DrawWireframeSphere( thing:GetPos(), 2.5, 4, 4, spritecolor0 )
           end
        end )
 
           hook.Add("PostDrawTranslucentRenderables", "concavelensinfo0", function()
-            local textcolor0 = Color(255,255,255,100)
+            local textcolor0 = Color(255,255,255,200)
             if thing:IsValid() == true then
              local pos0 = thing:GetPos()
              local pos0a = Vector(pos0.x , pos0.y, pos0.z + 16)
              local ang0 = self:GetOwner():EyeAngles()
-             local ang1 = Angle( ang0.x, ang0.y, - ang0.z )
-             ang1:RotateAroundAxis( ang1:Up(), -90 )
-             ang1:RotateAroundAxis( ang1:Forward(), 90 )
-             cam.Start3D2D( pos0a, ang1, 0.1 )
+             local ang0a = Angle( ang0.x, ang0.y, - ang0.z )
+             ang0a:RotateAroundAxis( ang0a:Up(), -90 )
+             ang0a:RotateAroundAxis( ang0a:Forward(), 90 )
+             cam.Start3D2D( pos0a, ang0a, 0.1 )
                draw.SimpleText( "Concave Lens", "opticsdefaultfontbd", 16, 0, textcolor0 )
+             cam.End3D2D()
+
+             local pos1 = thing:GetPos() + thing:GetAngles():Right() * GetConVar("Optics_LensMaxDetectionDistanceFront"):GetInt()
+             local pos1a = Vector(pos1.x , pos1.y, pos1.z + 12)
+             local ang1 = self:GetOwner():EyeAngles()
+             local ang1a = Angle( ang1.x, ang1.y, - ang1.z )
+             ang1a:RotateAroundAxis( ang1a:Up(), -90 )
+             ang1a:RotateAroundAxis( ang1a:Forward(), 90 )
+             cam.Start3D2D( pos1a, ang1a, 0.1 )
+               draw.SimpleText( "Max Detect Front", "opticsdefaultfontbd", 16, 0, textcolor0 )
+             cam.End3D2D()
+
+             local pos2 = thing:GetPos() - thing:GetAngles():Right() * GetConVar("Optics_LensMaxDetectionDistanceBack"):GetInt()
+             local pos2a = Vector(pos2.x , pos2.y, pos2.z + 12)
+             local ang2 = self:GetOwner():EyeAngles()
+             local ang2a = Angle( ang2.x, ang2.y, - ang2.z )
+             ang2a:RotateAroundAxis( ang2a:Up(), -90 )
+             ang2a:RotateAroundAxis( ang2a:Forward(), 90 )
+             cam.Start3D2D( pos2a, ang2a, 0.1 )
+               draw.SimpleText( "Max Detect Back", "opticsdefaultfontbd", 16, 0, textcolor0 )
              cam.End3D2D()
             end
 
           end )
 
-           hook.Add( "PostDrawTranslucentRenderables", "sidebox", function()
+           hook.Add( "PostDrawTranslucentRenderables", "sidebox0", function()
             if thing:IsValid() == true then
-             local pos1 = thing:GetPos() + thing:GetAngles():Right() * GetConVar("Optics_LensMaxDetectionDistanceFront"):GetInt()
+             local pos1b = thing:GetPos() + thing:GetAngles():Right() * GetConVar("Optics_LensMaxDetectionDistanceFront"):GetInt()
              local x0 = Vector( 1, 1, 1 )
-             box_front = render.DrawBox( pos1, angle_zero, x0, -x0, spritecolor0 )
+             box_front = render.DrawWireframeBox( pos1b, angle_zero, x0, -x0, spritecolor0 )
             end
             if thing:IsValid() == true then
-             local pos2 = thing:GetPos() - thing:GetAngles():Right() * GetConVar("Optics_LensMaxDetectionDistanceBack"):GetInt()
+             local pos2b = thing:GetPos() - thing:GetAngles():Right() * GetConVar("Optics_LensMaxDetectionDistanceBack"):GetInt()
              local x1 = Vector( 1, 1, 1 )
-             box_back = render.DrawBox( pos2, angle_zero, x1, -x1, spritecolor0 )
+             box_back = render.DrawWireframeBox( pos2b, angle_zero, x1, -x1, spritecolor0 )
             end
            end )
 
