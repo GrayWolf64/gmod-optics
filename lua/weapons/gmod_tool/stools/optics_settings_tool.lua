@@ -14,11 +14,19 @@ if CLIENT then
   language.Add("tool.optics_settings_tool.reload", "Bring up the general settings menu.")
 
     function TOOL:DrawToolScreen( width, height )
+      local pointedent = self:GetOwner():GetEyeTrace().Entity
 	    surface.SetDrawColor( Color( 141 ,238 ,238 ) )
-	    surface.DrawRect( 0, 0, width, height )
+	    surface.DrawRect( 0, 0, width , height)
 	    draw.SimpleText( "Optics", "opticsdefaultfont", width / 2, height / 5.5, Color( 255, 20, 20 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
       draw.SimpleText( "--General", "opticsdefaultfontbd", width / 2, height / 2, Color( 255, 20, 20 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
       draw.SimpleText( "Settings", "opticsdefaultfontbd", width / 2, height / 1.5, Color( 255, 20, 20 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
+
+       if pointedent:IsValid() == true and pointedent:GetClass() == "optics_concavelens" then
+        surface.SetDrawColor( Color( 	0 ,238 ,118 ) )
+        surface.DrawRect( 0, 195, width , height / 5)
+        draw.SimpleText( "On Concave lens", "opticsdefaultfontbd", width / 2, height / 1.2, Color( 30 ,144 ,255 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
+       end
+
     end
 
     function TOOL.BuildCPanel(basepanel0)
@@ -27,8 +35,20 @@ if CLIENT then
       label0:DockMargin(5, 2.5, 5, 5)
       label0:SetText("Point at a concave lens to show something.")
       label0:SetTextColor(color_black)
+
+      local collapsible0 = vgui.Create("DCollapsibleCategory", basepanel0)
+      collapsible0:Dock(TOP)
+      collapsible0:DockMargin(5, 5, 5, 10)
+      collapsible0:SetLabel("Concave Lens Information")
+      collapsible0:SetAnimTime(0.5)
+      collapsible0:SetExpanded(false)
+
+      local basepanel1 = vgui.Create("DPanel", collapsible0)
+      basepanel1:SetSize(200 * monitor_ratiow, 240 * monitor_ratioh)
+      basepanel1:DockMargin(0, 5 * monitor_ratioh, 2.5 * monitor_ratiow, 10 * monitor_ratioh)
+      basepanel1:Dock(TOP)
     end
-    
+
   function optics_opengeneralsettingsmenu()
 	 local generalsettingsmenu = vgui.Create("DFrame")
    generalsettingsmenu:SetTitle("General Settings")
@@ -63,21 +83,22 @@ if CLIENT then
 
   function TOOL:Think()
    local thing = self:GetOwner():GetEyeTrace().Entity
-     if thing:IsValid() == true and thing:GetClass() == "optics_concavelens" then
+     if thing:IsValid() == true and thing:GetClass() == "optics_concavelens"
+     then
 
        local linecolor0 = Color(0, 0, 0, 175)
-       local spritecolor0 = Color(255 ,0 , 0, 200)
+       local spherecolor0 = Color(255 ,0 , 0, 200)
        hook.Add( "PostDrawTranslucentRenderables", "baseline_and_ball0", function()
           local x2 = Vector( 12, 2, 12 )
           if thing:IsValid() == true then
-           render.DrawLine( thing:GetPos(), thing:GetPos() + thing:GetAngles():Right() * GetConVar("Optics_LensMaxDetectionDistanceFront"):GetInt(), spritecolor0 )
-           render.DrawLine( thing:GetPos(), thing:GetPos() - thing:GetAngles():Right() * GetConVar("Optics_LensMaxDetectionDistanceBack"):GetInt(), spritecolor0 )
+           render.DrawLine( thing:GetPos(), thing:GetPos() + thing:GetAngles():Right() * GetConVar("Optics_LensMaxDetectionDistanceFront"):GetInt(), spherecolor0 )
+           render.DrawLine( thing:GetPos(), thing:GetPos() - thing:GetAngles():Right() * GetConVar("Optics_LensMaxDetectionDistanceBack"):GetInt(), spherecolor0 )
            render.DrawWireframeBox(thing:GetPos(),thing:GetAngles(),x2,-x2,linecolor0)
-           render.DrawWireframeSphere( thing:GetPos(), 2.5, 4, 4, spritecolor0 )
+           render.DrawWireframeSphere( thing:GetPos(), 2.5, 4, 4, spherecolor0 )
           end
        end )
 
-          hook.Add("PostDrawTranslucentRenderables", "concavelensinfo0", function()
+          hook.Add( "PostDrawTranslucentRenderables", "concavelensinfo0", function()
             local textcolor0 = Color(255,255,255,200)
             if thing:IsValid() == true then
              local pos0 = thing:GetPos()
@@ -113,18 +134,28 @@ if CLIENT then
 
           end )
 
+           local x0 = Vector( 1, 1, 1 )
            hook.Add( "PostDrawTranslucentRenderables", "sidebox0", function()
             if thing:IsValid() == true then
              local pos1b = thing:GetPos() + thing:GetAngles():Right() * GetConVar("Optics_LensMaxDetectionDistanceFront"):GetInt()
-             local x0 = Vector( 1, 1, 1 )
-             box_front = render.DrawWireframeBox( pos1b, angle_zero, x0, -x0, spritecolor0 )
+             box_front = render.DrawWireframeBox( pos1b, angle_zero, x0, -x0, spherecolor0 )
             end
             if thing:IsValid() == true then
              local pos2b = thing:GetPos() - thing:GetAngles():Right() * GetConVar("Optics_LensMaxDetectionDistanceBack"):GetInt()
-             local x1 = Vector( 1, 1, 1 )
-             box_back = render.DrawWireframeBox( pos2b, angle_zero, x1, -x1, spritecolor0 )
+             box_back = render.DrawWireframeBox( pos2b, angle_zero, x0, -x0, spherecolor0 )
             end
            end )
+     else
+
+      hook.Add( "PostDrawTranslucentRenderables", "baseline_and_ball0", function()
+        render.ClearStencil()
+      end)
+      hook.Add( "PostDrawTranslucentRenderables", "concavelensinfo0", function()
+        render.ClearStencil()
+      end)
+      hook.Add( "PostDrawTranslucentRenderables", "sidebox0", function()
+        render.ClearStencil()
+      end)
 
      end
 
