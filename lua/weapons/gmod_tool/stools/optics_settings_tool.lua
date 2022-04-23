@@ -14,13 +14,16 @@ if CLIENT then
   language.Add("tool.optics_settings_tool.reload", "Bring up the general settings menu.")
 
     function TOOL:DrawToolScreen( width, height )
-      local pointedent = self:GetOwner():GetEyeTrace().Entity
+
+      local toolfontcolor = Color( 255, 20, 20 )
+
 	    surface.SetDrawColor( Color( 141 ,238 ,238 ) )
 	    surface.DrawRect( 0, 0, width , height)
-	    draw.SimpleText( "Optics", "opticsdefaultfont", width / 2, height / 5.5, Color( 255, 20, 20 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
-      draw.SimpleText( "--General", "opticsdefaultfontbd", width / 2, height / 2, Color( 255, 20, 20 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
-      draw.SimpleText( "Settings", "opticsdefaultfontbd", width / 2, height / 1.5, Color( 255, 20, 20 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
+	    draw.SimpleText( "Optics", "opticsdefaultfont", width / 2, height / 5.5, toolfontcolor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
+      draw.SimpleText( "--General", "opticsdefaultfontbd", width / 2, height / 2, toolfontcolor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
+      draw.SimpleText( "Settings", "opticsdefaultfontbd", width / 2, height / 1.5, toolfontcolor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
 
+       local pointedent = self:GetOwner():GetEyeTrace().Entity
        if pointedent:IsValid() == true and pointedent:GetClass() == "optics_concavelens" then
         surface.SetDrawColor( Color( 	0 ,238 ,118 ) )
         surface.DrawRect( 0, 195, width , height / 5)
@@ -30,60 +33,107 @@ if CLIENT then
     end
 
     function TOOL.BuildCPanel(basepanel0)
+      //local textcolor0 = Color(105 ,105 ,105)
+      local textcolor1 = Color(190, 190, 190)
+
       local label0 = vgui.Create("DLabel", basepanel0)
-      label0:Dock(TOP)
-      label0:DockMargin(5, 2.5, 5, 5)
-      label0:SetText("Point at a concave lens to show something.")
+        label0:Dock(TOP)
+        label0:DockMargin(5, 2.5, 5, 5)
+        label0:SetText("Point at a concave lens to show something.")
       label0:SetTextColor(color_black)
 
       local collapsible0 = vgui.Create("DCollapsibleCategory", basepanel0)
-      collapsible0:Dock(TOP)
-      collapsible0:DockMargin(5, 5, 5, 10)
-      collapsible0:SetLabel("Concave Lens Information")
-      collapsible0:SetAnimTime(0.5)
+        collapsible0:Dock(TOP)
+        collapsible0:DockMargin(5 * monitor_ratiow, 5 * monitor_ratioh, 5 * monitor_ratiow, 10 * monitor_ratioh)
+        collapsible0:SetLabel("Concave Lens Information")
+        collapsible0:SetAnimTime(0.5)
       collapsible0:SetExpanded(false)
 
       local basepanel1 = vgui.Create("DPanel", collapsible0)
-      basepanel1:SetSize(200 * monitor_ratiow, 240 * monitor_ratioh)
-      basepanel1:DockMargin(0, 5 * monitor_ratioh, 2.5 * monitor_ratiow, 10 * monitor_ratioh)
+        basepanel1:SetSize(200 * monitor_ratiow, 200 * monitor_ratioh)
+        basepanel1:DockMargin(0, 5 * monitor_ratioh, 2.5 * monitor_ratiow, 10 * monitor_ratioh)
       basepanel1:Dock(TOP)
+
+      local desc0 = vgui.Create("DLabel", basepanel1)
+        desc0:SetColor(textcolor1)
+        desc0:SetText( "When not pointing at a concave lens, this section is hidden." )
+        desc0:SizeToContents()
+        desc0:Dock(BOTTOM)
+      desc0:DockMargin(10 * monitor_ratiow, 10 * monitor_ratioh, 10 * monitor_ratiow, 7.5 * monitor_ratioh)
+
+      local desc1 = vgui.Create("DLabel", basepanel1)
+         desc1:SetColor(color_black)
+         desc1:SetText( "Current focal length" )
+         desc1:SizeToContents()
+         desc1:Dock(TOP)
+         desc1:DockMargin(5 * monitor_ratiow, 5 * monitor_ratioh, 10 * monitor_ratiow, 7.5 * monitor_ratioh)
+
+         local textbox0 = vgui.Create("DTextEntry", basepanel1)
+         textbox0:Dock( TOP )
+         textbox0:DockMargin(40 * monitor_ratiow, 2.5 * monitor_ratioh, 220 * monitor_ratiow, 10 * monitor_ratioh)
+      textbox0:SetEditable(false)
+
+      local desc2 = vgui.Create("DLabel", basepanel1)
+         desc2:SetColor(color_black)
+         desc2:SetText( "Is Welded" )
+         desc2:SizeToContents()
+         desc2:Dock(TOP)
+         desc2:DockMargin(5 * monitor_ratiow, 2.5 * monitor_ratioh, 10 * monitor_ratiow, 7.5 * monitor_ratioh)
+
+         local textbox1 = vgui.Create("DTextEntry", basepanel1)
+         textbox1:Dock( TOP )
+         textbox1:DockMargin(40 * monitor_ratiow, 2.5 * monitor_ratioh, 220 * monitor_ratiow, 10 * monitor_ratioh)
+      textbox1:SetEditable(false)
+
+      local desc3 = vgui.Create("DLabel", basepanel1)
+         desc3:SetColor(color_black)
+         desc3:SetText( "Is Imaging" )
+         desc3:SizeToContents()
+         desc3:Dock(TOP)
+         desc3:DockMargin(5 * monitor_ratiow, 2.5 * monitor_ratioh, 10 * monitor_ratiow, 7.5 * monitor_ratioh)
+
+         local textbox2 = vgui.Create("DTextEntry", basepanel1)
+         textbox2:Dock( TOP )
+         textbox2:DockMargin(40, 2.5 * monitor_ratioh, 220 * monitor_ratiow, 10 * monitor_ratioh)
+      textbox2:SetEditable(false)
+
     end
 
   function optics_opengeneralsettingsmenu()
 	 local generalsettingsmenu = vgui.Create("DFrame")
-   generalsettingsmenu:SetTitle("General Settings")
-   generalsettingsmenu:MakePopup()
-   generalsettingsmenu:Center()
+       generalsettingsmenu:SetTitle("General Settings")
+       generalsettingsmenu:MakePopup()
+       generalsettingsmenu:Center()
    generalsettingsmenu:SetSize(450 * monitor_ratiow,350 * monitor_ratioh)
 
    local background0 = vgui.Create("DPanel", generalsettingsmenu)
    background0:Dock(FILL)
 
    local lens_maxdetectiondistancefront_slider = vgui.Create( "DNumSlider", background0)
-   lens_maxdetectiondistancefront_slider:Dock(TOP)
-   lens_maxdetectiondistancefront_slider:SetDark(true)
-   lens_maxdetectiondistancefront_slider:DockMargin(5, 2.5, 5, 5)
-   lens_maxdetectiondistancefront_slider:SetText( "Lens Max Detection Distance Front" )
-   lens_maxdetectiondistancefront_slider:SetMin( 0 )	
-   lens_maxdetectiondistancefront_slider:SetMax( 100000 )
-   lens_maxdetectiondistancefront_slider:SetDecimals( 0 )
+       lens_maxdetectiondistancefront_slider:Dock(TOP)
+       lens_maxdetectiondistancefront_slider:SetDark(true)
+       lens_maxdetectiondistancefront_slider:DockMargin(5, 2.5, 5, 5)
+       lens_maxdetectiondistancefront_slider:SetText( "Lens Max Detection Distance Front" )
+       lens_maxdetectiondistancefront_slider:SetMin( 0 )
+       lens_maxdetectiondistancefront_slider:SetMax( 100000 )
+       lens_maxdetectiondistancefront_slider:SetDecimals( 0 )
    lens_maxdetectiondistancefront_slider:SetConVar( "Optics_LensMaxDetectionDistanceFront" )
 
    local lens_maxdetectiondistanceback_slider = vgui.Create( "DNumSlider", background0)
-   lens_maxdetectiondistanceback_slider:Dock(TOP)
-   lens_maxdetectiondistanceback_slider:SetDark(true)
-   lens_maxdetectiondistanceback_slider:DockMargin(5, 10, 5, 5)
-   lens_maxdetectiondistanceback_slider:SetText( "Lens Max Detection Distance Back" )
-   lens_maxdetectiondistanceback_slider:SetMin( 0 )	
-   lens_maxdetectiondistanceback_slider:SetMax( 100000 )
-   lens_maxdetectiondistanceback_slider:SetDecimals( 0 )
+       lens_maxdetectiondistanceback_slider:Dock(TOP)
+       lens_maxdetectiondistanceback_slider:SetDark(true)
+       lens_maxdetectiondistanceback_slider:DockMargin(5, 10, 5, 5)
+       lens_maxdetectiondistanceback_slider:SetText( "Lens Max Detection Distance Back" )
+       lens_maxdetectiondistanceback_slider:SetMin( 0 )	
+       lens_maxdetectiondistanceback_slider:SetMax( 100000 )
+       lens_maxdetectiondistanceback_slider:SetDecimals( 0 )
    lens_maxdetectiondistanceback_slider:SetConVar( "Optics_LensMaxDetectionDistanceback" )
 
   end
 
   function TOOL:Think()
    local thing = self:GetOwner():GetEyeTrace().Entity
-     if thing:IsValid() == true and thing:GetClass() == "optics_concavelens"
+     if thing:IsValid() == true and self:GetOwner():GetActiveWeapon():GetClass() == "gmod_tool" and thing:GetClass() == "optics_concavelens"
      then
 
        local linecolor0 = Color(0, 0, 0, 175)
@@ -145,6 +195,7 @@ if CLIENT then
              box_back = render.DrawWireframeBox( pos2b, angle_zero, x0, -x0, spherecolor0 )
             end
            end )
+
      else
 
       hook.Add( "PostDrawTranslucentRenderables", "baseline_and_ball0", function()
@@ -168,10 +219,12 @@ end
  function TOOL:Reload()     return true end
 
   if SERVER then
+
     util.AddNetworkString("optics_opengeneralsettingsmenu")
    function TOOL:Reload( trace )
      net.Start("optics_opengeneralsettingsmenu") net.Send(self:GetOwner())
      return false
     end
+
   end
 
