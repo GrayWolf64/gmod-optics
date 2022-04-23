@@ -11,6 +11,8 @@ if CLIENT then
  local toolfontcolor1 = Color( 255, 20, 20 )
  local textcolor0 = Color(152 ,251 ,152)
  local textcolor1 = Color(190, 190, 190)
+ local alphablack0 = Color(0 ,0 ,0 ,175 )
+
  MsgC(textcolor0, "[ OPTICS ] Concave lens tool script loaded!\n")
 
   TOOL.Information = { "left", "right" }
@@ -21,8 +23,7 @@ if CLIENT then
   language.Add("Undone_concavelens_tool", "The concave lens has been undone.")
 
     function TOOL:DrawToolScreen( width, height )
-     surface.SetDrawColor( toolfontcolor0 )
-     surface.DrawRect( 0, 0, width, height )
+     surface.SetDrawColor( toolfontcolor0 ); surface.DrawRect( 0, 0, width, height )
      draw.SimpleText( "Optics", "opticsdefaultfont", width / 2, height / 5.5, toolfontcolor1, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
      draw.SimpleText( "--Concave Lens", "opticsdefaultfontbd", width / 2, height / 2.5, toolfontcolor1, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
     end
@@ -33,7 +34,7 @@ if CLIENT then
       label0:Dock(TOP)
       label0:DockMargin(5, 2.5, 5, 5)
       label0:SetText("This is the header")
-      label0:SetTextColor(color_black)
+      label0:SetTextColor(alphablack0)
 
       local collapsible00 = vgui.Create("DCollapsibleCategory", basepanel0)
       collapsible00:Dock(TOP)
@@ -42,7 +43,7 @@ if CLIENT then
       collapsible00:SetAnimTime(0.5)
 
       local basepanel1 = vgui.Create("DPanel", collapsible00)
-      basepanel1:SetSize(200 * monitor_ratiow, 402.5 * monitor_ratioh)
+      basepanel1:SetSize(200 * monitor_ratiow, 405 * monitor_ratioh)
       basepanel1:DockMargin(0, 5 * monitor_ratioh, 2.5 * monitor_ratiow, 10 * monitor_ratioh)
       basepanel1:Dock(TOP)
 
@@ -85,10 +86,11 @@ if CLIENT then
       collapsible0:SetContents(panellist0)
 
       local collapsible0_content1 = vgui.Create("DCheckBoxLabel", basepanel2)
-      collapsible0_content1:SetText("Weld")
-      collapsible0_content1:SetTextColor( color_black )
+      collapsible0_content1:SetText("Do Weld")
+      collapsible0_content1:SetTextColor( alphablack0 )
       collapsible0_content1:SizeToContents()
       collapsible0_content1:Dock(TOP)
+      collapsible0_content1:SetConVar("Optics_Boolean_DoWeldConcaveLens_CLIENT")
 
       local collapsible0_content2 = vgui.Create("DNumSlider", basepanel2)
       collapsible0_content2:Dock(TOP)
@@ -97,6 +99,8 @@ if CLIENT then
       collapsible0_content2:SetDark(true)
       collapsible0_content2:SetMin(0)
       collapsible0_content2:SetMax(200)
+      collapsible0_content2:SetDecimals(0)
+      collapsible0_content2:SetConVar("Optics_ConcaveLensFocalLength")
 
     end
 end

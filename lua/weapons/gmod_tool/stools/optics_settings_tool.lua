@@ -8,9 +8,11 @@ if CLIENT then
 
   local textcolor2 = Color(0 ,238 ,118 )
   local textcolor3 = Color(152 ,251 ,152)
+  local textcolor4 = Color(248 ,248 ,255)
   local toolfontcolor0 = Color( 255, 20, 20 )
   local toolfontcolor1 = Color( 141 ,238 ,238 )
   local toolfontcolor2 = Color( 30 ,144 ,255 )
+  local alphablack0 = Color(0 ,0 ,0 ,200 )
 
   MsgC(textcolor3, "[ OPTICS ] General settings tool script loaded!\n")
 
@@ -43,7 +45,7 @@ if CLIENT then
       label0:Dock(TOP)
       label0:DockMargin(5, 2.5, 5, 5)
       label0:SetText("Point at a concave lens using toolgun to show something.")
-      label0:SetTextColor(color_black)
+      label0:SetTextColor(alphablack0)
 
       local collapsible0 = vgui.Create("DCollapsibleCategory", basepanel0)
       collapsible0:Dock(TOP)
@@ -53,7 +55,7 @@ if CLIENT then
       collapsible0:SetExpanded(false)
 
       local basepanel1 = vgui.Create("DPanel", collapsible0)
-      basepanel1:SetSize(200 * monitor_ratiow, 260 * monitor_ratioh)
+      basepanel1:SetSize(200 * monitor_ratiow, 240 * monitor_ratioh)
       basepanel1:DockMargin(0, 5 * monitor_ratioh, 2.5 * monitor_ratiow, 10 * monitor_ratioh)
       basepanel1:Dock(TOP)
 
@@ -66,17 +68,17 @@ if CLIENT then
 
       local colorbutton0 = vgui.Create("DColorButton", basepanel1)
       colorbutton0:Dock(TOP)
-      colorbutton0:DockMargin(20 * monitor_ratiow, 5 * monitor_ratioh, 20 * monitor_ratiow, 5 * monitor_ratioh)
+      colorbutton0:DockMargin(5 * monitor_ratiow, 5 * monitor_ratioh, 5 * monitor_ratiow, 5 * monitor_ratioh)
       colorbutton0:SetSize(20, 20)
       colorbutton0:Paint( 20, 20 )
       colorbutton0:SetColor( toolfontcolor0 )
 
       local desc1 = vgui.Create("DLabel", basepanel1)
-      desc1:SetColor(color_black)
+      desc1:SetColor(alphablack0)
       desc1:SetText( "Current focal length" )
       desc1:SizeToContents()
       desc1:Dock(TOP)
-      desc1:DockMargin(5 * monitor_ratiow, 5 * monitor_ratioh, 10 * monitor_ratiow, 7.5 * monitor_ratioh)
+      desc1:DockMargin(7.5 * monitor_ratiow, 5 * monitor_ratioh, 7.5 * monitor_ratiow, 7.5 * monitor_ratioh)
 
       local textbox0 = vgui.Create("DTextEntry", basepanel1)
       textbox0:Dock( TOP )
@@ -84,7 +86,7 @@ if CLIENT then
       textbox0:SetEditable(false)
 
       local desc2 = vgui.Create("DLabel", basepanel1)
-      desc2:SetColor( color_black )
+      desc2:SetColor( alphablack0 )
       desc2:SetText( "Is Welded" )
       desc2:SizeToContents()
       desc2:Dock(TOP)
@@ -96,7 +98,7 @@ if CLIENT then
       textbox1:SetEditable(false)
 
       local desc3 = vgui.Create("DLabel", basepanel1)
-      desc3:SetColor( color_black )
+      desc3:SetColor( alphablack0 )
       desc3:SetText( "Is Imaging" )
       desc3:SizeToContents()
       desc3:Dock(TOP)
@@ -115,12 +117,21 @@ if CLIENT then
       textbox2:SetEditable(false)
       textbox2:SetTextColor(textcolor2)
 
+      local desc5 = vgui.Create( "DLabel",  colorbutton0)
+      desc5:Dock( TOP )
+      desc5:SetColor(textcolor4)
+      desc5:SetText(" Entity Index: N/A")
+
       function basepanel0:Think()
-        local convar0 = GetConVar("Optics_Boolean_PointingAtConcaveLens_CLIENT")
-        if convar0:GetString() == "true" then
+        local convar0 = GetConVar("Optics_String_Index_PointingAtConcaveLens_CLIENT")
+        local convar1 = GetConVar("Optics_Boolean_PointingAtConcaveLens_CLIENT")
+
+        if convar1:GetBool() == true then
           colorbutton0:SetColor(textcolor2)
+          desc5:SetText(" " .. tostring(convar0:GetString()))
         else
           colorbutton0:SetColor(toolfontcolor0)
+          desc5:SetText(" Entity Index: N/A")
         end
       end
 
@@ -142,7 +153,7 @@ if CLIENT then
     lens_maxdetectiondistancefront_slider:DockMargin(5, 2.5, 5, 5)
     lens_maxdetectiondistancefront_slider:SetText( "Lens Max Detection Distance Front" )
     lens_maxdetectiondistancefront_slider:SetMin( 0 )
-    lens_maxdetectiondistancefront_slider:SetMax( 100000 )
+    lens_maxdetectiondistancefront_slider:SetMax( 10000 )
     lens_maxdetectiondistancefront_slider:SetDecimals( 0 )
     lens_maxdetectiondistancefront_slider:SetConVar( "Optics_LensMaxDetectionDistanceFront" )
 
@@ -152,22 +163,25 @@ if CLIENT then
     lens_maxdetectiondistanceback_slider:DockMargin(5, 10, 5, 5)
     lens_maxdetectiondistanceback_slider:SetText( "Lens Max Detection Distance Back" )
     lens_maxdetectiondistanceback_slider:SetMin( 0 )
-    lens_maxdetectiondistanceback_slider:SetMax( 100000 )
+    lens_maxdetectiondistanceback_slider:SetMax( 10000 )
     lens_maxdetectiondistanceback_slider:SetDecimals( 0 )
-   lens_maxdetectiondistanceback_slider:SetConVar( "Optics_LensMaxDetectionDistanceback" )
+    lens_maxdetectiondistanceback_slider:SetConVar( "Optics_LensMaxDetectionDistanceback" )
 
   end
 
   function TOOL:Think()
-
    local thing = self:GetOwner():GetEyeTrace().Entity
 
-   local convar0 = GetConVar("Optics_Boolean_PointingAtConcaveLens_CLIENT")
+   local convar0 = GetConVar("Optics_String_Index_PointingAtConcaveLens_CLIENT")
+   local convar1 = GetConVar("Optics_Boolean_PointingAtConcaveLens_CLIENT")
+
    if thing:IsValid() == true and thing:GetClass() == "optics_concavelens" then
-     convar0:SetString("true")
+     convar0:SetString("Entity Index: " .. tostring(thing:EntIndex()))
+     convar1:SetString("1")
    else
-     convar0:SetString("false")
-  end
+     convar0:SetString("Entity Index: " .. "N/A")
+     convar1:SetString("0")
+   end
 
      if thing:IsValid() == true and self:GetOwner():GetActiveWeapon():GetClass() == "gmod_tool" and thing:GetClass() == "optics_concavelens"
      then

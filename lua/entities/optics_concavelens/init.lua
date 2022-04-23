@@ -17,3 +17,16 @@ function ENT:Initialize()
    end
 
 end
+
+function ENT:SetupDataTables()
+
+  self:NetworkVar( "Int", 0, "FocalLength" )
+  self:NetworkVar( "Bool", 0, "IsWelded" )
+
+  if SERVER then
+    convar0 = GetConVar("Optics_ConcaveLensFocalLength")
+    self:SetFocalLength(convar0:GetInt())
+    convar1 = GetConVar("Optics_Boolean_DoWeldConcaveLens_CLIENT")
+    self:SetIsWelded(convar1:GetBool())
+  end
+end
