@@ -2,7 +2,7 @@ AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("shared.lua")
 include("shared.lua")
 
-MsgC(Color(152 ,251 ,152), "[ OPTICS ] Concave lens Entity script loaded!\n")
+MsgC(Color(152 ,251 ,152), "[ OPTICS ] Concave Lens Entity Script Loaded!\n")
 
 function ENT:Initialize()
   self:SetModel("models/optics/lens/concavelens.mdl")
@@ -10,9 +10,9 @@ function ENT:Initialize()
   self:SetMoveType(MOVETYPE_VPHYSICS)
   self:SetSolid(SOLID_VPHYSICS)
 
- local theobject = self:GetPhysicsObject()
+  local theobject = self:GetPhysicsObject()
 
-   if theobject:IsValid() then
+   if theobject:IsValid() == true then
     theobject:Wake()
    end
 
@@ -29,6 +29,7 @@ function ENT:SetupDataTables()
     self:SetNWInt("FocalLength", convar0:GetInt())
     self:SetNWBool("IsWelded", convar1:GetBool())
     self:SetNWBool("NoCollide",convar2:GetBool())
+    print(self:GetNWBool("NoCollide"))
 
   end
 
