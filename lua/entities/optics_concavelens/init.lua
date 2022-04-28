@@ -19,14 +19,20 @@ function ENT:Initialize()
 end
 
 function ENT:SetupDataTables()
+  convar0 = GetConVar("Optics_ConcaveLensFocalLength")
 
-  self:NetworkVar( "Int", 0, "FocalLength" )
-  self:NetworkVar( "Bool", 0, "IsWelded" )
+  self:SetNWInt( "FocalLength" , convar0:GetInt() )
+  self:SetNWBool( "IsWelded" ,false )
+  self:SetNWBool( "NoCollide" ,false)
+  self:SetNWBool( "IsImaging" ,false)
 
   if SERVER then
     convar0 = GetConVar("Optics_ConcaveLensFocalLength")
-    self:SetFocalLength(convar0:GetInt())
+    self:SetNWInt("FocalLength", convar0:GetInt())
     convar1 = GetConVar("Optics_Boolean_DoWeldConcaveLens_CLIENT")
-    self:SetIsWelded(convar1:GetBool())
+    self:SetNWBool("IsWelded", convar1:GetBool())
+    convar2 = GetConVar("Optics_Boolean_NoCollideConcaveLens_CLIENT")
+    self:SetNWBool("NoCollide",convar2:GetBool())
+
   end
 end

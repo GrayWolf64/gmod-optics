@@ -6,7 +6,7 @@ local function CreateOpticsCategories()
    spawnmenu.AddToolCategory( "Optics", "Lens", "Lens" )
    spawnmenu.AddToolCategory( "Optics", "Reflectors", "Reflectors" )
    spawnmenu.AddToolCategory( "Optics", "Prisms", "Prisms" )
-   spawnmenu.AddToolCategory( "Optics", "Calculations", "Calculations" )
+   spawnmenu.AddToolCategory( "Optics", "Mathematica", "Mathematica" )
    spawnmenu.AddToolCategory( "Optics", "Settings", "Settings" )
 end
 hook.Add( "AddToolMenuCategories", "CreateOpticsCategories", CreateOpticsCategories )

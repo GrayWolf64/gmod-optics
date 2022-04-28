@@ -12,7 +12,7 @@ if CLIENT then
   local toolfontcolor0 = Color( 255, 20, 20 )
   local toolfontcolor1 = Color( 141 ,238 ,238 )
   local toolfontcolor2 = Color( 30 ,144 ,255 )
-  local alphablack0 = Color(0 ,0 ,0 ,200 )
+  local alphablack0 = Color(0 ,0 ,0 ,245 )
 
   MsgC(textcolor3, "[ OPTICS ] General settings tool script loaded!\n")
 
@@ -50,12 +50,12 @@ if CLIENT then
       local collapsible0 = vgui.Create("DCollapsibleCategory", basepanel0)
       collapsible0:Dock(TOP)
       collapsible0:DockMargin(5 * monitor_ratiow, 5 * monitor_ratioh, 5 * monitor_ratiow, 10 * monitor_ratioh)
-      collapsible0:SetLabel("Concave Lens Information")
+      collapsible0:SetLabel("Pointed Concave Lens Information")
       collapsible0:SetAnimTime(0.5)
       collapsible0:SetExpanded(false)
 
       local basepanel1 = vgui.Create("DPanel", collapsible0)
-      basepanel1:SetSize(200 * monitor_ratiow, 240 * monitor_ratioh)
+      basepanel1:SetSize(200 * monitor_ratiow, 300 * monitor_ratioh)
       basepanel1:DockMargin(0, 5 * monitor_ratioh, 2.5 * monitor_ratiow, 10 * monitor_ratioh)
       basepanel1:Dock(TOP)
 
@@ -69,9 +69,11 @@ if CLIENT then
       local colorbutton0 = vgui.Create("DColorButton", basepanel1)
       colorbutton0:Dock(TOP)
       colorbutton0:DockMargin(5 * monitor_ratiow, 5 * monitor_ratioh, 5 * monitor_ratiow, 5 * monitor_ratioh)
-      colorbutton0:SetSize(20, 20)
+      colorbutton0:SetHeight(20)
       colorbutton0:Paint( 20, 20 )
       colorbutton0:SetColor( toolfontcolor0 )
+      colorbutton0:SetText("Entity Index: N/A")
+      colorbutton0:SetTextColor(textcolor4)
 
       local desc1 = vgui.Create("DLabel", basepanel1)
       desc1:SetColor(alphablack0)
@@ -84,6 +86,7 @@ if CLIENT then
       textbox0:Dock( TOP )
       textbox0:DockMargin(40 * monitor_ratiow, 2 * monitor_ratioh, 50 * monitor_ratiow, 10 * monitor_ratioh)
       textbox0:SetEditable(false)
+      textbox0:SetPlaceholderText("Integer")
 
       local desc2 = vgui.Create("DLabel", basepanel1)
       desc2:SetColor( alphablack0 )
@@ -96,6 +99,8 @@ if CLIENT then
       textbox1:Dock( TOP )
       textbox1:DockMargin(40 * monitor_ratiow, 2 * monitor_ratioh, 50 * monitor_ratiow, 10 * monitor_ratioh)
       textbox1:SetEditable(false)
+      textbox1:SetPlaceholderText("True or false")
+      textbox1:SetTextColor(textcolor2)
 
       local desc3 = vgui.Create("DLabel", basepanel1)
       desc3:SetColor( alphablack0 )
@@ -116,23 +121,39 @@ if CLIENT then
       textbox2:DockMargin(40 * monitor_ratiow, 2.5 * monitor_ratioh, 50 * monitor_ratiow, 10 * monitor_ratioh)
       textbox2:SetEditable(false)
       textbox2:SetTextColor(textcolor2)
+      textbox2:SetPlaceholderText("True or false")
 
-      local desc5 = vgui.Create( "DLabel",  colorbutton0)
-      desc5:Dock( TOP )
-      desc5:SetColor(textcolor4)
-      desc5:SetText(" Entity Index: N/A")
+      local desc6 = vgui.Create("DLabel", basepanel1)
+      desc6:SetColor( alphablack0 )
+      desc6:SetText( "Is No-collide" )
+      desc6:SizeToContents()
+      desc6:Dock(TOP)
+      desc6:DockMargin(5 * monitor_ratiow, 2 * monitor_ratioh, 10 * monitor_ratiow, 7.5 * monitor_ratioh)
+
+      local textbox3 = vgui.Create("DTextEntry", basepanel1)
+      textbox3:Dock( TOP )
+      textbox3:DockMargin(40 * monitor_ratiow, 2.5 * monitor_ratioh, 50 * monitor_ratiow, 10 * monitor_ratioh)
+      textbox3:SetEditable(false)
+      textbox3:SetTextColor(textcolor2)
+      textbox3:SetPlaceholderText("True or false")
 
       function basepanel0:Think()
         local convar0 = GetConVar("Optics_String_Index_PointingAtConcaveLens_CLIENT")
         local convar1 = GetConVar("Optics_Boolean_PointingAtConcaveLens_CLIENT")
+        local convar2 = GetConVar("Optics_Boolean_IsDoWeld_PointedConcaveLens_CLIENT")
+        local convar3 = GetConVar("Optics_Boolean_IsNoCollide_PointedConcaveLens_CLIENT")
 
         if convar1:GetBool() == true then
           colorbutton0:SetColor(textcolor2)
-          desc5:SetText(" " .. tostring(convar0:GetString()))
+          colorbutton0:SetText(convar0:GetString())
         else
           colorbutton0:SetColor(toolfontcolor0)
-          desc5:SetText(" Entity Index: N/A")
+          colorbutton0:SetText("Entity Index: N/A")
         end
+
+        textbox1:SetText(tostring(convar2:GetBool()))
+        textbox3:SetText(tostring(convar3:GetBool()))
+
       end
 
     end
@@ -174,13 +195,23 @@ if CLIENT then
 
    local convar0 = GetConVar("Optics_String_Index_PointingAtConcaveLens_CLIENT")
    local convar1 = GetConVar("Optics_Boolean_PointingAtConcaveLens_CLIENT")
+   local convar2 = GetConVar("Optics_Boolean_IsDoWeld_PointedConcaveLens_CLIENT")
+   local convar3 = GetConVar("Optics_Boolean_IsNoCollide_PointedConcaveLens_CLIENT")
 
    if thing:IsValid() == true and thing:GetClass() == "optics_concavelens" then
      convar0:SetString("Entity Index: " .. tostring(thing:EntIndex()))
-     convar1:SetString("1")
+     convar1:SetBool(true )
    else
      convar0:SetString("Entity Index: " .. "N/A")
-     convar1:SetString("0")
+     convar1:SetBool(false)
+   end
+
+   if thing:IsValid() == true and thing:GetClass() == "optics_concavelens" then
+     convar2:SetBool(thing:GetNWBool("IsWelded"))
+     convar3:SetBool(thing:GetNWBool("NoCollide"))
+   else
+     convar2:SetBool(false)
+     convar3:SetBool(false)
    end
 
      if thing:IsValid() == true and self:GetOwner():GetActiveWeapon():GetClass() == "gmod_tool" and thing:GetClass() == "optics_concavelens"

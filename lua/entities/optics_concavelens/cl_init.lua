@@ -22,5 +22,9 @@ if CLIENT then
 
     //print(detectiontrace_front.Entity, detectiontrace_back.Entity)
 
+    if IsValid(detectiontrace_front.Entity) == true or IsValid(detectiontrace_back.Entity) == true then
+      self:SetNWBool("IsImaging", true)
+    end
+
   end
 end

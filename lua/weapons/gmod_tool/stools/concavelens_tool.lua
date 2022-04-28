@@ -11,7 +11,7 @@ if CLIENT then
  local toolfontcolor1 = Color( 255, 20, 20 )
  local textcolor0 = Color(152 ,251 ,152)
  local textcolor1 = Color(190, 190, 190)
- local alphablack0 = Color(0 ,0 ,0 ,175 )
+ local alphablack0 = Color(0 ,0 ,0 ,245)
 
  MsgC(textcolor0, "[ OPTICS ] Concave lens tool script loaded!\n")
 
@@ -79,22 +79,37 @@ if CLIENT then
       basepanel2:Dock(TOP)
       basepanel2:DockPadding(5 * monitor_ratiow, 2.5 * monitor_ratioh, 5 * monitor_ratiow, 2.5 * monitor_ratioh)
 
+      local desc1 = vgui.Create("DLabel", basepanel2)
+      desc1:SetColor(textcolor1)
+      desc1:SetText( "Do what is says." )
+      desc1:SizeToContents()
+      desc1:Dock(BOTTOM)
+      desc1:DockMargin(5 * monitor_ratiow, 10 * monitor_ratioh, 5 * monitor_ratiow, 5 * monitor_ratioh)
+
       local panellist0 = vgui.Create("DPanelList", basepanel2)
       panellist0:SetSpacing(2.5 * monitor_ratioh)
       panellist0:EnableHorizontal(false)
       panellist0:EnableVerticalScrollbar(true)
       collapsible0:SetContents(panellist0)
 
+      local collapsible0_content0 = vgui.Create("DCheckBoxLabel", basepanel2)
+      collapsible0_content0:SetText("Make No-collide")
+      collapsible0_content0:SetTextColor( alphablack0 )
+      collapsible0_content0:SizeToContents()
+      collapsible0_content0:Dock(TOP)
+      collapsible0_content0:DockMargin(2.5, 2.5, 2.5, 10)
+      collapsible0_content0:SetConVar("Optics_Boolean_NoCollideConcaveLens_CLIENT")
+
       local collapsible0_content1 = vgui.Create("DCheckBoxLabel", basepanel2)
       collapsible0_content1:SetText("Do Weld")
       collapsible0_content1:SetTextColor( alphablack0 )
       collapsible0_content1:SizeToContents()
       collapsible0_content1:Dock(TOP)
+      collapsible0_content1:DockMargin(2.5, 10, 2.5, 10)
       collapsible0_content1:SetConVar("Optics_Boolean_DoWeldConcaveLens_CLIENT")
 
       local collapsible0_content2 = vgui.Create("DNumSlider", basepanel2)
       collapsible0_content2:Dock(TOP)
-      collapsible0_content2:DockMargin(5 * monitor_ratiow, 7.5 * monitor_ratioh, 5 * monitor_ratiow, 7.5 * monitor_ratioh)
       collapsible0_content2:SetText("Focal length")
       collapsible0_content2:SetDark(true)
       collapsible0_content2:SetMin(0)
