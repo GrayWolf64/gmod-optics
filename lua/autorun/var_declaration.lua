@@ -10,7 +10,9 @@ if CLIENT then
   CreateClientConVar("Optics_Boolean_PointingAtConcaveLens_CLIENT","0",false,false,"Don't Touch This. Boolean for ensuring that tou are pointing at a Concave Lens.")
   CreateClientConVar("Optics_Boolean_DoWeldConcaveLens_CLIENT","0",false,false,"Don't Touch This. Boolean for ensuring that you want to weld the Concave Lens to the surface.")
   CreateClientConVar("Optics_Boolean_IsDoWeld_PointedConcaveLens_CLIENT","0",false,false,"Don't Touch This. Boolean for ensuring that the pointed concave lens is dowelded.")
+  CreateClientConVar("Optics_Boolean_IsImaging_PointedConcaveLens_CLIENT","0",false,false,"Don't Touch This. Boolean for ensuring that the pointed concave lens is imaging.")
   CreateClientConVar("Optics_Boolean_IsNoCollide_PointedConcaveLens_CLIENT","0",false,false,"Don't Touch This. Boolean for ensuring that the pointed concave lens is nocollide.")
+  CreateClientConVar("Optics_Boolean_FocalLength_PointedConcaveLens_CLIENT",0,false,false,"Don't Touch This. Boolean for ensuring that the pointed concave's focal length.")
   CreateClientConVar("Optics_String_Index_PointingAtConcaveLens_CLIENT","N/A",false,false,"Don't Touch This. String for showing the index of the pointed Concave Lens.")
   CreateClientConVar("Optics_Boolean_NoCollideConcaveLens_CLIENT","0",false,false,"Don't Touch This. Boolean for ensuring that you want to make the Concave Lens No-collide.")
 end

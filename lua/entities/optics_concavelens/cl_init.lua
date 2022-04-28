@@ -21,9 +21,12 @@ if CLIENT then
    })
 
     //print(detectiontrace_front.Entity, detectiontrace_back.Entity)
-
+    local convar0 = GetConVar("Optics_Boolean_IsImaging_PointedConcaveLens_CLIENT")
     if IsValid(detectiontrace_front.Entity) == true or IsValid(detectiontrace_back.Entity) == true then
       self:SetNWBool("IsImaging", true)
+      convar0:SetBool(self:GetNWBool("IsImaging"))
+    else
+      convar0:SetBool(false)
     end
 
   end

@@ -63,6 +63,7 @@ if CLIENT then
       modellist0:AddColumn("Description")
       modellist0:Dock(TOP)
       modellist0:SetTall(basepanel1:GetTall() - 25 * monitor_ratioh)
+      modellist0:SetMultiSelect(false)
 
       modellist0:AddLine("Model 1","Default Concave Lens Model")
 
@@ -118,4 +119,5 @@ if CLIENT then
       collapsible0_content2:SetConVar("Optics_ConcaveLensFocalLength")
 
     end
+
 end

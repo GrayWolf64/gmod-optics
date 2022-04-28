@@ -87,6 +87,7 @@ if CLIENT then
       textbox0:DockMargin(40 * monitor_ratiow, 2 * monitor_ratioh, 50 * monitor_ratiow, 10 * monitor_ratioh)
       textbox0:SetEditable(false)
       textbox0:SetPlaceholderText("Integer")
+      textbox0:SetTextColor(textcolor2)
 
       local desc2 = vgui.Create("DLabel", basepanel1)
       desc2:SetColor( alphablack0 )
@@ -111,7 +112,7 @@ if CLIENT then
 
       local desc4 = vgui.Create("DLabel", basepanel1)
       desc4:SetColor( textcolor1 )
-      desc4:SetText( "(If there are any objects touched by the front and back trace lines)" )
+      desc4:SetText( "(If there are any objects touched by the front or back trace lines)" )
       desc4:SizeToContents()
       desc4:Dock(TOP)
       desc4:DockMargin(5 * monitor_ratiow, 2 * monitor_ratioh, 10 * monitor_ratiow, 7.5 * monitor_ratioh)
@@ -142,6 +143,8 @@ if CLIENT then
         local convar1 = GetConVar("Optics_Boolean_PointingAtConcaveLens_CLIENT")
         local convar2 = GetConVar("Optics_Boolean_IsDoWeld_PointedConcaveLens_CLIENT")
         local convar3 = GetConVar("Optics_Boolean_IsNoCollide_PointedConcaveLens_CLIENT")
+        local convar4 = GetConVar("Optics_Boolean_FocalLength_PointedConcaveLens_CLIENT")
+        local convar5 = GetConVar("Optics_Boolean_IsImaging_PointedConcaveLens_CLIENT")
 
         if convar1:GetBool() == true then
           colorbutton0:SetColor(textcolor2)
@@ -151,7 +154,9 @@ if CLIENT then
           colorbutton0:SetText("Entity Index: N/A")
         end
 
+        textbox0:SetText(tostring(convar4:GetInt()))
         textbox1:SetText(tostring(convar2:GetBool()))
+        textbox2:SetText(tostring(convar5:GetBool()))
         textbox3:SetText(tostring(convar3:GetBool()))
 
       end
@@ -197,21 +202,24 @@ if CLIENT then
    local convar1 = GetConVar("Optics_Boolean_PointingAtConcaveLens_CLIENT")
    local convar2 = GetConVar("Optics_Boolean_IsDoWeld_PointedConcaveLens_CLIENT")
    local convar3 = GetConVar("Optics_Boolean_IsNoCollide_PointedConcaveLens_CLIENT")
+   local convar4 = GetConVar("Optics_Boolean_FocalLength_PointedConcaveLens_CLIENT")
+   local convar5 = GetConVar("Optics_Boolean_IsImaging_PointedConcaveLens_CLIENT")
 
    if thing:IsValid() == true and thing:GetClass() == "optics_concavelens" then
      convar0:SetString("Entity Index: " .. tostring(thing:EntIndex()))
-     convar1:SetBool(true )
+     convar1:SetBool(true)
+
+     convar2:SetBool(thing:GetNWBool("IsWelded"))
+     convar3:SetBool(thing:GetNWBool("NoCollide"))
+     convar4:SetInt(thing:GetNWInt("FocalLength"))
    else
      convar0:SetString("Entity Index: " .. "N/A")
      convar1:SetBool(false)
-   end
 
-   if thing:IsValid() == true and thing:GetClass() == "optics_concavelens" then
-     convar2:SetBool(thing:GetNWBool("IsWelded"))
-     convar3:SetBool(thing:GetNWBool("NoCollide"))
-   else
      convar2:SetBool(false)
      convar3:SetBool(false)
+     convar4:SetInt(0)
+     convar5:SetBool(false)
    end
 
      if thing:IsValid() == true and self:GetOwner():GetActiveWeapon():GetClass() == "gmod_tool" and thing:GetClass() == "optics_concavelens"
