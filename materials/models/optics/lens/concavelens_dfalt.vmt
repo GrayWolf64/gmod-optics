@@ -1,0 +1,12 @@
+VertexLitGeneric
+{
+
+  "$basetexture" "models/optics/lens/concavelens_dfalt"
+  "$normalmap" "models/optics/lens/concavelens_dfalt-nrm"
+  "$alphatest" "0"
+  "$halflambert" "1"
+  "$surfaceprop" "glass"
+  "$model" "1"
+
+   "$nocull" "1"
+}

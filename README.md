@@ -5,8 +5,9 @@ Optics for Garry's Mod
 Used Times New Roman fonts.
 
 This addon will contain a lot of things in Optics, such as lens , reflectors and many more advanced things.
+Models are only placeholders at the moment.
 
-Contraptions|status
+Contraptions|Status
 ------------|:-------------------:
 Concave Lens|nearly finished
 Convex Lens |preparing to work on
