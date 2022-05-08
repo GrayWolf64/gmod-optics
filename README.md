@@ -17,7 +17,7 @@ Concave Lens|nearly finished
 Convex Lens |preparing to work on
 ...         |...
 
-mechanism|Status
+Mechanism|Status
 ------------|:-------------------:
 imaging     |preparing to work on
 ...         |...

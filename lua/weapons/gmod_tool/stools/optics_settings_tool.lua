@@ -168,7 +168,7 @@ if CLIENT then
     generalsettingsmenu:SetTitle("General Settings")
     generalsettingsmenu:MakePopup()
     generalsettingsmenu:Center()
-    generalsettingsmenu:SetSize(450 * monitor_ratiow,350 * monitor_ratioh)
+    generalsettingsmenu:SetSize(500 * monitor_ratiow,400 * monitor_ratioh)
 
     local background0 = vgui.Create("DPanel", generalsettingsmenu)
     background0:Dock(FILL)
@@ -192,6 +192,18 @@ if CLIENT then
     lens_maxdetectiondistanceback_slider:SetMax( 10000 )
     lens_maxdetectiondistanceback_slider:SetDecimals( 0 )
     lens_maxdetectiondistanceback_slider:SetConVar( "Optics_LensMaxDetectionDistanceback" )
+
+    local notice01 = vgui.Create("DLabel", background0)
+    notice01:SetText("For example, detection distance lines change when your cvars change.")
+    notice01:Dock(BOTTOM)
+    notice01:SetColor(alphablack0)
+    notice01:DockMargin(5, 0.5, 5,2.5)
+
+    local notice02 = vgui.Create("DLabel", background0)
+    notice02:SetText("Some settings require you to apply to certain things to take effect.")
+    notice02:Dock(BOTTOM)
+    notice02:SetColor(alphablack0)
+    notice02:DockMargin(5, 10, 5,0.5)
 
   end
 
