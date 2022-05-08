@@ -243,6 +243,7 @@ if CLIENT then
        local alphalinecolor0 = Color(0, 0, 0, 175)
        local alphatextcolor0 = Color(255,255,255,200)
        local alphaspherecolor0 = Color(255 ,0 , 0, 200)
+       local alphaspherecolor1 = Color(138 ,43 ,226)
 
        local Convar_MaxDetect_Front = GetConVar("Optics_LensMaxDetectionDistanceFront")
        local Convar_MaxDetect_Back = GetConVar("Optics_LensMaxDetectionDistanceBack")
@@ -254,8 +255,16 @@ if CLIENT then
           if thing:IsValid() == true then
            render.DrawLine( thingpos, thingpos + thingangles:Right() * Convar_Int_MaxDetect_Front, alphaspherecolor0 )
            render.DrawLine( thingpos, thingpos - thingangles:Right() * Convar_Int_MaxDetect_Back, alphaspherecolor0 )
+
+           render.DrawLine( thingpos, detectiontrace_front.HitPos, alphaspherecolor1)
+           render.DrawLine( thingpos, detectiontrace_back.HitPos, alphaspherecolor1)
+
            render.DrawWireframeBox(thingpos,thingangles,x2,-x2,alphalinecolor0)
-           render.DrawWireframeSphere( thingpos, 2.5, 4, 4, alphaspherecolor0 )
+
+           render.DrawWireframeSphere(detectiontrace_front.HitPos, 0.5, 6, 6, alphaspherecolor1)
+           render.DrawWireframeSphere(detectiontrace_back.HitPos, 0.5, 6, 6, alphaspherecolor1)
+
+           render.DrawWireframeSphere( thingpos, 2.5, 8, 8, alphaspherecolor0 )
           end
        end )
 
