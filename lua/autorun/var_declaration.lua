@@ -4,7 +4,7 @@ if CLIENT then
   monitor_ratioh = ScrH() / 1024
   //1280x1024 is my screen's res
 
-  CreateClientConVar("Optics_SelectedConcaveLensModel","models/optics/lens/concavelens_dfalt.mdl",false,true,"The selected concave lens model.")
+  CreateClientConVar("Optics_SelectedConcaveLensModel","models/optics/lens/concavelens_d_20x20.mdl",false,true,"The selected concave lens model.")
 
   CreateClientConVar("Optics_LensMaxDetectionDistanceFront",128,false,true,"Maximum Distance in front of the lens for detecting objects.")
   CreateClientConVar("Optics_LensMaxDetectionDistanceBack",128,false,true,"Maximum Distance behind the lens for detecting objects.")

@@ -135,7 +135,7 @@ if CLIENT then
         local convar01 = GetConVar("Optics_SelectedConcaveLensModel")
         modellist0.OnRowSelected = function( panel, rowIndex, row )
           if row == 1 then
-            convar01:SetString("models/optics/lens/concavelens_dfalt.mdl")
+            convar01:SetString("models/optics/lens/concavelens_d_20x20.mdl")
           end
         end
       end
