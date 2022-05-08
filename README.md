@@ -16,3 +16,9 @@ Contraptions|Status
 Concave Lens|nearly finished
 Convex Lens |preparing to work on
 ...         |...
+
+mechanism|Status
+------------|:-------------------:
+imaging     |preparing to work on
+...         |...
+...         |...
