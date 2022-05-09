@@ -24,7 +24,7 @@ function ENT:SetupDataTables()
     local convar1 = GetConVar("Optics_Boolean_DoWeldConcaveLens_CLIENT")
     local convar2 = GetConVar("Optics_Boolean_NoCollideConcaveLens_CLIENT")
 
-  if SERVER then
+  if SERVER or CLIENT then
 
     self:SetNWInt("FocalLength", convar0:GetInt())
     self:SetNWBool("IsWelded", convar1:GetBool())

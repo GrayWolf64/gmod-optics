@@ -5,6 +5,13 @@ if CLIENT then
 
    self:DrawModel()
 
+  end
+
+end
+
+if SERVER or CLIENT then
+  function ENT:Think()
+
    local thisobjectpos = self:GetPos()
    local thisobjectangles = self:GetAngles()
 
@@ -33,5 +40,4 @@ if CLIENT then
 
   end
 
-end
-
+ end
