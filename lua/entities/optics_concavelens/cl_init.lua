@@ -9,7 +9,7 @@ if CLIENT then
 
 end
 
-if SERVER or CLIENT then
+if SERVER or CLIENT then  //i don't know if it mathes the name of this file
   function ENT:Think()
 
    local thisobjectpos = self:GetPos()
