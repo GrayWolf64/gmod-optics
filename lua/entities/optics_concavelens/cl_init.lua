@@ -9,19 +9,21 @@ if CLIENT then
 
 end
 
-if SERVER or CLIENT then  //i don't know if it mathes the name of this file
+if CLIENT then  //i don't know if it matches the name of this file
+
   function ENT:Think()
+   local index = self:EntIndex()
 
    local thisobjectpos = self:GetPos()
    local thisobjectangles = self:GetAngles()
 
-   detectiontrace_front = util.TraceLine({
+   ConcaveLensTraces_Front_Table[index] = util.TraceLine({
      start = thisobjectpos,
      endpos = thisobjectpos + thisobjectangles:Right() * GetConVar("Optics_LensMaxDetectionDistanceFront"):GetInt() ,
      filter = function( ent ) return  ent:GetClass() == "prop_physics" or ent:GetClass() == "player"  end
    })
 
-   detectiontrace_back = util.TraceLine({
+   ConcaveLensTraces_Back_Table[index] = util.TraceLine({
      start = thisobjectpos,
      endpos = thisobjectpos - thisobjectangles:Right() * GetConVar("Optics_LensMaxDetectionDistanceBack"):GetInt() ,
      filter = function( ent ) return  ent:GetClass() == "prop_physics" or ent:GetClass() == "player"  end
@@ -31,13 +33,11 @@ if SERVER or CLIENT then  //i don't know if it mathes the name of this file
 
     local convar0 = GetConVar("Optics_Boolean_IsImaging_PointedConcaveLens_CLIENT")
 
-    if IsValid(detectiontrace_front.Entity) == true or IsValid(detectiontrace_back.Entity) == true then
+    if IsValid((ConcaveLensTraces_Front_Table[index]).Entity) == true or IsValid((ConcaveLensTraces_Back_Table[index]).Entity) == true then
       self:SetNWBool("IsImaging", true)
       convar0:SetBool(self:GetNWBool("IsImaging"))
     else
       convar0:SetBool(false)
     end
-
   end
-
  end

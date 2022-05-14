@@ -9,7 +9,7 @@ if CLIENT then
     local textcolor1 = Color(152 ,251 ,152)
     local alphablack0 = Color(0 ,0 ,0 ,250 )
 
-    MsgC(textcolor1, "[ OPTICS ] Advanced Settings Tool Script Loaded!\n")
+    MsgC(textcolor1, "[ OPTICS ] Advanced Settings Tool Defined!\n")
 
     language.Add("tool.optics_adv_settings_tool.name", "Advanced Settings Tool")
     language.Add("tool.optics_adv_settings_tool.desc", "Modify advanced settings.")

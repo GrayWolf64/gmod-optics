@@ -14,7 +14,7 @@ if CLIENT then
   local toolfontcolor2 = Color( 30 ,144 ,255 )
   local alphablack0 = Color(0 ,0 ,0 ,250 )
 
-  MsgC(textcolor3, "[ OPTICS ] General Settings Tool Script Loaded!\n")
+  MsgC(textcolor3, "[ OPTICS ] General Settings Tool Defined!\n")
 
   TOOL.Information = { "reload" }
   language.Add("tool.optics_settings_tool.name", "General Settings Tool")
@@ -239,16 +239,17 @@ if CLIENT then
 
        local thingpos = thing:GetPos()
        local thingangles = thing:GetAngles()
+       local thingindex = thing:EntIndex()
+       local tr_front_hitpos = (ConcaveLensTraces_Front_Table[thingindex]).HitPos
+       local tr_back_hitpos = (ConcaveLensTraces_Back_Table[thingindex]).HitPos
 
        local alphalinecolor0 = Color(0, 0, 0, 175)
        local alphatextcolor0 = Color(255,255,255,200)
        local alphaspherecolor0 = Color(255 ,0 , 0, 200)
        local alphaspherecolor1 = Color(138 ,43 ,226)
 
-       local Convar_MaxDetect_Front = GetConVar("Optics_LensMaxDetectionDistanceFront")
-       local Convar_MaxDetect_Back = GetConVar("Optics_LensMaxDetectionDistanceBack")
-       local Convar_Int_MaxDetect_Front = Convar_MaxDetect_Front:GetInt()
-       local Convar_Int_MaxDetect_Back = Convar_MaxDetect_Back:GetInt()
+       local Convar_Int_MaxDetect_Front = GetConVar("Optics_LensMaxDetectionDistanceFront"):GetInt()
+       local Convar_Int_MaxDetect_Back = GetConVar("Optics_LensMaxDetectionDistanceBack"):GetInt()
 
        hook.Add( "PostDrawTranslucentRenderables", "baseline_and_ball0", function()
           local x2 = thing:OBBMaxs()
@@ -256,13 +257,13 @@ if CLIENT then
            render.DrawLine( thingpos, thingpos + thingangles:Right() * Convar_Int_MaxDetect_Front, alphaspherecolor0 )
            render.DrawLine( thingpos, thingpos - thingangles:Right() * Convar_Int_MaxDetect_Back, alphaspherecolor0 )
 
-           render.DrawLine( thingpos, detectiontrace_front.HitPos, alphaspherecolor1)
-           render.DrawLine( thingpos, detectiontrace_back.HitPos, alphaspherecolor1)
+           render.DrawLine( thingpos, tr_front_hitpos, alphaspherecolor1)
+           render.DrawLine( thingpos, tr_back_hitpos, alphaspherecolor1)
 
            render.DrawWireframeBox(thingpos,thingangles,x2,-x2,alphalinecolor0)
 
-           render.DrawWireframeSphere(detectiontrace_front.HitPos, 0.5, 6, 6, alphaspherecolor1)
-           render.DrawWireframeSphere(detectiontrace_back.HitPos, 0.5, 6, 6, alphaspherecolor1)
+           render.DrawWireframeSphere(tr_front_hitpos, 0.5, 6, 6, alphaspherecolor1)
+           render.DrawWireframeSphere(tr_back_hitpos, 0.5, 6, 6, alphaspherecolor1)
 
            render.DrawWireframeSphere( thingpos, 2.5, 8, 8, alphaspherecolor0 )
           end

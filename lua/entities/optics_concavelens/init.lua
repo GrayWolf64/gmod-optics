@@ -2,7 +2,7 @@ AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("shared.lua")
 include("shared.lua")
 
-MsgC(Color(152 ,251 ,152), "[ OPTICS ] Concave Lens Entity Script Loaded!\n")
+MsgC(Color(152 ,251 ,152), "[ OPTICS ] Concave Lens Entity Defined!\n")
 
 function ENT:Initialize()
   self:SetModel("models/optics/lens/concavelens_d_20x20.mdl")
@@ -31,5 +31,6 @@ function ENT:SetupDataTables()
     self:SetNWBool("NoCollide",convar2:GetBool())
 
   end
+
 
 end

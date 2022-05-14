@@ -1,5 +1,7 @@
 if CLIENT then
 
+  MsgC(Color(240 ,88 ,0), "[ OPTICS ] Debug Info!"); MsgC(Color(152 ,251 ,152), "[ OPTICS ] Vars Declared!\n")
+
   monitor_ratiow = ScrW() / 1280
   monitor_ratioh = ScrH() / 1024
   //1280x1024 is my screen's res
@@ -20,5 +22,8 @@ if CLIENT then
   CreateClientConVar("Optics_Boolean_FocalLength_PointedConcaveLens_CLIENT",0,false,false,"Don't Touch This. Boolean for ensuring that the pointed concave's focal length.")
   CreateClientConVar("Optics_String_Index_PointingAtConcaveLens_CLIENT","N/A",false,false,"Don't Touch This. String for showing the index of the pointed Concave Lens.")
   CreateClientConVar("Optics_Boolean_NoCollideConcaveLens_CLIENT","0",false,false,"Don't Touch This. Boolean for ensuring that you want to make the Concave Lens No-collide.")
+
+  ConcaveLensTraces_Front_Table = {}  //table of traces of concave lens
+  ConcaveLensTraces_Back_Table = {}
 
 end

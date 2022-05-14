@@ -11,7 +11,7 @@ if CLIENT then
  local textcolor1 = Color(190, 190, 190)
  local alphablack0 = Color(0 ,0 ,0 ,250)
 
- MsgC(textcolor0, "[ OPTICS ] Concave Lens Tool Script Loaded!\n")
+ MsgC(textcolor0, "[ OPTICS ] Concave Lens Tool Defined!\n")
 
   TOOL.Information = { "left", "right" }
   language.Add("tool.optics_concavelens_tool.name", "Concave Lens Tool")
