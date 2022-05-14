@@ -71,8 +71,7 @@ if CLIENT then
       colorbutton0:DockMargin(5 * monitor_ratiow, 5 * monitor_ratioh, 5 * monitor_ratiow, 5 * monitor_ratioh)
       colorbutton0:SetHeight(20)
       colorbutton0:Paint( 20, 20 )
-      colorbutton0:SetColor( toolfontcolor0 )
-      colorbutton0:SetText("Entity Index: N/A")
+      colorbutton0:SetColor(toolfontcolor0)
       colorbutton0:SetTextColor(textcolor4)
 
       local desc1 = vgui.Create("DLabel", basepanel1)
@@ -151,7 +150,7 @@ if CLIENT then
           colorbutton0:SetText(convar0:GetString())
         else
           colorbutton0:SetColor(toolfontcolor0)
-          colorbutton0:SetText("Entity Index: N/A")
+          colorbutton0:SetText(" Entity Index: N/A")
         end
 
         textbox0:SetText(tostring(convar4:GetInt()))
@@ -218,14 +217,14 @@ if CLIENT then
    local convar5 = GetConVar("Optics_Boolean_IsImaging_PointedConcaveLens_CLIENT")
 
    if thing:IsValid() == true and thing:GetClass() == "optics_concavelens" then
-     convar0:SetString("Entity Index: " .. tostring(thing:EntIndex()))
+     convar0:SetString(" Entity Index: " .. tostring(thing:EntIndex()))
      convar1:SetBool(true)
 
      convar2:SetBool(thing:GetNWBool("IsWelded"))
      convar3:SetBool(thing:GetNWBool("NoCollide"))
      convar4:SetInt(thing:GetNWInt("FocalLength"))
    else
-     convar0:SetString("Entity Index: " .. "N/A")
+     convar0:SetString(" Entity Index: " .. "N/A")
      convar1:SetBool(false)
 
      convar2:SetBool(false)
@@ -337,7 +336,7 @@ if CLIENT then
 
 end
 
-if CLIENT then
+if CLIENT then  //simplify needed
   function TOOL:Holster()
     hook.Add( "PostDrawTranslucentRenderables", "baseline_and_ball0", function()
       render.ClearStencil()

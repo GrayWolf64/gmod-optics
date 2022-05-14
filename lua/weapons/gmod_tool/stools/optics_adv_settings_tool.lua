@@ -18,7 +18,7 @@ if CLIENT then
    local imageoutputframe = vgui.Create("DFrame")
    imageoutputframe:SetDeleteOnClose(false)
    imageoutputframe:SetTitle("Current Imaging Output")
-   imageoutputframe:SetSize(256, 256)
+   imageoutputframe:SetSize(256 * monitor_ratiow, 256 * monitor_ratioh)
    imageoutputframe:SetPos(10,200)
    imageoutputframe:ShowCloseButton(false)
    imageoutputframe:Hide()

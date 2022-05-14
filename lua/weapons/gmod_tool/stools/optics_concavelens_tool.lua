@@ -37,7 +37,7 @@ if CLIENT then
       local label01 = vgui.Create("DLabel", basepanel0)
       label01:Dock(TOP)
       label01:DockMargin(5 * monitor_ratiow, 5 * monitor_ratioh, 5 * monitor_ratiow, 2.5 * monitor_ratioh)
-      label01:SetText("Another line text.")
+      label01:SetText("Another line of text.")
       label01:SetTextColor(alphablack0)
       label01:SizeToContents()
 
@@ -48,7 +48,7 @@ if CLIENT then
       collapsible00:SetAnimTime(0.5)
 
       local basepanel1 = vgui.Create("DPanel", collapsible00)
-      basepanel1:SetSize(200 * monitor_ratiow, 405 * monitor_ratioh)
+      basepanel1:SetSize(200 * monitor_ratiow, 340 * monitor_ratioh)
       basepanel1:DockMargin(0, 5 * monitor_ratioh, 2.5 * monitor_ratiow, 10 * monitor_ratioh)
       basepanel1:Dock(TOP)
 

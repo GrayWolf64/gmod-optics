@@ -16,7 +16,7 @@ if CLIENT then  //i don't know if it matches the name of this file
 
    local thisobjectpos = self:GetPos()
    local thisobjectangles = self:GetAngles()
-
+   //have no choice but to do this to specify the traces for each concave lens
    ConcaveLensTraces_Front_Table[index] = util.TraceLine({
      start = thisobjectpos,
      endpos = thisobjectpos + thisobjectangles:Right() * GetConVar("Optics_LensMaxDetectionDistanceFront"):GetInt() ,
