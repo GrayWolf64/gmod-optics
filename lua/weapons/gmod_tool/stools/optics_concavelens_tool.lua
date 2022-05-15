@@ -186,7 +186,7 @@ function TOOL:LeftClick(trace)
 
   undo.Create( "Concave Lens" )
     undo.AddEntity( concavelens )
-    undo.AddEntity( constrt )
+    undo.AddEntity( concavelens_constrt )
     undo.SetPlayer( user0 )
     user0:AddCleanup( "Concave Lens", concavelens )
   undo.Finish()

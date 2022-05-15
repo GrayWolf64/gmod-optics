@@ -20,13 +20,13 @@ if CLIENT then  //i don't know if it matches the name of this file
    ConcaveLensTraces_Front_Table[index] = util.TraceLine({
      start = thisobjectpos,
      endpos = thisobjectpos + thisobjectangles:Right() * GetConVar("Optics_LensMaxDetectionDistanceFront"):GetInt() ,
-     filter = function( ent ) return  ent:GetClass() == "prop_physics" or ent:GetClass() == "player"  end
+     filter = function( ent ) return  ent:GetClass() == "prop_physics" or ent:GetClass() == "player" or ent:GetClass() == "npc_*" end
    })
 
    ConcaveLensTraces_Back_Table[index] = util.TraceLine({
      start = thisobjectpos,
      endpos = thisobjectpos - thisobjectangles:Right() * GetConVar("Optics_LensMaxDetectionDistanceBack"):GetInt() ,
-     filter = function( ent ) return  ent:GetClass() == "prop_physics" or ent:GetClass() == "player"  end
+     filter = function( ent ) return  ent:GetClass() == "prop_physics" or ent:GetClass() == "player" or ent:GetClass() == "npc_*" end
    })
 
     //print(detectiontrace_front.Entity, detectiontrace_back.Entity)
@@ -35,9 +35,12 @@ if CLIENT then  //i don't know if it matches the name of this file
 
     if IsValid((ConcaveLensTraces_Front_Table[index]).Entity) == true or IsValid((ConcaveLensTraces_Back_Table[index]).Entity) == true then
       self:SetNWBool("IsImaging", true)
-      convar0:SetBool(self:GetNWBool("IsImaging"))
+      convar0:SetBool(true)
     else
+      self:SetNWBool("IsImaging", false)
       convar0:SetBool(false)
     end
+
+    ConcaveLensImaging(self)
   end
- end
+end

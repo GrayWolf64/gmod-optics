@@ -17,11 +17,25 @@ if CLIENT then
 
    local imageoutputframe = vgui.Create("DFrame")
    imageoutputframe:SetDeleteOnClose(false)
-   imageoutputframe:SetTitle("Current Imaging Output")
+   imageoutputframe:SetTitle("Current(pointed) Imaging Output")
    imageoutputframe:SetSize(256 * monitor_ratiow, 256 * monitor_ratioh)
    imageoutputframe:SetPos(10,200)
    imageoutputframe:ShowCloseButton(false)
    imageoutputframe:Hide()
+
+   local label00 = vgui.Create("DLabel", imageoutputframe)
+   label00:SetText("N/A")
+   label00:Dock(TOP)
+
+   function TOOL:Think()
+    //local thing = self:GetOwner():GetEyeTrace().Entity
+
+    //if thing:IsValid() == true and self:GetOwner():GetActiveWeapon():GetClass() == "gmod_tool" and thing:GetClass() == "optics_concavelens"
+    //and thing:GetNWBool("IsImaging") == true
+    //then
+    //else
+    //end
+   end
 
    function TOOL:DrawHUD()
      imageoutputframe:Show()

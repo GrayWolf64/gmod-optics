@@ -1,4 +1,7 @@
 if CLIENT then
+
+    MsgC(Color(152 ,251 ,152), "[ OPTICS ] Fonts CLIENTSIDE Defined!\n")
+
     surface.CreateFont( "opticsdefaultfont", {
         font = "Times New Roman",
         extended = false,

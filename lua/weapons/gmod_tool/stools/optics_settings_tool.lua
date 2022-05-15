@@ -32,7 +32,7 @@ if CLIENT then
        if pointedent:IsValid() == true and pointedent:GetClass() == "optics_concavelens" then
         surface.SetDrawColor( textcolor2 )
         surface.DrawRect( 0, 195, width , height / 5)
-        draw.SimpleText( "On Concave lens", "opticsdefaultfontbd", width / 2, height / 1.2, toolfontcolor2, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
+        draw.SimpleText( "OnConcaveLens", "opticsdefaultfontbd", width / 2, height / 1.2, toolfontcolor2, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
        end
 
     end

@@ -20,7 +20,7 @@ if SERVER then
     if concavelens:GetNWBool("IsWelded") == true then
       concavelens:GetPhysicsObject():EnableMotion(false)
       if trace_ent:IsValid() == true and concavelens:IsValid() == true then
-        constrt = constraint.Weld(concavelens, trace_ent, 0, trace_physbone, 0, true, true)
+        concavelens_constrt = constraint.Weld(concavelens, trace_ent, 0, trace_physbone, 0, true, true)
       end
     end
 
@@ -29,7 +29,7 @@ if SERVER then
      user:AddCleanup( "Concave Lens", concavelens )
     end
 
-    return concavelens, constrt
+    return concavelens, concavelens_constrt
 
   end
 end
