@@ -20,6 +20,6 @@ Convex Lens |preparing to work on
 
 Mechanism|Status
 ------------|:-------------------:
-imaging     |preparing to work on
+imaging     |finished a little
 ......      |......
 ......      |......
