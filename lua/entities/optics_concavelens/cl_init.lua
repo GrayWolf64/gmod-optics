@@ -29,7 +29,6 @@ if CLIENT then  //i don't know if it matches the name of this file
      filter = function( ent ) return  ent:GetClass() == "prop_physics" or ent:GetClass() == "player" or ent:GetClass() == "npc_*" end
    })
 
-    //print(detectiontrace_front.Entity, detectiontrace_back.Entity)
 
     local convar0 = GetConVar("Optics_Boolean_IsImaging_PointedConcaveLens_CLIENT")
 
