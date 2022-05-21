@@ -5,7 +5,6 @@ include("shared.lua")
 MsgC(Color(152 ,251 ,152), "[ OPTICS ] Concave Lens Entity Defined!\n")
 
 function ENT:Initialize()
-  self:SetModel("models/optics/lens/concavelens_d_20x20.mdl")
   self:PhysicsInit(SOLID_VPHYSICS)
   self:SetMoveType(MOVETYPE_VPHYSICS)
   self:SetSolid(SOLID_VPHYSICS)

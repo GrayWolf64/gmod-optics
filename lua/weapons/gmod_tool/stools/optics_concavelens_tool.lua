@@ -147,28 +147,30 @@ cleanup.Register("Concave Lens")
 
 function TOOL:Think()
 
-  if CLIENT then return end
+  if SERVER then
 
-  local convar0 = GetConVar("Optics_SelectedConcaveLensModel")
-  local user0 = self:GetOwner()
+   local convar0 = GetConVar("Optics_SelectedConcaveLensModel")
+   local user0 = self:GetOwner()
 
-  self:MakeGhostEntity(convar0:GetString(),user0:GetPos(),user0:GetAngles())
+   self:MakeGhostEntity(convar0:GetString(),user0:GetPos(),user0:GetAngles())
 
-  local ghostent0 = self.GhostEntity
-  local min = ghostent0:OBBMins()
-  local trace0 = user0:GetEyeTrace()
+   local ghostent0 = self.GhostEntity
+   local min = ghostent0:OBBMins()
+   local trace0 = user0:GetEyeTrace()
 
-  local angle0 = trace0.HitNormal:Angle()
-  angle0.pitch = angle0.pitch + 90
+   local angle0 = trace0.HitNormal:Angle()
+   angle0.pitch = angle0.pitch + 90
 
-  if ghostent0:IsValid() == true then
-    ghostent0:SetPos(trace0.HitPos - trace0.HitNormal * min.z)
-    ghostent0:SetAngles(angle0)
-    ghostent0:SetNoDraw(false)
-  end
+   if ghostent0:IsValid() == true then
+     ghostent0:SetPos(trace0.HitPos - trace0.HitNormal * min.z)
+     ghostent0:SetAngles(angle0)
+     ghostent0:SetNoDraw(false)
+   end
 
-  if trace0.Entity:GetClass() == "optics_concavelens" then
-    ghostent0:SetNoDraw(true)
+   if trace0.Entity:GetClass() == "optics_concavelens" then
+     ghostent0:SetNoDraw(true)
+   end
+
   end
 
 end
