@@ -1,6 +1,7 @@
 if CLIENT then
 
-  MsgC(Color(240 ,88 ,0), "[ OPTICS ] Debug Info!"); MsgC(Color(152 ,251 ,152), "[ OPTICS ] Vars Declared!\n")
+  MsgC(Color(240 ,88 ,0), "[ OPTICS ] Debug Info!")
+  MsgC(Color(152 ,251 ,152), "[ OPTICS ] Vars Declared!\n")
 
   monitor_ratiow = ScrW() / 1280
   monitor_ratioh = ScrH() / 1024
