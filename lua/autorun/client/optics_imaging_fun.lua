@@ -18,12 +18,12 @@ if CLIENT then
          local filename1 = string.gsub("concavelens[INDEX]_imaging_result_front_ply_other.png","INDEX",tostring(lensindex))
          local filename2 = string.gsub("concavelens[INDEX]_imaging_result_front_ply_local.png","INDEX",tostring(lensindex))
         cam.Start3D(pos_direct,angles:Right():Angle(),100)
-          //render.PushRenderTarget( imagingrt1 )
+          --[[render.PushRenderTarget( imagingrt1 )--]]
           render.Clear( 255, 255, 255, 0, true )
 
           local rendermode_old = tar:GetRenderMode()
 
-          if tar:GetClass() == "prop_physics" then  //try not to create any new entities
+          if tar:GetClass() == "prop_physics" then  --[[try not to create any new entities--]]
              tar:SetRenderMode(RENDERMODE_NONE)
              tar:DrawModel()
              local data0 = render.Capture({ format = "png", quality = 75, x = 0, y = 0, w = w, h = h, alpha = true })
@@ -33,7 +33,7 @@ if CLIENT then
              tar:SetRenderMode(rendermode_old)
           end
 
-          if tar:IsPlayer() == true and tar ~= LocalPlayer() then  // this can't take photos of the player in singleplayer
+          if tar:IsPlayer() == true and tar ~= LocalPlayer() then  --[[this can't take photos of the player in singleplayer--]]
              tar:SetRenderMode(RENDERMODE_NONE)
              tar:DrawModel()
              local data1 = render.Capture({ format = "png", quality = 75, x = 0, y = 0, w = w, h = h, alpha = true })
@@ -43,7 +43,7 @@ if CLIENT then
              tar:SetRenderMode(rendermode_old)
           end
 
-          if tar == LocalPlayer() then  // this may take photos of the player in singleplayer
+          if tar == LocalPlayer() then  --[[this may take photos of the player in singleplayer--]]
              local plymodel = ClientsideModel(tar:GetModel(),RENDERGROUP_BOTH)
              plymodel:SetNoDraw(true)
              plymodel:SetPos(Vector(0,0,0))
@@ -63,13 +63,13 @@ if CLIENT then
              end
           end
 
-          //render.PopRenderTarget()
+          --[[render.PopRenderTarget()--]]
         cam.End3D()
       else
          local imagestable = file.Find("*.png","DATA")
          for k, v in pairs (imagestable) do
             if string.find(v,"concavelens") ~= nil then
-               file.Delete(v)
+               file.Delete(v)  --[[delete ing the unnecessary files--]]
             end
          end
       end

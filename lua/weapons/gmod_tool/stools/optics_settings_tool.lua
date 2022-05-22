@@ -336,7 +336,7 @@ if CLIENT then
 
 end
 
-if CLIENT then  //simplify needed
+if CLIENT then  --[[simplify needed--]]
   function TOOL:Holster()
     hook.Add( "PostDrawTranslucentRenderables", "baseline_and_ball0", function()
       render.ClearStencil()

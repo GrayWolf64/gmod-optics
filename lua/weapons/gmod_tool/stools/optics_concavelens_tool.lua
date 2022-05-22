@@ -125,7 +125,7 @@ if CLIENT then
       collapsible0_content2:Dock(TOP)
       collapsible0_content2:SetText("Focal length")
       collapsible0_content2:SetDark(true)
-      collapsible0_content2:SetMin(0)
+      collapsible0_content2:SetMin(-200)
       collapsible0_content2:SetMax(200)
       collapsible0_content2:SetDecimals(0)
       collapsible0_content2:SetConVar("Optics_ConcaveLensFocalLength")
