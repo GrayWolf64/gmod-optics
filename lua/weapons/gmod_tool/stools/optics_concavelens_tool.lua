@@ -176,7 +176,9 @@ function TOOL:Think()
 end
 
 function TOOL:Holster()
-  self:ReleaseGhostEntity()
+  if SERVER then
+   self:ReleaseGhostEntity()
+  end
 end
 
 function TOOL:LeftClick(trace)

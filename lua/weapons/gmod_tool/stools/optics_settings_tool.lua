@@ -239,8 +239,8 @@ if CLIENT then
        local thingpos = thing:GetPos()
        local thingangles = thing:GetAngles()
        local thingindex = thing:EntIndex()
-       local tr_front_hitpos = (ConcaveLensTraces_Front_Table[thingindex]).HitPos
-       local tr_back_hitpos = (ConcaveLensTraces_Back_Table[thingindex]).HitPos
+       local tr_front_hitpos = (Optics_ConcaveLensTraces_Front_Table[thingindex]).HitPos
+       local tr_back_hitpos = (Optics_ConcaveLensTraces_Back_Table[thingindex]).HitPos
 
        local alphalinecolor0 = Color(0, 0, 0, 175)
        local alphatextcolor0 = Color(255,255,255,200)

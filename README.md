@@ -21,6 +21,6 @@ Convex Lens |preparing to work on
 
 Mechanisms  |Status
 ------------|:--------------------------------------:
-imaging     |finished a little(have something to improve)
+imaging     |nearly finished(have something to improve)
 ......      |......
 ......      |......
