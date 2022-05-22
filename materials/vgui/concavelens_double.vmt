@@ -1,0 +1,5 @@
+"UnlitGeneric"
+{
+   "$basetexture" "vgui/concavelens_double"
+   "$translucent" "1"
+}

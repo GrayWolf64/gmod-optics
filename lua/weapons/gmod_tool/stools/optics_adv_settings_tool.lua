@@ -18,7 +18,7 @@ if CLIENT then
    local imageoutputframe = vgui.Create("DFrame")
    imageoutputframe:SetDeleteOnClose(false)
    imageoutputframe:SetTitle("Current(pointed) Imaging Output")
-   imageoutputframe:SetSize(256 * monitor_ratiow, 256 * monitor_ratioh)
+   imageoutputframe:SetSize(256, 256)
    imageoutputframe:SetPos(10,200)
    imageoutputframe:ShowCloseButton(false)
    imageoutputframe:Hide()
@@ -45,7 +45,7 @@ if CLIENT then
       label0:SetText("This is the text on the top.")
       label0:SetColor(alphablack0)
       label0:Dock(TOP)
-      label0:DockMargin(5 * monitor_ratiow, 2.5 * monitor_ratioh, 2.5 * monitor_ratiow, 5 * monitor_ratioh)
+      label0:DockMargin(5, 2.5, 2.5, 5)
 
    end
 

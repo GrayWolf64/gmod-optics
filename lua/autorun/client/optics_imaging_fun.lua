@@ -60,7 +60,6 @@ if CLIENT then
                 plymodel:Remove()
              end
           end
-
         cam.End3D()
       else
          local imagestable = file.Find("*.png","DATA")
