@@ -12,8 +12,6 @@ Used Times New Roman as placeholder fonts for toolgun screen.
 
 * This addon will contain a lot of things in Optics, such as lens, reflectors and many more advanced things.
 
----
-
 * Models, Textures are only placeholders at the moment, I haven't tested the addon in multiplayer.
 
 Addon       |Status

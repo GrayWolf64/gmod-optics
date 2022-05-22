@@ -12,6 +12,7 @@ if CLIENT then
  local textcolor1 = Color(190, 190, 190)
  local alphablack0 = Color(0 ,0 ,0 ,250)
 
+ MsgC(Color(240 ,88 ,0), "[ OPTICS ] Debug Info!")
  MsgC(textcolor0, "[ OPTICS ] Concave Lens Tool Defined!\n")
 
   TOOL.Information = { "left", "right" }

@@ -23,4 +23,7 @@ if CLIENT then
   Optics_ConcaveLensTraces_Front_Table = {}  --[[table of traces of concave lens--]]
   Optics_ConcaveLensTraces_Back_Table = {}
 
+  Optics_ConcaveLensImagingResult_Material_Front_Table = {}  --[[table of imaging results of concave lens--]]
+  Optics_ConcaveLensImagingResult_Material_Back_Table = {}
+
 end

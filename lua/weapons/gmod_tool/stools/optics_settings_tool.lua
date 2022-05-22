@@ -14,6 +14,7 @@ if CLIENT then
   local toolfontcolor2 = Color( 30 ,144 ,255 )
   local alphablack0 = Color(0 ,0 ,0 ,250 )
 
+  MsgC(Color(240 ,88 ,0), "[ OPTICS ] Debug Info!")
   MsgC(textcolor3, "[ OPTICS ] General Settings Tool Defined!\n")
 
   TOOL.Information = { "reload" }

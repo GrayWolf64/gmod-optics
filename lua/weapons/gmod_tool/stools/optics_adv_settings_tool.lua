@@ -9,6 +9,7 @@ if CLIENT then
     local textcolor1 = Color(152 ,251 ,152)
     local alphablack0 = Color(0 ,0 ,0 ,250 )
 
+    MsgC(Color(240 ,88 ,0), "[ OPTICS ] Debug Info!")
     MsgC(textcolor1, "[ OPTICS ] Advanced Settings Tool Defined!\n")
 
     language.Add("tool.optics_adv_settings_tool.name", "Advanced Settings Tool")
@@ -17,26 +18,32 @@ if CLIENT then
 
    local imageoutputframe = vgui.Create("DFrame")
    imageoutputframe:SetDeleteOnClose(false)
-   imageoutputframe:SetTitle("Current(pointed) Imaging Output")
-   imageoutputframe:SetSize(256, 256)
+   imageoutputframe:SetTitle("Current (Pointed) Imaging Output")
+   imageoutputframe:SetSize(ScrW() / 4, ScrH() / 4)
    imageoutputframe:SetPos(10,200)
    imageoutputframe:ShowCloseButton(false)
    imageoutputframe:Hide()
 
-   local label00 = vgui.Create("DLabel", imageoutputframe)
-   label00:SetText("N/A")
-   label00:Dock(TOP)
+   local image0 = vgui.Create("DImage", imageoutputframe)
+   image0:Dock(FILL)
 
    function TOOL:Think()
-
+    local thing = self:GetOwner():GetEyeTrace().Entity
+    if thing:IsValid() == true and thing:GetClass() == "optics_concavelens" and thing:GetNWBool("IsImaging") == true then
+      image0:SetMaterial(Optics_ConcaveLensImagingResult_Material_Front_Table[thing:EntIndex()])
+    else
+      image0:SetMaterial(nil)
+    end
    end
 
    function TOOL:DrawHUD()
      imageoutputframe:Show()
+     image0:Show()
    end
 
    function TOOL:Holster()
      imageoutputframe:Hide()
+     image0:Hide()
    end
 
    function TOOL.BuildCPanel(basepanel0)

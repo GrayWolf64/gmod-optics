@@ -1,5 +1,6 @@
 if CLIENT then
 
+    MsgC(Color(240 ,88 ,0), "[ OPTICS ] Debug Info!")
     MsgC(Color(152 ,251 ,152), "[ OPTICS ] Fonts CLIENTSIDE Defined!\n")
 
     surface.CreateFont( "opticsdefaultfont", {
