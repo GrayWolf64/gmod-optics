@@ -139,6 +139,7 @@ if CLIENT then
       textbox3:SetPlaceholderText("True or false")
 
       function basepanel0:Think()
+
         local convar0 = GetConVar("Optics_String_Index_PointingAtConcaveLens_CLIENT")
         local convar1 = GetConVar("Optics_Boolean_PointingAtConcaveLens_CLIENT")
         local convar2 = GetConVar("Optics_Boolean_IsDoWeld_PointedConcaveLens_CLIENT")
