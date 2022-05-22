@@ -9,14 +9,14 @@ if CLIENT then
 
 end
 
-if CLIENT then  //i don't know if it matches the name of this file
+if CLIENT then  --[[i don't know if it matches the name of this file--]]
 
   function ENT:Think()
    local index = self:EntIndex()
 
    local thisobjectpos = self:GetPos()
    local thisobjectangles = self:GetAngles()
-   //have no choice but to do this to specify the traces for each concave lens
+   --[[have no choice but to do this to specify the traces for each concave lens--]]
    Optics_ConcaveLensTraces_Front_Table[index] = util.TraceLine({
      start = thisobjectpos,
      endpos = thisobjectpos + thisobjectangles:Right() * GetConVar("Optics_LensMaxDetectionDistanceFront"):GetInt() ,

@@ -28,7 +28,7 @@ function ENT:SetupDataTables()
     self:SetNWInt("FocalLength", convar0:GetInt())
     self:SetNWBool("IsWelded", convar1:GetBool())
     self:SetNWBool("NoCollide",convar2:GetBool())
-    // IsImaging is in cl_init
+    --[[IsImaging is in cl_init--]]
 
   end
 

@@ -72,7 +72,7 @@ if CLIENT then
 
       modellist0:AddLine("Double Concave Lens","Default Concave Lens Model")
 
-      local collapsible0 = vgui.Create("DCollapsibleCategory", basepanel0)  //originally parented to basepanel2
+      local collapsible0 = vgui.Create("DCollapsibleCategory", basepanel0)
       basepanel0:AddItem(collapsible0)
       collapsible0:SetPos(10 * monitor_ratiow,450 * monitor_ratioh)
       collapsible0:SetLabel("Lens Configuration")

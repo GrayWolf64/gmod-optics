@@ -28,13 +28,7 @@ if CLIENT then
    label00:Dock(TOP)
 
    function TOOL:Think()
-    //local thing = self:GetOwner():GetEyeTrace().Entity
 
-    //if thing:IsValid() == true and self:GetOwner():GetActiveWeapon():GetClass() == "gmod_tool" and thing:GetClass() == "optics_concavelens"
-    //and thing:GetNWBool("IsImaging") == true
-    //then
-    //else
-    //end
    end
 
    function TOOL:DrawHUD()
