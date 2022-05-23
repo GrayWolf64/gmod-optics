@@ -3,7 +3,7 @@ if CLIENT then
    MsgC(Color(240 ,88 ,0), "[ OPTICS ] Debug Info!")
    MsgC(Color(152 ,251 ,152), "[ OPTICS ] Lens Imaging Function CLIENTSIDE Defined!\n")
 
-   function ConcaveLensImaging(lens)
+   function ConcaveLensImaging(lens)  --[[this certainly needs to be optimized--]]
 
       local lensindex = lens:EntIndex()
       local angles = lens:GetAngles()
@@ -17,9 +17,9 @@ if CLIENT then
 
       if tar_front:IsValid() == true then
 
-       local result_filename0 = string.gsub("concavelens[INDEX]_imaging_result_front.png","INDEX",tostring(lensindex))
-
-        cam.Start3D(pos_direct,angles:Right():Angle(),100)
+        local result_filename0 = string.gsub("concavelens[INDEX]_imaging_result_front.png","INDEX",tostring(lensindex))
+        local angles0 = angles:Right():Angle()
+        cam.Start3D(pos_direct,angles0,100)
           render.Clear( 255, 255, 255, 0, true )
 
           if tar_front:GetClass() == "prop_physics" then  --[[try not to create any new entities--]]
@@ -73,8 +73,8 @@ if CLIENT then
       elseif tar_back:IsValid() == true then
 
          local result_filename1 = string.gsub("concavelens[INDEX]_imaging_result_back.png","INDEX",tostring(lensindex))
-
-         cam.Start3D(pos_direct,-angles:Right():Angle(),100)
+         local angles1 = angles:Right():Angle():Right():Angle():Right():Angle()
+         cam.Start3D(pos_direct,angles1,100)
           render.Clear( 255, 255, 255, 0, true )
 
           if tar_back:GetClass() == "prop_physics" then

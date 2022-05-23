@@ -6,6 +6,8 @@ TOOL.ConfigName		= ""
 
 if CLIENT then
 
+  local textcolor0 = Color(190, 190, 190)
+  local textcolor1 = Color(105 ,105 ,105)
   local textcolor2 = Color(0 ,238 ,118 )
   local textcolor3 = Color(152 ,251 ,152)
   local textcolor4 = Color(248 ,248 ,255)
@@ -39,14 +41,24 @@ if CLIENT then
     end
 
     function TOOL.BuildCPanel(basepanel0)
-      local textcolor0 = Color(190, 190, 190)
-      local textcolor1 = Color(105 ,105 ,105)
 
       local label0 = vgui.Create("DLabel", basepanel0)
       label0:Dock(TOP)
       label0:DockMargin(5, 2.5, 5, 5)
       label0:SetText("Point at a concave lens using toolgun to show something.")
       label0:SetTextColor(alphablack0)
+
+      local collapsible00 = vgui.Create("DCollapsibleCategory", basepanel0)
+      collapsible00:Dock(TOP)
+      collapsible00:DockMargin(5, 5, 5, 10)
+      collapsible00:SetLabel("General Settings")
+      collapsible00:SetAnimTime(0.5)
+      collapsible00:SetExpanded(false)
+
+      local basepanel01 = vgui.Create("DPanel", collapsible00)
+      basepanel01:SetSize(200, 140)
+      basepanel01:DockMargin(0, 5, 2.5, 10)
+      basepanel01:Dock(TOP)
 
       local collapsible0 = vgui.Create("DCollapsibleCategory", basepanel0)
       collapsible0:Dock(TOP)
