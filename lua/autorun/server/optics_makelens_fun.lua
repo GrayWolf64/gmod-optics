@@ -1,7 +1,7 @@
 if SERVER then
 
   local textcolor0 = Color(152 ,251 ,152)
-  MsgC(textcolor0, "[ OPTICS ] Makelens Function SERVERSIDE Script Loaded!\n")
+  MsgC(textcolor0, "[ OPTICS ] MakeLens Function SERVERSIDE Script Loaded!\n")
 
   function MakeConcaveLens(user, pos, model, trace_ent, trace_physbone)
 

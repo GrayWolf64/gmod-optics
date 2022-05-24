@@ -139,7 +139,7 @@ if CLIENT then
       collapsible0_content2:SetConVar("Optics_ConcaveLensFocalLength")
 
       function basepanel0:Think()
-        local convar01 = GetConVar("Optics_SelectedConcaveLensModel")
+        local convar01 = GetConVar("Optics_String_SelectedConcaveLensModel")
         modellist0.OnRowSelected = function( panel, rowIndex, row )
           if row == 1 then
             convar01:SetString("models/optics/lens/concavelens_d_20x20.mdl")
@@ -157,7 +157,7 @@ function TOOL:Think()
 
   if SERVER then
 
-   local convar0 = GetConVar("Optics_SelectedConcaveLensModel")
+   local convar0 = GetConVar("Optics_String_SelectedConcaveLensModel")
    local user0 = self:GetOwner()
 
    self:MakeGhostEntity(convar0:GetString(),user0:GetPos(),user0:GetAngles())
@@ -192,7 +192,7 @@ end
 function TOOL:LeftClick(trace)
 
   local user0 = self:GetOwner()
-  local model0 = GetConVar("Optics_SelectedConcaveLensModel"):GetString()
+  local model0 = GetConVar("Optics_String_SelectedConcaveLensModel"):GetString()
   local pos0 = trace.HitPos
   local concavelens = MakeConcaveLens(user0, pos0, model0, trace.Entity, trace.PhysicsBone)
 

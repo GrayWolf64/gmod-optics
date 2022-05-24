@@ -56,9 +56,18 @@ if CLIENT then
       collapsible00:SetExpanded(false)
 
       local basepanel01 = vgui.Create("DPanel", collapsible00)
-      basepanel01:SetSize(200, 140)
+      basepanel01:SetSize(200, 120)
       basepanel01:DockMargin(0, 5, 2.5, 10)
       basepanel01:Dock(TOP)
+
+      local checkbox0 = vgui.Create("DCheckBoxLabel", basepanel01)
+      checkbox0:Dock(TOP)
+      checkbox0:DockMargin(5, 5, 5, 10)
+      checkbox0:SetText("Draw some lines")
+      checkbox0:SizeToContents()
+      checkbox0:SetConVar("Optics_Boolean_GeneralSettingsToolDrawDebugLines_CLIENT")
+      checkbox0:SetValue(true)
+      checkbox0:SetTextColor(alphablack0)
 
       local collapsible0 = vgui.Create("DCollapsibleCategory", basepanel0)
       collapsible0:Dock(TOP)
@@ -248,6 +257,7 @@ if CLIENT then
    end
 
      if thing:IsValid() == true and self:GetOwner():GetActiveWeapon():GetClass() == "gmod_tool" and thing:GetClass() == "optics_concavelens"
+     and GetConVar("Optics_Boolean_GeneralSettingsToolDrawDebugLines_CLIENT"):GetBool() == true
      then
 
        local thingpos = thing:GetPos()
