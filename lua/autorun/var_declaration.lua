@@ -22,6 +22,8 @@ if CLIENT then
 
   CreateClientConVar("Optics_Boolean_GeneralSettingsToolDrawDebugLines_CLIENT","0",false,false,"Don't Touch This. Boolean for ensuring that the debug lines will be drawn.")
 
+  file.CreateDir("optics_imaging")  --[[folder for imaging files--]]
+
   Optics_ConcaveLensTraces_Front_Table = {}  --[[table of traces of concave lens--]]
   Optics_ConcaveLensTraces_Back_Table = {}
 

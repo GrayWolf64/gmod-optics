@@ -13,21 +13,20 @@ if CLIENT then
       local tar_front = (Optics_ConcaveLensTraces_Front_Table[lensindex]).Entity
       local tar_back = (Optics_ConcaveLensTraces_Back_Table[lensindex]).Entity
 
-      local imagestable = file.Find("*.png","DATA")
+      local imagestable = file.Find("optics_imaging/*.png","DATA")
 
       if tar_front:IsValid() == true then
 
-        local result_filename0 = string.gsub("concavelens[INDEX]_imaging_result_front.png","INDEX",tostring(lensindex))
-        local angles0 = angles:Right():Angle()
-        cam.Start3D(pos_direct,angles0,100)
-          render.Clear( 255, 255, 255, 0, true )
+        local imaging_result_front = string.gsub("optics_imaging/concavelens[INDEX]_imaging_result_front.png","INDEX",tostring(lensindex))
 
+        cam.Start3D(pos_direct,angles:Right():Angle(),100)
+          render.Clear( 255, 255, 255, 0, true )
           if tar_front:GetClass() == "prop_physics" then  --[[try not to create any new entities--]]
              local rendermode_old_prop0 = tar_front:GetRenderMode()
              tar_front:SetRenderMode(RENDERMODE_NONE)
              tar_front:DrawModel()
              local data0 = render.Capture({ format = "png", quality = 75, x = 0, y = 0, w = w, h = h, alpha = true })
-             local file0 = file.Open( result_filename0, "wb", "DATA" )
+             local file0 = file.Open( imaging_result_front, "wb", "DATA" )
              file0:Write( data0 )
              file0:Close()
              tar_front:SetRenderMode(rendermode_old_prop0)
@@ -38,7 +37,7 @@ if CLIENT then
              tar_front:SetRenderMode(RENDERMODE_NONE)
              tar_front:DrawModel()
              local data1 = render.Capture({ format = "png", quality = 75, x = 0, y = 0, w = w, h = h, alpha = true })
-             local file1 = file.Open( result_filename0, "wb", "DATA" )
+             local file1 = file.Open( imaging_result_front, "wb", "DATA" )
              file1:Write( data1 )
              file1:Close()
              tar_front:SetRenderMode(rendermode_old_player0)
@@ -54,7 +53,7 @@ if CLIENT then
              cam.Start3D(Vector(0, 0 + modelradius, 0 + modelradius / 2), Angle(0, -90, 0), 90, w == w, h == w)
                 plymodel0:DrawModel()
                 local data2 = render.Capture({ format = "png", quality = 75, x = 0, y = 0, w = w, h = h, alpha = true })
-                local file2 = file.Open( result_filename0, "wb", "DATA" )
+                local file2 = file.Open( imaging_result_front, "wb", "DATA" )
              cam.End3D()
              file2:Write( data2 )
              file2:Close()
@@ -64,17 +63,17 @@ if CLIENT then
 
         for k, v in pairs (imagestable) do
            if string.find(v,"front") ~= nil then
-            local filename0 = "../data/" .. result_filename0
-            Optics_ConcaveLensImagingResult_Material_Front_Table[lensindex] = Material(filename0)
+            local imaging_result_front_path = "../data/" .. imaging_result_front
+            Optics_ConcaveLensImagingResult_Material_Front_Table[lensindex] = Material(imaging_result_front_path)
             Optics_ConcaveLensImagingResult_Material_Front_Table[lensindex]:SetInt("$translucent", 1)
            end
         end
 
       elseif tar_back:IsValid() == true then
 
-         local result_filename1 = string.gsub("concavelens[INDEX]_imaging_result_back.png","INDEX",tostring(lensindex))
-         local angles1 = angles:Right():Angle():Right():Angle():Right():Angle()
-         cam.Start3D(pos_direct,angles1,100)
+         local imaging_result_back = string.gsub("optics_imaging/concavelens[INDEX]_imaging_result_back.png","INDEX",tostring(lensindex))
+
+         cam.Start3D(pos_direct,angles:Right():Angle():Right():Angle():Right():Angle(),100)
           render.Clear( 255, 255, 255, 0, true )
 
           if tar_back:GetClass() == "prop_physics" then
@@ -82,7 +81,7 @@ if CLIENT then
              tar_back:SetRenderMode(RENDERMODE_NONE)
              tar_back:DrawModel()
              local data3 = render.Capture({ format = "png", quality = 75, x = 0, y = 0, w = w, h = h, alpha = true })
-             local file3 = file.Open( result_filename1, "wb", "DATA" )
+             local file3 = file.Open( imaging_result_back, "wb", "DATA" )
              file3:Write( data3 )
              file3:Close()
              tar_back:SetRenderMode(rendermode_old_prop1)
@@ -93,7 +92,7 @@ if CLIENT then
              tar_back:SetRenderMode(RENDERMODE_NONE)
              tar_back:DrawModel()
              local data4 = render.Capture({ format = "png", quality = 75, x = 0, y = 0, w = w, h = h, alpha = true })
-             local file4 = file.Open( result_filename1, "wb", "DATA" )
+             local file4 = file.Open( imaging_result_back, "wb", "DATA" )
              file4:Write( data4 )
              file4:Close()
              tar_back:SetRenderMode(rendermode_old_player1)
@@ -109,7 +108,7 @@ if CLIENT then
              cam.Start3D(Vector(0, 0 + modelradius, 0 + modelradius / 2), Angle(0, -90, 0), 90, w == w, h == w)
                 plymodel1:DrawModel()
                 local data5 = render.Capture({ format = "png", quality = 75, x = 0, y = 0, w = w, h = h, alpha = true })
-                local file5 = file.Open( result_filename1, "wb", "DATA" )
+                local file5 = file.Open( imaging_result_back, "wb", "DATA" )
              cam.End3D()
              file5:Write( data5 )
              file5:Close()
@@ -119,21 +118,21 @@ if CLIENT then
 
          for k, v in pairs (imagestable) do
            if string.find(v,"back") ~= nil then
-            local filename1 = "../data/" .. result_filename1
-            Optics_ConcaveLensImagingResult_Material_Back_Table[lensindex] = Material(filename1)
+            local imaging_result_back_path = "../data/" .. imaging_result_back
+            Optics_ConcaveLensImagingResult_Material_Back_Table[lensindex] = Material(imaging_result_back_path)
             Optics_ConcaveLensImagingResult_Material_Back_Table[lensindex]:SetInt("$translucent", 1)
            end
          end
 
-      else
-
-         for k, v in pairs (imagestable) do
-            if string.find(v,"concavelens") ~= nil then
-               file.Delete(v)  --[[delete ing the unnecessary files--]]
-            end
-         end
-
       end
+
+      lens:CallOnRemove("Optics_DeleteImagingFilesOnLensRemove",function()  --[[delete ing the unnecessary files on lens remove--]]
+         for k, v in pairs (imagestable) do
+           if string.find(v,"concavelens") ~= nil then
+            file.Delete("optics_imaging/" .. v)
+           end
+         end
+      end)
 
    end
 

@@ -5,7 +5,6 @@ TOOL.Command  = nil
 TOOL.ConfigName  = ""
 
 if CLIENT then
- local colorwhite = Color(255,255,255)
  local toolfontcolor1 = Color( 255, 20, 20 )
  local toolfontcolor2 = Color(105, 105, 105)
  local textcolor0 = Color(152 ,251 ,152)
@@ -21,16 +20,18 @@ if CLIENT then
   language.Add("tool.optics_concavelens_tool.left", "Create a concave lens.")
   language.Add("tool.optics_concavelens_tool.right", "Apply changes to a concave lens.")
 
-    local material0 = Material("vgui/concavelens_double")
-    material0:SetInt( "$flags", bit.bor( material0:GetInt( "$flags" ), 32768 ) )
     function TOOL:DrawToolScreen( width, height )
+
+     local concavelens_material = Material("vgui/concavelens_double")
+     concavelens_material:SetInt( "$flags", bit.bor( concavelens_material:GetInt( "$flags" ), 32768 ) )
+
      surface.SetDrawColor( toolfontcolor2 ); surface.DrawRect( 0, 0, width, height )
      draw.SimpleText( "Optics", "opticsdefaultfont", width / 2, height / 7, toolfontcolor1, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
      draw.SimpleText( "--Concave Lens", "opticsdefaultfontbd", width / 2, height / 2.8, toolfontcolor1, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
 
-     surface.SetDrawColor(colorwhite)
-     surface.SetMaterial(material0)
-     surface.DrawTexturedRect(width / 5,height / 2.2,material0:Width() / 4,material0:Height() / 4)
+     surface.SetDrawColor(toolfontcolor1)
+     surface.SetMaterial(concavelens_material)
+     surface.DrawTexturedRect(width / 5,height / 2.2,concavelens_material:Width() / 4,concavelens_material:Height() / 4)
     end
 
     function TOOL.BuildCPanel(basepanel0)
