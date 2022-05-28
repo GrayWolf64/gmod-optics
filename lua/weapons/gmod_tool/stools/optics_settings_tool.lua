@@ -14,7 +14,7 @@ if CLIENT then
   local toolfontcolor0 = Color( 255, 20, 20 )
   local toolfontcolor1 = Color( 141 ,238 ,238 )
   local toolfontcolor2 = Color( 30 ,144 ,255 )
-  local alphablack0 = Color(0 ,0 ,0 ,250 )
+  local alphablack0 = Color(0 ,0 ,0 ,255 )
 
   MsgC(Color(240 ,88 ,0), "[ OPTICS ] Debug Info!")
   MsgC(textcolor3, "[ OPTICS ] General Settings Tool Defined!\n")
@@ -56,7 +56,7 @@ if CLIENT then
       collapsible00:SetExpanded(false)
 
       local basepanel01 = vgui.Create("DPanel", collapsible00)
-      basepanel01:SetSize(200, 120)
+      basepanel01:SetSize(200, 140)
       basepanel01:DockMargin(0, 5, 2.5, 10)
       basepanel01:Dock(TOP)
 
@@ -68,6 +68,32 @@ if CLIENT then
       checkbox0:SetConVar("Optics_Boolean_GeneralSettingsToolDrawDebugLines_CLIENT")
       checkbox0:SetValue(true)
       checkbox0:SetTextColor(alphablack0)
+
+      local slider01 = vgui.Create( "DNumSlider", basepanel01)
+      slider01:Dock(TOP)
+      slider01:SetDark(true)
+      slider01:DockMargin(5, 2.5, 5, 5)
+      slider01:SetText( "Lens Max Detection Distance Front" )
+      slider01:SetMin( 0 )
+      slider01:SetMax( 10000 )
+      slider01:SetDecimals( 0 )
+      slider01:SetConVar( "Optics_LensMaxDetectionDistanceFront" )
+
+      local slider02 = vgui.Create( "DNumSlider", basepanel01)
+      slider02:Dock(TOP)
+      slider02:SetDark(true)
+      slider02:DockMargin(5, 10, 5, 5)
+      slider02:SetText( "Lens Max Detection Distance Back" )
+      slider02:SetMin( 0 )
+      slider02:SetMax( 10000 )
+      slider02:SetDecimals( 0 )
+      slider02:SetConVar( "Optics_LensMaxDetectionDistanceback" )
+
+      local notice02 = vgui.Create("DLabel", basepanel01)
+      notice02:SetText("Some settings require you to apply to certain things to take effect.")
+      notice02:Dock(BOTTOM)
+      notice02:SetColor(textcolor0)
+      notice02:DockMargin(5, 10, 5,0.5)
 
       local collapsible0 = vgui.Create("DCollapsibleCategory", basepanel0)
       collapsible0:Dock(TOP)
@@ -184,50 +210,6 @@ if CLIENT then
       end
 
     end
-
-  function optics_opengeneralsettingsmenu()
-    local generalsettingsmenu = vgui.Create("DFrame")
-    generalsettingsmenu:SetTitle("General Settings")
-    generalsettingsmenu:MakePopup()
-    generalsettingsmenu:Center()
-    generalsettingsmenu:SetSize(500,400)
-
-    local background0 = vgui.Create("DPanel", generalsettingsmenu)
-    background0:Dock(FILL)
-
-    local lens_maxdetectdistancefront_slider = vgui.Create( "DNumSlider", background0)
-    lens_maxdetectdistancefront_slider:Dock(TOP)
-    lens_maxdetectdistancefront_slider:SetDark(true)
-    lens_maxdetectdistancefront_slider:DockMargin(5, 2.5, 5, 5)
-    lens_maxdetectdistancefront_slider:SetText( "Lens Max Detection Distance Front" )
-    lens_maxdetectdistancefront_slider:SetMin( 0 )
-    lens_maxdetectdistancefront_slider:SetMax( 10000 )
-    lens_maxdetectdistancefront_slider:SetDecimals( 0 )
-    lens_maxdetectdistancefront_slider:SetConVar( "Optics_LensMaxDetectionDistanceFront" )
-
-    local lens_maxdetectdistanceback_slider = vgui.Create( "DNumSlider", background0)
-    lens_maxdetectdistanceback_slider:Dock(TOP)
-    lens_maxdetectdistanceback_slider:SetDark(true)
-    lens_maxdetectdistanceback_slider:DockMargin(5, 10, 5, 5)
-    lens_maxdetectdistanceback_slider:SetText( "Lens Max Detection Distance Back" )
-    lens_maxdetectdistanceback_slider:SetMin( 0 )
-    lens_maxdetectdistanceback_slider:SetMax( 10000 )
-    lens_maxdetectdistanceback_slider:SetDecimals( 0 )
-    lens_maxdetectdistanceback_slider:SetConVar( "Optics_LensMaxDetectionDistanceback" )
-
-    local notice01 = vgui.Create("DLabel", background0)
-    notice01:SetText("For example, detection distance lines change when your cvars change.")
-    notice01:Dock(BOTTOM)
-    notice01:SetColor(alphablack0)
-    notice01:DockMargin(5, 0.5, 5,2.5)
-
-    local notice02 = vgui.Create("DLabel", background0)
-    notice02:SetText("Some settings require you to apply to certain things to take effect.")
-    notice02:Dock(BOTTOM)
-    notice02:SetColor(alphablack0)
-    notice02:DockMargin(5, 10, 5,0.5)
-
-  end
 
   function TOOL:Think()
    local thing = self:GetOwner():GetEyeTrace().Entity
@@ -356,8 +338,6 @@ if CLIENT then
 
   end
 
-  net.Receive("optics_opengeneralsettingsmenu", optics_opengeneralsettingsmenu)
-
 end
 
 if CLIENT then  --[[simplify needed--]]
@@ -378,9 +358,7 @@ function TOOL:Reload() return true end
 
 if SERVER then
 
-  util.AddNetworkString("optics_opengeneralsettingsmenu")
   function TOOL:Reload( trace )
-    net.Start("optics_opengeneralsettingsmenu") net.Send(self:GetOwner())
     return false
   end
 

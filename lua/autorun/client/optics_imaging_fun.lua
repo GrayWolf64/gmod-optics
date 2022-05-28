@@ -43,21 +43,8 @@ if CLIENT then
              tar_front:SetRenderMode(rendermode_old_player0)
           end
 
-          if tar_front == LocalPlayer() then  --[[this may take photos of the player in singleplayer--]]
-             local plymodel0 = ClientsideModel(tar_front:GetModel(),RENDERGROUP_BOTH)
-             plymodel0:SetNoDraw(true)
-             plymodel0:SetPos(Vector(0,0,0))
-             local modelradius = plymodel0:GetModelRadius()
-             plymodel0:SetAngles(Angle(0, tar_front:EyeAngles().yaw, tar_front:EyeAngles().roll))
-             plymodel0:SetSequence(tar_front:GetSequence())
-             cam.Start3D(Vector(0, 0 + modelradius, 0 + modelradius / 2), Angle(0, -90, 0), 90, w == w, h == w)
-                plymodel0:DrawModel()
-                local data2 = render.Capture({ format = "png", quality = 75, x = 0, y = 0, w = w, h = h, alpha = true })
-                local file2 = file.Open( imaging_result_front, "wb", "DATA" )
-             cam.End3D()
-             file2:Write( data2 )
-             file2:Close()
-             timer.Simple(10, function() plymodel0:SetNoDraw(true); plymodel0:Remove() end)  --[[delete ing the unnecessary model--]]
+          if tar_front == LocalPlayer() then
+             Optics_PopError(2)
           end
         cam.End3D()
 
@@ -99,20 +86,7 @@ if CLIENT then
           end
 
           if tar_back == LocalPlayer() then
-             local plymodel1 = ClientsideModel(tar_back:GetModel(),RENDERGROUP_BOTH)
-             plymodel1:SetNoDraw(true)
-             plymodel1:SetPos(Vector(0,0,0))
-             local modelradius = plymodel1:GetModelRadius()
-             plymodel1:SetAngles(Angle(0, tar_back:EyeAngles().yaw, tar_back:EyeAngles().roll))
-             plymodel1:SetSequence(tar_back:GetSequence())
-             cam.Start3D(Vector(0, 0 + modelradius, 0 + modelradius / 2), Angle(0, -90, 0), 90, w == w, h == w)
-                plymodel1:DrawModel()
-                local data5 = render.Capture({ format = "png", quality = 75, x = 0, y = 0, w = w, h = h, alpha = true })
-                local file5 = file.Open( imaging_result_back, "wb", "DATA" )
-             cam.End3D()
-             file5:Write( data5 )
-             file5:Close()
-             timer.Simple(10, function() plymodel1:SetNoDraw(true); plymodel1:Remove() end)
+             Optics_PopError(2)
           end
          cam.End3D()
 

@@ -6,7 +6,7 @@ TOOL.ConfigName		= ""
 
 if CLIENT then
 
-    local alphablack0 = Color(0 ,0 ,0 ,250 )
+    local alphablack0 = Color(0 ,0 ,0 ,255 )
 
     MsgC(Color(240 ,88 ,0), "[ OPTICS ] Debug Info!")
     MsgC(Color(152 ,251 ,152), "[ OPTICS ] Advanced Settings Tool Defined!\n")

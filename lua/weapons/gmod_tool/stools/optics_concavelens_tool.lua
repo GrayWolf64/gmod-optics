@@ -9,7 +9,7 @@ if CLIENT then
  local toolfontcolor2 = Color(105, 105, 105)
  local textcolor0 = Color(152 ,251 ,152)
  local textcolor1 = Color(190, 190, 190)
- local alphablack0 = Color(0 ,0 ,0 ,250)
+ local alphablack0 = Color(0 ,0 ,0 ,255)
 
  MsgC(Color(240 ,88 ,0), "[ OPTICS ] Debug Info!")
  MsgC(textcolor0, "[ OPTICS ] Concave Lens Tool Defined!\n")
@@ -61,9 +61,8 @@ if CLIENT then
       basepanel1:DockMargin(0, 5, 2.5, 10)
       basepanel1:Dock(TOP)
 
-      local panellist00 = vgui.Create("DPanelList", basepanel1)
-      panellist00:EnableHorizontal(true)
-      collapsible00:SetContents(panellist00)
+      local listlayout00 = vgui.Create("DListLayout", basepanel1)
+      collapsible00:SetContents(listlayout00)
 
       local desc0 = vgui.Create( "DLabel", basepanel1)
       desc0:SetColor(textcolor1)

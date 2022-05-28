@@ -15,4 +15,3 @@ if CLIENT then
  end
  hook.Add( "AddToolMenuCategories", "CreateOpticsCategories", CreateOpticsCategories )
 end
-
