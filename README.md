@@ -2,7 +2,7 @@
 
 Optics for Garry's Mod.
 
-![picture01](/template-logo.png "simple logo")
+![picture_logo](/template-logo.png "simple template logo")
 
 * It doesn't work fully for now, waiting to be completed.
 
@@ -11,8 +11,7 @@ Optics for Garry's Mod.
 Used Times New Roman as placeholder fonts for toolgun screen.
 
 * This addon will contain a lot of things in Optics, such as lens, reflectors and many more advanced things.
-
-* Models, Textures are only placeholders at the moment, I haven't tested the addon in multiplayer.
+Models, Textures are only placeholders at the moment, I haven't tested the addon in multiplayer.
 
 Addon       |Status
 ------------|:--------------------------------------:
@@ -30,6 +29,6 @@ Convex Lens |Preparing to work on
 
 Mechanisms           |Status
 ---------------------|:--------------------------------------:
-Concave Lens Imaging |Nearly finished(have something to improve)
+Concave Lens Imaging |Nearly finished(have something to improve)(Unable to image the localplayer)
 ......               |......
 ......               |......
