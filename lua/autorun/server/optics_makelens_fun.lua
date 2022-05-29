@@ -1,6 +1,7 @@
 if SERVER then
 
-  MsgC(Color(152 ,251 ,152), "[ OPTICS ] MakeLens Function SERVERSIDE Script Loaded!\n")
+  MsgC(Color(240 ,88 ,0), "[ OPTICS ] Debug Info!")
+  MsgC(Color(152 ,251 ,152), "MakeLens Function SERVERSIDE Defined!\n")
 
   function MakeConcaveLens(user, pos, model, trace_ent, trace_physbone)
 
