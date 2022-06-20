@@ -10,7 +10,7 @@ if CLIENT then
         weight = 500,
         blursize = 0,
         scanlines = 0,
-        antialias = false,
+        antialias = true,
         italic = false,
         strikeout = false,
         shadow = true,

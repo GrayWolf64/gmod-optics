@@ -27,7 +27,7 @@ if CLIENT then
 
      surface.SetDrawColor( toolfontcolor2 ); surface.DrawRect( 0, 0, width, height )
      draw.SimpleText( "Optics", "opticsdefaultfont", width / 2, height / 7, toolfontcolor1, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
-     draw.SimpleText( "--Concave Lens", "opticsdefaultfontbd", width / 2, height / 2.8, toolfontcolor1, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
+     draw.SimpleText( "--Concave Lens", "opticsdefaultfontbdita", width / 2, height / 2.8, toolfontcolor1, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
 
      surface.SetDrawColor(toolfontcolor1)
      surface.SetMaterial(concavelens_material)
