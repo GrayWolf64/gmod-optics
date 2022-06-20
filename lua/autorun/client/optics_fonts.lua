@@ -4,7 +4,7 @@ if CLIENT then
     MsgC(Color(152 ,251 ,152), "Fonts CLIENTSIDE OK!\n")
 
     surface.CreateFont( "opticsdefaultfont", {
-        font = "Times New Roman",
+        font = "IBM Plex Mono",
         extended = false,
         size = 80,
         weight = 500,
@@ -17,7 +17,7 @@ if CLIENT then
         outline = false,
        } )
         surface.CreateFont( "opticsdefaultfontbd", {
-        font = "Times New Roman Bold",
+        font = "IBM Plex Mono Bold",
         extended = false,
         size = 35,
         weight = 500,
@@ -30,7 +30,7 @@ if CLIENT then
         outline = false,
        } )
        surface.CreateFont( "opticsdefaultfontita", {
-        font = "Times New Roman Italic",
+        font = "IBM Plex Mono Italic",
         extended = false,
         size = 20,
         weight = 500,
@@ -43,7 +43,7 @@ if CLIENT then
         outline = false,
        } )
        surface.CreateFont( "opticsdefaultfontbdita", {
-        font = "Times New Roman Bold Italic",
+        font = "IBM Plex Mono Bold Italic",
         extended = false,
         size = 30,
         weight = 500,
@@ -54,5 +54,5 @@ if CLIENT then
         strikeout = false,
         shadow = true,
         outline = false,
-       } )
+       } )  --[[IBM Plex Fonts--]]
 end

@@ -4,11 +4,11 @@ Optics for Garry's Mod.
 
 ![picture_logo](/template-logo.png "simple template logo")
 
-* It doesn't work fully for now, waiting to be completed.
+It doesn't work fully for now, waiting to be completed.
 
 ---
 
-Used Times New Roman as a placeholder font for toolgun screen.
+Used [IBM Plex](https://github.com/IBM/plex) font on toolgun screen.
 
 * This addon will contain a lot of things in Optics, such as lens, reflectors and many more advanced things.
 Models, Textures are only placeholders at the moment, I haven't tested the addon in multiplayer.
