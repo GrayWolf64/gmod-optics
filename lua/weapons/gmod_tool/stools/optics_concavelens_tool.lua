@@ -32,6 +32,7 @@ if CLIENT then
      surface.SetDrawColor(toolfontcolor1)
      surface.SetMaterial(concavelens_material)
      surface.DrawTexturedRect(width / 5,height / 2.2,concavelens_material:Width() / 4,concavelens_material:Height() / 4)
+
     end
 
     function TOOL.BuildCPanel(basepanel0)
@@ -58,8 +59,8 @@ if CLIENT then
       collapsible00:SetExpanded(false)
 
       local basepanel1 = vgui.Create("DPanel", collapsible00)
-      basepanel1:SetSize(200, 320)
-      basepanel1:DockMargin(0, 5, 2.5, 10)
+      basepanel1:SetSize(200, 240)
+      basepanel1:DockMargin(0, 5, 2.5, 5)
       basepanel1:Dock(TOP)
 
       local listlayout00 = vgui.Create("DListLayout", basepanel1)
@@ -94,13 +95,6 @@ if CLIENT then
       basepanel2:Dock(TOP)
       basepanel2:DockPadding(5, 2.5, 5, 2.5)
 
-      local desc1 = vgui.Create("DLabel", basepanel2)
-      desc1:SetColor(textcolor1)
-      desc1:SetText( "Checkboxes." )
-      desc1:SizeToContents()
-      desc1:Dock(TOP)
-      desc1:DockMargin(2.5, 5, 5, 2.5)
-
       local panellist0 = vgui.Create("DPanelList", basepanel2)
       panellist0:SetSpacing(2.5)
       panellist0:EnableHorizontal(false)
@@ -116,7 +110,6 @@ if CLIENT then
       checkbox0:SetConVar("Optics_Bool_NoCollideConcaveLens_CLIENT")
       checkbox0:SetChecked(false)
 
-
       local checkbox1 = vgui.Create("DCheckBoxLabel", basepanel2)
       checkbox1:SetText("Do Weld")
       checkbox1:SetTextColor( alphablack0 )
@@ -125,6 +118,13 @@ if CLIENT then
       checkbox1:DockMargin(2.5, 5, 2.5, 5)
       checkbox1:SetConVar("Optics_Bool_IsDoWeldConcaveLens_CLIENT")
       checkbox1:SetChecked(false)
+
+      local desc1 = vgui.Create("DLabel", basepanel2)
+      desc1:SetColor(textcolor1)
+      desc1:SetText( "Checkboxes." )
+      desc1:SizeToContents()
+      desc1:Dock(TOP)
+      desc1:DockMargin(2.5, 5, 5, 2.5)
 
       local desc2 = vgui.Create("DLabel", basepanel2)
       desc2:SetColor(textcolor1)
@@ -144,7 +144,7 @@ if CLIENT then
 
       function modellist0:Think()
         local convar01 = GetConVar("Optics_String_SelectedConcaveLensModel_CLIENT")
-        modellist0.OnRowSelected = function( row )
+        modellist0.OnRowSelected = function(row)
           for k, v in pairs (Optics_ConcaveLensModels_Table) do
              if row == k then
                 convar01:SetString(v)
@@ -207,6 +207,7 @@ function TOOL:LeftClick(trace)
     undo.AddEntity( concavelens_constrt )
     undo.SetPlayer( user0 )
     user0:AddCleanup( "Concave Lens", concavelens )
+    user0:AddCleanup( "Concave Lens", concavelens_constrt )
   undo.Finish()
 
   return true

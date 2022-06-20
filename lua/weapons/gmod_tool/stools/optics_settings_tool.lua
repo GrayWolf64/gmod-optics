@@ -22,7 +22,6 @@ if CLIENT then
   TOOL.Information = { "reload" }
   language.Add("tool.optics_settings_tool.name", "General Settings Tool")
   language.Add("tool.optics_settings_tool.desc", "Modify general settings.")
-  language.Add("tool.optics_settings_tool.reload", "Bring up the general settings menu.")
 
     function TOOL:DrawToolScreen( width, height )
 
@@ -41,6 +40,12 @@ if CLIENT then
     end
 
     function TOOL.BuildCPanel(basepanel0)
+
+      local label00 = vgui.Create("DLabel", basepanel0)
+      label00:Dock(TOP)
+      label00:DockMargin(5, 2.5, 5, 5)
+      label00:SetText("Manage the general settings.")
+      label00:SetTextColor(alphablack0)
 
       local label0 = vgui.Create("DLabel", basepanel0)
       label0:Dock(TOP)
@@ -131,7 +136,7 @@ if CLIENT then
 
       local textbox0 = vgui.Create("DTextEntry", basepanel1)
       textbox0:Dock( TOP )
-      textbox0:DockMargin(40, 2, 50, 10)
+      textbox0:DockMargin(20, 2, 80, 10)
       textbox0:SetEditable(false)
       textbox0:SetPlaceholderText("Integer")
       textbox0:SetTextColor(textcolor2)
@@ -145,7 +150,7 @@ if CLIENT then
 
       local textbox1 = vgui.Create("DTextEntry", basepanel1)
       textbox1:Dock( TOP )
-      textbox1:DockMargin(40, 2, 50, 10)
+      textbox1:DockMargin(20, 2, 80, 10)
       textbox1:SetEditable(false)
       textbox1:SetPlaceholderText("True or false")
       textbox1:SetTextColor(textcolor2)
@@ -166,7 +171,7 @@ if CLIENT then
 
       local textbox2 = vgui.Create("DTextEntry", basepanel1)
       textbox2:Dock( TOP )
-      textbox2:DockMargin(40, 2.5, 50, 10)
+      textbox2:DockMargin(20, 2.5, 80, 10)
       textbox2:SetEditable(false)
       textbox2:SetTextColor(textcolor2)
       textbox2:SetPlaceholderText("True or false")
@@ -180,7 +185,7 @@ if CLIENT then
 
       local textbox3 = vgui.Create("DTextEntry", basepanel1)
       textbox3:Dock( TOP )
-      textbox3:DockMargin(40, 2.5, 50, 10)
+      textbox3:DockMargin(20, 2.5, 80, 10)
       textbox3:SetEditable(false)
       textbox3:SetTextColor(textcolor2)
       textbox3:SetPlaceholderText("True or false")
@@ -191,7 +196,7 @@ if CLIENT then
         local convar1 = GetConVar("Optics_Bool_IsPointingConcaveLens_CLIENT")
         local convar2 = GetConVar("Optics_Bool_IsDoWeld_PointedConcaveLens_CLIENT")
         local convar3 = GetConVar("Optics_Bool_IsNoCollide_PointedConcaveLens_CLIENT")
-        local convar4 = GetConVar("Optics_Bool_FocalLength_PointedConcaveLens_CLIENT")
+        local convar4 = GetConVar("Optics_Int_FocalLength_PointedConcaveLens_CLIENT")
         local convar5 = GetConVar("Optics_Bool_IsImaging_PointedConcaveLens_CLIENT")
 
         if convar1:GetBool() == true then
@@ -218,7 +223,7 @@ if CLIENT then
    local convar1 = GetConVar("Optics_Bool_IsPointingConcaveLens_CLIENT")
    local convar2 = GetConVar("Optics_Bool_IsDoWeld_PointedConcaveLens_CLIENT")
    local convar3 = GetConVar("Optics_Bool_IsNoCollide_PointedConcaveLens_CLIENT")
-   local convar4 = GetConVar("Optics_Bool_FocalLength_PointedConcaveLens_CLIENT")
+   local convar4 = GetConVar("Optics_Int_FocalLength_PointedConcaveLens_CLIENT")
    local convar5 = GetConVar("Optics_Bool_IsImaging_PointedConcaveLens_CLIENT")
 
    if thing:IsValid() == true and thing:GetClass() == "optics_concavelens" then
@@ -282,7 +287,7 @@ if CLIENT then
              ang0a:RotateAroundAxis( ang0a:Up(), -90 )
              ang0a:RotateAroundAxis( ang0a:Forward(), 90 )
              cam.Start3D2D( pos0a, ang0a, 0.1 )
-               draw.SimpleText( "Lens", "opticsdefaultfontbd", 16, 0, alphatextcolor0 )
+               draw.SimpleText( "Concave Lens", "opticsdefaultfontbd", 16, 0, alphatextcolor0 )
              cam.End3D2D()
 
              local pos1 = thingpos + thing:GetAngles():Right() * Convar_Int_MaxDetect_Front

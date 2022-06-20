@@ -7,6 +7,8 @@ TOOL.ConfigName		= ""
 if CLIENT then
 
     local alphablack0 = Color(0 ,0 ,0 ,255 )
+    local toolfontcolor0 = Color( 255, 20, 20 )
+    local toolfontcolor1 = Color( 141 ,238 ,238 )
 
     MsgC(Color(240 ,88 ,0), "[ OPTICS ] Debug Info: ")
     MsgC(Color(152 ,251 ,152), "Advanced Settings Tool OK!\n")
@@ -14,6 +16,15 @@ if CLIENT then
     language.Add("tool.optics_adv_settings_tool.name", "Advanced Settings Tool")
     language.Add("tool.optics_adv_settings_tool.desc", "Modify advanced settings.")
     language.Add("tool.optics_adv_settings_tool.0", "Nothing here.")
+
+    function TOOL:DrawToolScreen( width, height )
+
+      surface.SetDrawColor( toolfontcolor1 ); surface.DrawRect( 0, 0, width , height)
+      draw.SimpleText( "Optics", "opticsdefaultfont", width / 2, height / 5.5, toolfontcolor0, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
+      draw.SimpleText( "--Advanced", "opticsdefaultfontbd", width / 2, height / 2, toolfontcolor0, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
+      draw.SimpleText( "Settings", "opticsdefaultfontbd", width / 2, height / 1.5, toolfontcolor0, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
+
+    end
 
    local scrw, scrh = ScrW(), ScrH()
 

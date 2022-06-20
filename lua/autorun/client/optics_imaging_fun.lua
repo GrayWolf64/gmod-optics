@@ -3,15 +3,15 @@ if CLIENT then
    MsgC(Color(240 ,88 ,0), "[ OPTICS ] Debug Info: ")
    MsgC(Color(152 ,251 ,152), "Lens Imaging Function CLIENTSIDE OK!\n")
 
-   function ConcaveLensImaging(lens)  --[[this certainly needs to be optimized--]]
+   function ConvexLensImaging(lens)  --[[this certainly needs to be optimized--]]
 
       local lensindex = lens:EntIndex()
       local angles = lens:GetAngles()
       local pos_direct = lens:GetPos()
       local w, h = ScrW(), ScrH()
 
-      local tar_front = (Optics_ConcaveLensTraces_Front_Table[lensindex]).Entity
-      local tar_back = (Optics_ConcaveLensTraces_Back_Table[lensindex]).Entity
+      local tar_front = (Optics_ConvexLensTraces_Front_Table[lensindex]).Entity
+      local tar_back = (Optics_ConvexLensTraces_Back_Table[lensindex]).Entity
 
       local imagestable = file.Find("optics_imaging/*.png","DATA")
 
@@ -19,7 +19,7 @@ if CLIENT then
 
       if tar_front:IsValid() == true then
 
-        local imaging_result_front = string.gsub("optics_imaging/concavelens[INDEX]_imaging_result_front.png","INDEX",tostring(lensindex))
+        local imaging_result_front = string.gsub("optics_imaging/convexlens[INDEX]_imaging_result_front.png","INDEX",tostring(lensindex))
 
         cam.Start3D(pos_direct,angles:Right():Angle(),100)
           render.Clear( 255, 255, 255, 0, true )
@@ -53,14 +53,14 @@ if CLIENT then
         for k, v in pairs (imagestable) do
            if string.find(v,"front") ~= nil then
             local imaging_result_front_path = "../data/" .. imaging_result_front
-            Optics_ConcaveLensImagingResult_Material_Front_Table[lensindex] = Material(imaging_result_front_path)
-            Optics_ConcaveLensImagingResult_Material_Front_Table[lensindex]:SetInt("$translucent", 1)
+            Optics_ConvexLensImagingResult_Material_Front_Table[lensindex] = Material(imaging_result_front_path)
+            Optics_ConvexLensImagingResult_Material_Front_Table[lensindex]:SetInt("$translucent", 1)
            end
         end
 
       elseif tar_back:IsValid() == true then
 
-         local imaging_result_back = string.gsub("optics_imaging/concavelens[INDEX]_imaging_result_back.png","INDEX",tostring(lensindex))
+         local imaging_result_back = string.gsub("optics_imaging/convexlens[INDEX]_imaging_result_back.png","INDEX",tostring(lensindex))
 
          cam.Start3D(pos_direct,angles:Right():Angle():Right():Angle():Right():Angle(),100)
           render.Clear( 255, 255, 255, 0, true )
@@ -90,13 +90,14 @@ if CLIENT then
           if tar_back == LocalPlayer() then
              Optics_PopError(2)
           end
+
          cam.End3D()
 
          for k, v in pairs (imagestable) do
            if string.find(v,"back") ~= nil then
             local imaging_result_back_path = "../data/" .. imaging_result_back
-            Optics_ConcaveLensImagingResult_Material_Back_Table[lensindex] = Material(imaging_result_back_path)
-            Optics_ConcaveLensImagingResult_Material_Back_Table[lensindex]:SetInt("$translucent", 1)
+            Optics_ConvexLensImagingResult_Material_Back_Table[lensindex] = Material(imaging_result_back_path)
+            Optics_ConvexLensImagingResult_Material_Back_Table[lensindex]:SetInt("$translucent", 1)
            end
          end
 
@@ -104,7 +105,7 @@ if CLIENT then
 
       lens:CallOnRemove("Optics_DeleteImagingFilesOnLensRemove",function()  --[[delete ing the unnecessary files on lens remove--]]
          for k, v in pairs (imagestable) do
-           if string.find(v,"concavelens") ~= nil then
+           if string.find(v,"convexlens") ~= nil then
             file.Delete("optics_imaging/" .. v)
            end
          end
@@ -112,8 +113,8 @@ if CLIENT then
 
    end
 
-   function ConvexLensImaging(lens)
-
+   function ConcaveLensImaging(lens)
+     Optics_PopError(3)
    end
 
 end

@@ -4,12 +4,17 @@ if SERVER then
   MsgC(Color(152 ,251 ,152), "MakeLens Function SERVERSIDE OK!\n")
 
   function MakeConcaveLens(user, pos, model, trace_ent, trace_physbone)
+    local trace = user:GetEyeTrace()
+
+    local thingangle = trace.HitNormal:Angle()
+    thingangle.pitch = thingangle.pitch + 90
 
     local concavelens = ents.Create( "optics_concavelens" )
     concavelens:SetPos(pos)
-    concavelens:SetModel(model)
+    concavelens:SetModel(model); local modelmin = concavelens:OBBMins()
     concavelens:Spawn()
-    concavelens:SetPos(Vector(pos.x, pos.y, pos.z + concavelens:GetModelRadius()))
+    concavelens:SetPos(trace.HitPos - trace.HitNormal * modelmin.z)
+    concavelens:SetAngles(thingangle)
 
     if concavelens:GetNWBool("NoCollide") == true then
       concavelens:SetCollisionGroup(COLLISION_GROUP_WORLD)
