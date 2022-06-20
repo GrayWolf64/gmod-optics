@@ -1,7 +1,7 @@
 if CLIENT then
 
-   MsgC(Color(240 ,88 ,0), "[ OPTICS ] Debug Info!")
-   MsgC(Color(152 ,251 ,152), "[ OPTICS ] Lens Imaging Function CLIENTSIDE Defined!\n")
+   MsgC(Color(240 ,88 ,0), "[ OPTICS ] Debug Info: ")
+   MsgC(Color(152 ,251 ,152), "Lens Imaging Function CLIENTSIDE OK!\n")
 
    function ConcaveLensImaging(lens)  --[[this certainly needs to be optimized--]]
 

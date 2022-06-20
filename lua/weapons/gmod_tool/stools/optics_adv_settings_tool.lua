@@ -8,8 +8,8 @@ if CLIENT then
 
     local alphablack0 = Color(0 ,0 ,0 ,255 )
 
-    MsgC(Color(240 ,88 ,0), "[ OPTICS ] Debug Info!")
-    MsgC(Color(152 ,251 ,152), "[ OPTICS ] Advanced Settings Tool Defined!\n")
+    MsgC(Color(240 ,88 ,0), "[ OPTICS ] Debug Info: ")
+    MsgC(Color(152 ,251 ,152), "Advanced Settings Tool OK!\n")
 
     language.Add("tool.optics_adv_settings_tool.name", "Advanced Settings Tool")
     language.Add("tool.optics_adv_settings_tool.desc", "Modify advanced settings.")
@@ -19,7 +19,7 @@ if CLIENT then
 
    local imageoutputframe_front = vgui.Create("DFrame")
    imageoutputframe_front:SetDeleteOnClose(false)
-   imageoutputframe_front:SetTitle("Current (Pointed) Imaging Output Front")
+   imageoutputframe_front:SetTitle("Current ( Pointed ) Imaging Output Front")
    imageoutputframe_front:SetSize(scrw / 4, scrh / 4)
    imageoutputframe_front:SetPos(10,200)
    imageoutputframe_front:ShowCloseButton(false)
@@ -27,7 +27,7 @@ if CLIENT then
 
    local imageoutputframe_back = vgui.Create("DFrame")
    imageoutputframe_back:SetDeleteOnClose(false)
-   imageoutputframe_back:SetTitle("Current (Pointed) Imaging Output Back")
+   imageoutputframe_back:SetTitle("Current ( Pointed ) Imaging Output Back")
    imageoutputframe_back:SetSize(scrw / 4, scrh / 4)
    imageoutputframe_back:SetPos(10,480)
    imageoutputframe_back:ShowCloseButton(false)
@@ -55,10 +55,21 @@ if CLIENT then
    end
 
    function TOOL:DrawHUD()
-     imageoutputframe_front:Show()
-     imageoutputframe_back:Show()
-     image_front:Show()
-     image_back:Show()
+     if GetConVar("Optics_Bool_ShowCurrentImagingOutputFront_CLIENT"):GetBool() == true then
+       imageoutputframe_front:Show()
+       image_front:Show()
+     else
+       imageoutputframe_front:Hide()
+       image_front:Hide()
+     end
+
+     if GetConVar("Optics_Bool_ShowCurrentImagingOutputBack_CLIENT"):GetBool() == true then
+       imageoutputframe_back:Show()
+       image_back:Show()
+     else
+       imageoutputframe_back:Hide()
+       image_back:Hide()
+      end
    end
 
    function TOOL:Holster()
@@ -71,7 +82,7 @@ if CLIENT then
    function TOOL.BuildCPanel(basepanel0)
 
       local label0 = vgui.Create("DLabel", basepanel0)
-      label0:SetText("This is the text on the top.")
+      label0:SetText("Manage some settings besides general settings.")
       label0:SetColor(alphablack0)
       label0:Dock(TOP)
       label0:DockMargin(5, 2.5, 2.5, 5)
@@ -84,19 +95,35 @@ if CLIENT then
       collapsible0:SetExpanded(false)
 
       local basepanel1 = vgui.Create("DPanel", collapsible0)
-      basepanel1:SetSize(200, 240)
+      basepanel1:SetSize(200, 180)
       basepanel1:DockMargin(0, 5, 2.5, 10)
       basepanel1:Dock(TOP)
 
       local slider01 = vgui.Create( "DNumSlider", basepanel1)
       slider01:Dock(TOP)
       slider01:SetDark(true)
-      slider01:DockMargin(5, 5, 5, 5)
-      slider01:SetText( "Imaging Quality" )
+      slider01:DockMargin(5, 2.5, 5, 2.5)
+      slider01:SetText( "Lens Imaging Quality" )
       slider01:SetMin( 0 )
       slider01:SetMax( 100 )
       slider01:SetDecimals( 0 )
       slider01:SetConVar( "Optics_Int_LensImagingQuality_CLIENT" )
+
+      local checkbox0 = vgui.Create("DCheckBoxLabel", basepanel1)
+      checkbox0:SetText("Show Current Imaging Output Front")
+      checkbox0:SetDark(true)
+      checkbox0:Dock(TOP)
+      checkbox0:DockMargin(5, 5, 5, 5)
+      checkbox0:SetConVar("Optics_Bool_ShowCurrentImagingOutputFront_CLIENT")
+      checkbox0:SetChecked(false)
+
+      local checkbox1 = vgui.Create("DCheckBoxLabel", basepanel1)
+      checkbox1:SetText("Show Current Imaging Output Back")
+      checkbox1:SetDark(true)
+      checkbox1:Dock(TOP)
+      checkbox1:DockMargin(5, 5, 5, 5)
+      checkbox1:SetConVar("Optics_Bool_ShowCurrentImagingOutputBack_CLIENT")
+      checkbox1:SetChecked(false)
 
    end
 

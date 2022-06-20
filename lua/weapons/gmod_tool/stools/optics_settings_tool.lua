@@ -16,8 +16,8 @@ if CLIENT then
   local toolfontcolor2 = Color( 30 ,144 ,255 )
   local alphablack0 = Color(0 ,0 ,0 ,255 )
 
-  MsgC(Color(240 ,88 ,0), "[ OPTICS ] Debug Info!")
-  MsgC(textcolor3, "[ OPTICS ] General Settings Tool Defined!\n")
+  MsgC(Color(240 ,88 ,0), "[ OPTICS ] Debug Info: ")
+  MsgC(textcolor3, "General Settings Tool OK!\n")
 
   TOOL.Information = { "reload" }
   language.Add("tool.optics_settings_tool.name", "General Settings Tool")
@@ -63,10 +63,10 @@ if CLIENT then
       local checkbox0 = vgui.Create("DCheckBoxLabel", basepanel01)
       checkbox0:Dock(TOP)
       checkbox0:DockMargin(5, 5, 5, 10)
-      checkbox0:SetText("Draw some lines")
+      checkbox0:SetText("Draw debug lines")
       checkbox0:SizeToContents()
-      checkbox0:SetConVar("Optics_Boolean_GeneralSettingsToolDrawDebugLines_CLIENT")
-      checkbox0:SetValue(true)
+      checkbox0:SetConVar("Optics_Bool_GeneralSettingsToolDrawDebugLines_CLIENT")
+      checkbox0:SetChecked(false)
       checkbox0:SetTextColor(alphablack0)
 
       local slider01 = vgui.Create( "DNumSlider", basepanel01)
@@ -77,7 +77,7 @@ if CLIENT then
       slider01:SetMin( 0 )
       slider01:SetMax( 10000 )
       slider01:SetDecimals( 0 )
-      slider01:SetConVar( "Optics_LensMaxDetectionDistanceFront" )
+      slider01:SetConVar( "Optics_Int_LensMaxDetectionDistanceFront_CLIENT" )
 
       local slider02 = vgui.Create( "DNumSlider", basepanel01)
       slider02:Dock(TOP)
@@ -87,13 +87,13 @@ if CLIENT then
       slider02:SetMin( 0 )
       slider02:SetMax( 10000 )
       slider02:SetDecimals( 0 )
-      slider02:SetConVar( "Optics_LensMaxDetectionDistanceback" )
+      slider02:SetConVar( "Optics_Int_LensMaxDetectionDistanceBack_CLIENT" )
 
       local notice02 = vgui.Create("DLabel", basepanel01)
       notice02:SetText("Some settings require you to apply to certain things to take effect.")
       notice02:Dock(BOTTOM)
       notice02:SetColor(textcolor0)
-      notice02:DockMargin(5, 10, 5,0.5)
+      notice02:DockMargin(5, 10, 10,2.5)
 
       local collapsible0 = vgui.Create("DCollapsibleCategory", basepanel0)
       collapsible0:Dock(TOP)
@@ -112,7 +112,7 @@ if CLIENT then
       desc0:SetText( "When not pointing at a concave lens, this section is hidden." )
       desc0:SizeToContents()
       desc0:Dock(BOTTOM)
-      desc0:DockMargin(10, 10, 10, 7.5)
+      desc0:DockMargin(5, 10, 10, 5)
 
       local colorbutton0 = vgui.Create("DColorButton", basepanel1)
       colorbutton0:Dock(TOP)
@@ -188,11 +188,11 @@ if CLIENT then
       function basepanel0:Think()
 
         local convar0 = GetConVar("Optics_String_PointedConcaveLensIndex_CLIENT")
-        local convar1 = GetConVar("Optics_Boolean_IsPointingConcaveLens_CLIENT")
-        local convar2 = GetConVar("Optics_Boolean_IsDoWeld_PointedConcaveLens_CLIENT")
-        local convar3 = GetConVar("Optics_Boolean_IsNoCollide_PointedConcaveLens_CLIENT")
-        local convar4 = GetConVar("Optics_Boolean_FocalLength_PointedConcaveLens_CLIENT")
-        local convar5 = GetConVar("Optics_Boolean_IsImaging_PointedConcaveLens_CLIENT")
+        local convar1 = GetConVar("Optics_Bool_IsPointingConcaveLens_CLIENT")
+        local convar2 = GetConVar("Optics_Bool_IsDoWeld_PointedConcaveLens_CLIENT")
+        local convar3 = GetConVar("Optics_Bool_IsNoCollide_PointedConcaveLens_CLIENT")
+        local convar4 = GetConVar("Optics_Bool_FocalLength_PointedConcaveLens_CLIENT")
+        local convar5 = GetConVar("Optics_Bool_IsImaging_PointedConcaveLens_CLIENT")
 
         if convar1:GetBool() == true then
           colorbutton0:SetColor(textcolor2)
@@ -215,11 +215,11 @@ if CLIENT then
    local thing = self:GetOwner():GetEyeTrace().Entity
 
    local convar0 = GetConVar("Optics_String_PointedConcaveLensIndex_CLIENT")
-   local convar1 = GetConVar("Optics_Boolean_IsPointingConcaveLens_CLIENT")
-   local convar2 = GetConVar("Optics_Boolean_IsDoWeld_PointedConcaveLens_CLIENT")
-   local convar3 = GetConVar("Optics_Boolean_IsNoCollide_PointedConcaveLens_CLIENT")
-   local convar4 = GetConVar("Optics_Boolean_FocalLength_PointedConcaveLens_CLIENT")
-   local convar5 = GetConVar("Optics_Boolean_IsImaging_PointedConcaveLens_CLIENT")
+   local convar1 = GetConVar("Optics_Bool_IsPointingConcaveLens_CLIENT")
+   local convar2 = GetConVar("Optics_Bool_IsDoWeld_PointedConcaveLens_CLIENT")
+   local convar3 = GetConVar("Optics_Bool_IsNoCollide_PointedConcaveLens_CLIENT")
+   local convar4 = GetConVar("Optics_Bool_FocalLength_PointedConcaveLens_CLIENT")
+   local convar5 = GetConVar("Optics_Bool_IsImaging_PointedConcaveLens_CLIENT")
 
    if thing:IsValid() == true and thing:GetClass() == "optics_concavelens" then
      convar0:SetString(" Entity Index: " .. tostring(thing:EntIndex()))
@@ -239,7 +239,7 @@ if CLIENT then
    end
 
      if thing:IsValid() == true and self:GetOwner():GetActiveWeapon():GetClass() == "gmod_tool" and thing:GetClass() == "optics_concavelens"
-     and GetConVar("Optics_Boolean_GeneralSettingsToolDrawDebugLines_CLIENT"):GetBool() == true
+     and GetConVar("Optics_Bool_GeneralSettingsToolDrawDebugLines_CLIENT"):GetBool() == true
      then
 
        local thingpos = thing:GetPos()
@@ -253,8 +253,8 @@ if CLIENT then
        local alphaspherecolor0 = Color(255 ,0 , 0, 200)
        local alphaspherecolor1 = Color(138 ,43 ,226)
 
-       local Convar_Int_MaxDetect_Front = GetConVar("Optics_LensMaxDetectionDistanceFront"):GetInt()
-       local Convar_Int_MaxDetect_Back = GetConVar("Optics_LensMaxDetectionDistanceBack"):GetInt()
+       local Convar_Int_MaxDetect_Front = GetConVar("Optics_Int_LensMaxDetectionDistanceFront_CLIENT"):GetInt()
+       local Convar_Int_MaxDetect_Back = GetConVar("Optics_Int_LensMaxDetectionDistanceBack_CLIENT"):GetInt()
 
        hook.Add( "PostDrawTranslucentRenderables", "baseline_and_ball0", function()
           local x2 = thing:OBBMaxs()

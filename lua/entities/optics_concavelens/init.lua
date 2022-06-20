@@ -3,7 +3,7 @@ AddCSLuaFile("shared.lua")
 include("shared.lua")
 
 MsgC(Color(240 ,88 ,0), "[ OPTICS ] Debug Info!")
-MsgC(Color(152 ,251 ,152), "[ OPTICS ] Concave Lens Entity Defined!\n")
+MsgC(Color(152 ,251 ,152), "Concave Lens Entity OK!\n")
 
 function ENT:Initialize()
   self:PhysicsInit(SOLID_VPHYSICS)
@@ -20,9 +20,9 @@ end
 
 function ENT:SetupDataTables()
 
-    local convar0 = GetConVar("Optics_ConcaveLensFocalLength")
-    local convar1 = GetConVar("Optics_Boolean_DoWeldConcaveLens_CLIENT")
-    local convar2 = GetConVar("Optics_Boolean_NoCollideConcaveLens_CLIENT")
+    local convar0 = GetConVar("Optics_Int_ConcaveLensFocalLength")
+    local convar1 = GetConVar("Optics_Bool_IsDoWeldConcaveLens_CLIENT")
+    local convar2 = GetConVar("Optics_Bool_NoCollideConcaveLens_CLIENT")
 
   if SERVER or CLIENT then
 

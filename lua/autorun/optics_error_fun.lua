@@ -1,10 +1,10 @@
-MsgC(Color(240 ,88 ,0), "[ OPTICS ] Debug Info!")
-MsgC(Color(152 ,251 ,152), "PopError Function Defined!\n")
+MsgC(Color(240 ,88 ,0), "[ OPTICS ] Debug Info: ")
+MsgC(Color(152 ,251 ,152), "PopError Function OK!\n")
 
 function Optics_PopError(num)
     local errors_table = {
         [1] = "Error number does not exist.",
-        [2] = "The Local player tries to image himself.",
+        [2] = "The Local Player tries to image himself.",
     }  --[[table of errors--]]
 
     local color0 = Color(240 ,88 ,0)
@@ -20,6 +20,7 @@ function Optics_PopError(num)
      MsgC(color1, errors_table[num] .. "\n")
      if CLIENT then
          notification.AddLegacy(errors_table[num], NOTIFY_ERROR, 2)
+         surface.PlaySound( "buttons/button15.wav" )
      end
     end
 end

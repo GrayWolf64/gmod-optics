@@ -8,7 +8,7 @@ Optics for Garry's Mod.
 
 ---
 
-Used Times New Roman as placeholder fonts for toolgun screen.
+Used Times New Roman as a placeholder font for toolgun screen.
 
 * This addon will contain a lot of things in Optics, such as lens, reflectors and many more advanced things.
 Models, Textures are only placeholders at the moment, I haven't tested the addon in multiplayer.

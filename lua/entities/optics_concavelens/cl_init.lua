@@ -18,17 +18,17 @@ if CLIENT then  --[[i don't know if it matches the name of this file--]]
    --[[have no choice but to do this to specify the traces for each concave lens--]]
    Optics_ConcaveLensTraces_Front_Table[index] = util.TraceLine({
      start = thisobjectpos,
-     endpos = thisobjectpos + thisobjectangles:Right() * GetConVar("Optics_LensMaxDetectionDistanceFront"):GetInt() ,
+     endpos = thisobjectpos + thisobjectangles:Right() * GetConVar("Optics_Int_LensMaxDetectionDistanceFront_CLIENT"):GetInt() ,
      filter = function( ent ) return  ent:GetClass() == "prop_physics" or ent:GetClass() == "player" or ent:GetClass() == "npc_*" end
    })
 
    Optics_ConcaveLensTraces_Back_Table[index] = util.TraceLine({
      start = thisobjectpos,
-     endpos = thisobjectpos - thisobjectangles:Right() * GetConVar("Optics_LensMaxDetectionDistanceBack"):GetInt() ,
+     endpos = thisobjectpos - thisobjectangles:Right() * GetConVar("Optics_Int_LensMaxDetectionDistanceBack_CLIENT"):GetInt() ,
      filter = function( ent ) return  ent:GetClass() == "prop_physics" or ent:GetClass() == "player" or ent:GetClass() == "npc_*" end
    })
 
-    local convar0 = GetConVar("Optics_Boolean_IsImaging_PointedConcaveLens_CLIENT")
+    local convar0 = GetConVar("Optics_Bool_IsImaging_PointedConcaveLens_CLIENT")
     if IsValid((Optics_ConcaveLensTraces_Front_Table[index]).Entity) == true or IsValid((Optics_ConcaveLensTraces_Back_Table[index]).Entity) == true then
       self:SetNWBool("IsImaging", true)
       convar0:SetBool(true)
