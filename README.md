@@ -24,6 +24,7 @@ Contraptions|Status
 ------------|:--------------------------------------:
 Concave Lens|Nearly finished(have something to improve)
 Convex Lens |Preparing to work on
+Laser       |Working on
 ......      |......
 ......      |......
 
