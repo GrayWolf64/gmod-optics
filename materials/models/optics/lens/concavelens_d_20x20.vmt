@@ -1,0 +1,13 @@
+VertexLitGeneric
+{
+
+  "$basetexture" "models/optics/lens/concavelens_d_20x20"
+  "$bumpmap" "models/optics/lens/concavelens_d_20x20-ssbump"
+  "$ssbump" "1"
+  "$SSBumpMathFix" "1"
+  "$translucent" "1"
+  "$surfaceprop" "glass"
+  "$model" "1"
+
+  "$nocull" "0"
+}

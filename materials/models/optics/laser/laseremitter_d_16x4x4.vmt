@@ -1,0 +1,10 @@
+VertexLitGeneric
+{
+
+  "$basetexture" "models/optics/laser/laseremitter_d_16x4x4"
+  "$bumpmap" "models/optics/laser/laseremitter_d_16x4x4-normal"
+  "$surfaceprop" "metal"
+  "$model" "1"
+
+  "$nocull" "0"
+}
