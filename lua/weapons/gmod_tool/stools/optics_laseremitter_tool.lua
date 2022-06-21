@@ -197,7 +197,7 @@ function TOOL:LeftClick(trace)
    local user0 = self:GetOwner()
    local model0 = GetConVar("Optics_String_SelectedLaserEmitterModel_CLIENT"):GetString()
    local pos0 = trace.HitPos
-   local laseremitter = MakeLaserEmitter(user0, pos0, model0, trace.Entity, trace.PhysicsBone)
+   local laseremitter = Optics_MakeLaserEmitter(user0, pos0, model0, trace.Entity, trace.PhysicsBone)
 
    undo.Create( "Laser Emitter" )
      undo.AddEntity( laseremitter )

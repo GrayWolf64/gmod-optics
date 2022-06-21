@@ -3,7 +3,7 @@ if SERVER then
   MsgC(Color(240 ,88 ,0), "[ OPTICS ] Debug Info: ")
   MsgC(Color(152 ,251 ,152), "MakeLens Function SERVERSIDE OK!\n")
 
-  function MakeConcaveLens(user, pos, model, trace_ent, trace_physbone)
+  function Optics_MakeConcaveLens(user, pos, model, trace_ent, trace_physbone)
     local trace = user:GetEyeTrace()
 
     local thingangle = trace.HitNormal:Angle()

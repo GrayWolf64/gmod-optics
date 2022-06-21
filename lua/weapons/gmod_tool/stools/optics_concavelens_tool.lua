@@ -132,7 +132,7 @@ if CLIENT then
       slider1:SetText("Focal length")
       slider1:SetDark(true)
       slider1:SetMin(-1000)
-      slider1:SetMax(1000)
+      slider1:SetMax(0)
       slider1:SetDecimals(0)
       slider1:SetConVar("Optics_Int_ConcaveLensFocalLength")
 
@@ -194,7 +194,7 @@ function TOOL:LeftClick(trace)
   local user0 = self:GetOwner()
   local model0 = GetConVar("Optics_String_SelectedConcaveLensModel_CLIENT"):GetString()
   local pos0 = trace.HitPos
-  local concavelens = MakeConcaveLens(user0, pos0, model0, trace.Entity, trace.PhysicsBone)
+  local concavelens = Optics_MakeConcaveLens(user0, pos0, model0, trace.Entity, trace.PhysicsBone)
 
   undo.Create( "Concave Lens" )
     undo.AddEntity( concavelens )

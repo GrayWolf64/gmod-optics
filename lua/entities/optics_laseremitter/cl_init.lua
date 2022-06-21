@@ -19,7 +19,7 @@ if CLIENT then
     if GetConVar("Optics_Bool_TurnOnLaserEmitter_Front_CLIENT"):GetBool() == true then
         Optics_LaserEmitterTraces_Front_Table[index] = util.TraceLine({
            start = thisobjectpos,
-           endpos = thisobjectpos + thisobjectangles:Right() * GetConVar("Optics_Int_LaserEmitterMaxDetectionDistanceFront_CLIENT"):GetInt() ,
+           endpos = thisobjectpos + thisobjectangles:Right() * GetConVar("Optics_Int_LaserEmitterTraceMaxLengthFront_CLIENT"):GetInt() ,
            filter = function( ent ) return  ent:GetClass() == "optics_concavelens" or ent:GetClass() == "optics_convexlens" or ent:GetClass() == "player" end
         })
 
@@ -27,6 +27,7 @@ if CLIENT then
           render.SetMaterial(lasermat)
           render.DrawBeam(thisobjectpos, Optics_LaserEmitterTraces_Front_Table[index].HitPos, GetConVar("Optics_Int_LaserWidth_CLIENT"):GetInt(), 0, 1, Color(255,0,0))
         end)
+
     else
 
       hook.Add( "PostDrawTranslucentRenderables", "Optics_LaserBeamRenderables01", function()
@@ -39,7 +40,7 @@ if CLIENT then
     if GetConVar("Optics_Bool_TurnOnLaserEmitter_Back_CLIENT"):GetBool() == true then
         Optics_LaserEmitterTraces_Back_Table[index] = util.TraceLine({
            start = thisobjectpos,
-           endpos = thisobjectpos - thisobjectangles:Right() * GetConVar("Optics_Int_LaserEmitterMaxDetectionDistanceBack_CLIENT"):GetInt() ,
+           endpos = thisobjectpos - thisobjectangles:Right() * GetConVar("Optics_Int_LaserEmitterTraceMaxLengthBack_CLIENT"):GetInt() ,
            filter = function( ent ) return  ent:GetClass() == "optics_concavelens" or ent:GetClass() == "optics_convexlens" or ent:GetClass() == "player" end
         })
 
@@ -70,7 +71,6 @@ if CLIENT then
       hook.Remove( "PostDrawTranslucentRenderables", "Optics_LaserBeamRenderables02")
 
     end)
-
 
   end
 end

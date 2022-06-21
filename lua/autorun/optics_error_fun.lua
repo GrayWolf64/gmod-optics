@@ -5,7 +5,7 @@ function Optics_PopError(num)
     local errors_table = {
         [1] = "Error number does not exist.",
         [2] = "The Local Player tries to image himself.",
-        [3] = "Concave Lens can't image at the present.",
+        [3] = "Concave Lens can't image real images that you can see.",
     }  --[[table of errors--]]
 
     local color0 = Color(240 ,88 ,0)

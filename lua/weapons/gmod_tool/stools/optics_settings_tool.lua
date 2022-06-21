@@ -77,41 +77,41 @@ if CLIENT then
       slider01:Dock(TOP)
       slider01:SetDark(true)
       slider01:DockMargin(5, 2.5, 5, 5)
-      slider01:SetText( "Lens Max Detection Distance Front" )
+      slider01:SetText( "Lens Trace Max Length Front" )
       slider01:SetMin( 0 )
       slider01:SetMax( 10000 )
       slider01:SetDecimals( 0 )
-      slider01:SetConVar( "Optics_Int_LensMaxDetectionDistanceFront_CLIENT" )
+      slider01:SetConVar( "Optics_Int_LensTraceMaxLengthFront_CLIENT" )
 
       local slider02 = vgui.Create( "DNumSlider", basepanel01)
       slider02:Dock(TOP)
       slider02:SetDark(true)
       slider02:DockMargin(5, 5, 5, 5)
-      slider02:SetText( "Lens Max Detection Distance Back" )
+      slider02:SetText( "Lens Trace Max Length Back" )
       slider02:SetMin( 0 )
       slider02:SetMax( 10000 )
       slider02:SetDecimals( 0 )
-      slider02:SetConVar( "Optics_Int_LensMaxDetectionDistanceBack_CLIENT" )
+      slider02:SetConVar( "Optics_Int_LensTraceMaxLengthBack_CLIENT" )
 
       local slider03 = vgui.Create( "DNumSlider", basepanel01)
       slider03:Dock(TOP)
       slider03:SetDark(true)
       slider03:DockMargin(5, 2.5, 5, 5)
-      slider03:SetText( "Laser Max Detection Distance Front" )
+      slider03:SetText( "Laser Emitter Trace Max Length Front" )
       slider03:SetMin( 0 )
       slider03:SetMax( 10000 )
       slider03:SetDecimals( 0 )
-      slider03:SetConVar( "Optics_Int_LaserMaxDetectionDistanceFront_CLIENT" )
+      slider03:SetConVar( "Optics_Int_LaserEmitterTraceMaxLengthFront_CLIENT" )
 
       local slider04 = vgui.Create( "DNumSlider", basepanel01)
       slider04:Dock(TOP)
       slider04:SetDark(true)
       slider04:DockMargin(5, 5, 5, 5)
-      slider04:SetText( "Laser Max Detection Distance Back" )
+      slider04:SetText( "Laser Emitter Trace Max Length Back" )
       slider04:SetMin( 0 )
       slider04:SetMax( 10000 )
       slider04:SetDecimals( 0 )
-      slider04:SetConVar( "Optics_Int_LaserMaxDetectionDistanceBack_CLIENT" )
+      slider04:SetConVar( "Optics_Int_LaserEmitterTraceMaxLengthBack_CLIENT" )
 
       local notice02 = vgui.Create("DLabel", basepanel01)
       notice02:SetText("Some settings require you to apply to certain things to take effect.")
@@ -157,7 +157,6 @@ if CLIENT then
       textbox0:Dock( TOP )
       textbox0:DockMargin(20, 2, 80, 10)
       textbox0:SetEditable(false)
-      textbox0:SetPlaceholderText("Integer")
       textbox0:SetTextColor(textcolor2)
 
       local desc2 = vgui.Create("DLabel", basepanel1)
@@ -171,7 +170,6 @@ if CLIENT then
       textbox1:Dock( TOP )
       textbox1:DockMargin(20, 2, 80, 10)
       textbox1:SetEditable(false)
-      textbox1:SetPlaceholderText("True or false")
       textbox1:SetTextColor(textcolor2)
 
       local desc3 = vgui.Create("DLabel", basepanel1)
@@ -193,7 +191,6 @@ if CLIENT then
       textbox2:DockMargin(20, 2.5, 80, 10)
       textbox2:SetEditable(false)
       textbox2:SetTextColor(textcolor2)
-      textbox2:SetPlaceholderText("True or false")
 
       local desc6 = vgui.Create("DLabel", basepanel1)
       desc6:SetColor( alphablack0 )
@@ -207,7 +204,6 @@ if CLIENT then
       textbox3:DockMargin(20, 2.5, 80, 10)
       textbox3:SetEditable(false)
       textbox3:SetTextColor(textcolor2)
-      textbox3:SetPlaceholderText("True or false")
 
       function basepanel0:Think()
 
@@ -251,6 +247,7 @@ if CLIENT then
 
      convar2:SetBool(thing:GetNWBool("IsWelded"))
      convar3:SetBool(thing:GetNWBool("NoCollide"))
+     convar5:SetBool(thing:GetNWBool("IsImaging"))
      convar4:SetInt(thing:GetNWInt("FocalLength"))
    else
      convar0:SetString(" Entity Index: " .. "N/A")
@@ -277,8 +274,8 @@ if CLIENT then
        local alphaspherecolor0 = Color(255 ,0 , 0, 200)
        local alphaspherecolor1 = Color(138 ,43 ,226)
 
-       local Convar_Int_MaxDetect_Front = GetConVar("Optics_Int_LensMaxDetectionDistanceFront_CLIENT"):GetInt()
-       local Convar_Int_MaxDetect_Back = GetConVar("Optics_Int_LensMaxDetectionDistanceBack_CLIENT"):GetInt()
+       local Convar_Int_MaxDetect_Front = GetConVar("Optics_Int_LensTraceMaxLengthFront_CLIENT"):GetInt()
+       local Convar_Int_MaxDetect_Back = GetConVar("Optics_Int_LensTraceMaxLengthBack_CLIENT"):GetInt()
 
        hook.Add( "PostDrawTranslucentRenderables", "Optics_DebugRenderables01", function()
           local x2 = thing:OBBMaxs()
@@ -357,6 +354,7 @@ if CLIENT then
       hook.Add( "PostDrawTranslucentRenderables", "Optics_DebugRenderables03", function()
         render.ClearStencil()
       end)
+
       hook.Remove( "PostDrawTranslucentRenderables", "Optics_DebugRenderables01" )
       hook.Remove( "PostDrawTranslucentRenderables", "Optics_DebugRenderables02" )
       hook.Remove( "PostDrawTranslucentRenderables", "Optics_DebugRenderables03" )

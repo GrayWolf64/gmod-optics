@@ -121,7 +121,7 @@ if CLIENT then
       slider01:SetConVar( "Optics_Int_LensImagingQuality_CLIENT" )
 
       local checkbox0 = vgui.Create("DCheckBoxLabel", basepanel1)
-      checkbox0:SetText("Show Current Imaging Output Front")
+      checkbox0:SetText("Show Current Imaging Output ( Front )")
       checkbox0:SetDark(true)
       checkbox0:Dock(TOP)
       checkbox0:DockMargin(5, 5, 5, 5)
@@ -129,12 +129,18 @@ if CLIENT then
       checkbox0:SetChecked(false)
 
       local checkbox1 = vgui.Create("DCheckBoxLabel", basepanel1)
-      checkbox1:SetText("Show Current Imaging Output Back")
+      checkbox1:SetText("Show Current Imaging Output ( Back )")
       checkbox1:SetDark(true)
       checkbox1:Dock(TOP)
       checkbox1:DockMargin(5, 5, 5, 5)
       checkbox1:SetConVar("Optics_Bool_ShowCurrentImagingOutputBack_CLIENT")
       checkbox1:SetChecked(false)
+
+      local label1 = vgui.Create("DLabel", basepanel1)
+      label1:Dock(BOTTOM)
+      label1:DockMargin(5, 5, 5, 5)
+      label1:SetText("Manage the advanced settings.")
+      label1:SetTextColor(alphablack0)
 
    end
 
