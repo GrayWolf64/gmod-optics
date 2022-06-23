@@ -1,5 +1,5 @@
 # OPTICS
-## Stop Updating Now
+## Picking up this again
 
 Optics for Garry's Mod.
 
