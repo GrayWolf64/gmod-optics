@@ -1,7 +1,7 @@
 if SERVER then
 
-  MsgC(Color(240 ,88 ,0), "[ OPTICS ] Debug Info: ")
-  MsgC(Color(152 ,251 ,152), "MakeLens Function SERVERSIDE OK!\n")
+  local color0 = Color(214 ,214 ,214)
+  MsgC(color0,"[ OPTICS ] Debug Info: MakeLens Function SERVERSIDE OK!\n")
 
   function Optics_MakeConcaveLens(user, pos, model, trace_ent, trace_physbone)
     local trace = user:GetEyeTrace()

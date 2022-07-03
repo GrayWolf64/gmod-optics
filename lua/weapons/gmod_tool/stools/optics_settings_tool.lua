@@ -9,15 +9,20 @@ if CLIENT then
   local textcolor0 = Color(190, 190, 190)
   local textcolor1 = Color(105 ,105 ,105)
   local textcolor2 = Color(0 ,238 ,118 )
-  local textcolor3 = Color(152 ,251 ,152)
   local textcolor4 = Color(248 ,248 ,255)
   local toolfontcolor0 = Color( 255, 20, 20 )
   local toolfontcolor1 = Color( 141 ,238 ,238 )
   local toolfontcolor2 = Color( 30 ,144 ,255 )
   local alphablack0 = Color(0 ,0 ,0 ,255 )
 
-  MsgC(Color(240 ,88 ,0), "[ OPTICS ] Debug Info: ")
-  MsgC(textcolor3, "General Settings Tool OK!\n")
+  local color0 = Color(214 ,214 ,214)
+  if CLIENT then
+    MsgC(color0,"┏━━━━━━━━━━━━━━━━━━━━━━CLIENT━━━━━━━━━━━━━━━━━━━━┓\n")
+    MsgC(color0,"┃[ OPTICS ] Debug Info: General Settings Tool OK!┃\n")
+    MsgC(color0,"┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n")
+  else
+    MsgC(color0,"[ OPTICS ] Debug Info: General Settings Tool OK!\n")
+  end
 
   language.Add("tool.optics_settings_tool.name", "General Settings Tool")
   language.Add("tool.optics_settings_tool.0", "Just open the toolmenu.")

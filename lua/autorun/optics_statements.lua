@@ -2,13 +2,19 @@ if CLIENT then
 
   Optics_Root = {}
   Optics_Root["Version"] = "Not completed."
-  Optics_Root["Author"] = "Tairikuookami [STEAM_1:1:231613541][github.com/GrayWolf64/]"
+  Optics_Root["Author"] = "Tairikuookami[STEAM_1:1:231613541][github.com/GrayWolf64/]"
+  print("Optics_Root"); PrintTable(Optics_Root)
 
   file.CreateDir("optics_imaging")  --[[folder for imaging files--]]
 
-  MsgC(Color(240 ,88 ,0), "[ OPTICS ] Debug Info: ")
-  MsgC(Color(152 ,251 ,152), "Vars OK!\n")
-  print("Optics_Root"); PrintTable(Optics_Root)
+  local color0 = Color(214 ,214 ,214)
+  if CLIENT then
+    MsgC(color0,"╔═════════════CLIENT════════════╗\n")
+    MsgC(color0,"║[ OPTICS ] Debug Info: Vars OK!║\n")
+    MsgC(color0,"╚═══════════════════════════════╝\n")
+  else
+    MsgC(color0,"[ OPTICS ] Debug Info: Vars OK!\n")
+  end
 
   Optics_ConcaveLensModels_Table = {
     [1] = "models/optics/lens/concavelens_d_20x20.mdl"

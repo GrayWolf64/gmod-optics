@@ -7,12 +7,17 @@ TOOL.ConfigName  = ""
 if CLIENT then
  local toolfontcolor1 = Color( 255, 20, 20 )
  local toolfontcolor2 = Color(105, 105, 105)
- local textcolor0 = Color(152 ,251 ,152)
  local textcolor1 = Color(190, 190, 190)
  local alphablack0 = Color(0 ,0 ,0 ,255)
 
- MsgC(Color(240 ,88 ,0), "[ OPTICS ] Debug Info: ")
- MsgC(textcolor0, "Concave Lens Tool OK!\n")
+ local color0 = Color(214 ,214 ,214)
+ if CLIENT then
+   MsgC(color0,"┏━━━━━━━━━━━━━━━━━━━CLIENT━━━━━━━━━━━━━━━━━━┓\n")
+   MsgC(color0,"┃[ OPTICS ] Debug Info: ConcaveLens Tool OK!┃\n")
+   MsgC(color0,"┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n")
+ else
+   MsgC(color0,"[ OPTICS ] Debug Info: ConcaveLens Tool OK!\n")
+ end
 
   TOOL.Information = { "left", "right" }
   language.Add("tool.optics_concavelens_tool.name", "Concave Lens Tool")
