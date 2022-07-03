@@ -1,5 +1,5 @@
 # OPTICS
-## Picking up this again
+## Picking this up again
 
 Optics for Garry's Mod.
 
@@ -36,3 +36,4 @@ Concave Lens Imaging |Nearly finished(have something to improve)(Unable to image
 Thanks:
 
 * Used [IBM Plex](https://github.com/IBM/plex) font on toolgun screen.
+* Will use my own custom GUI for all the menus and other windows.
