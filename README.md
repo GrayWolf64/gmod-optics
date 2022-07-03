@@ -1,5 +1,5 @@
 # OPTICS
-## Picking this up again
+## Not supporting this any more!
 
 Optics for Garry's Mod.
 
