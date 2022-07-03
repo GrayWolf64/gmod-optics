@@ -10,15 +10,6 @@ if CLIENT then
     local toolfontcolor0 = Color( 255, 20, 20 )
     local toolfontcolor1 = Color( 141 ,238 ,238 )
 
-    local color0 = Color(214 ,214 ,214)
-    if CLIENT then
-      MsgC(color0,"┏━━━━━━━━━━━━━━━━━━━━━━CLIENT━━━━━━━━━━━━━━━━━━━━━┓\n")
-      MsgC(color0,"┃[ OPTICS ] Debug Info: Advanced Settings Tool OK!┃\n")
-      MsgC(color0,"┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n")
-    else
-      MsgC(color0,"[ OPTICS ] Debug Info: Advanced Settings Tool OK!\n")
-    end
-
     language.Add("tool.optics_adv_settings_tool.name", "Advanced Settings Tool")
     language.Add("tool.optics_adv_settings_tool.desc", "Modify advanced settings.")
     language.Add("tool.optics_adv_settings_tool.0", "Nothing here.")

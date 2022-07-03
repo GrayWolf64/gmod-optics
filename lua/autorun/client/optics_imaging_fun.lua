@@ -1,8 +1,5 @@
 if CLIENT then
 
-   local color0 = Color(214 ,214 ,214)
-   MsgC(color0,"[ OPTICS ] Debug Info: Imaging Function CLIENTSIDE OK!\n")
-
    function ConvexLensImaging(lens)  --[[this certainly needs to be optimized--]]
 
       local lensindex = lens:EntIndex()

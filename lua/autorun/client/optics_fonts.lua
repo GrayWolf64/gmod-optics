@@ -1,8 +1,5 @@
 if CLIENT then
 
-    local color0 = Color(214 ,214 ,214)
-    MsgC(color0,"[ OPTICS ] Debug Info: Fonts CLIENTSIDE OK!\n")
-
     surface.CreateFont( "opticsdefaultfont", {
         font = "IBM Plex Mono",
         extended = false,

@@ -15,15 +15,6 @@ if CLIENT then
   local toolfontcolor2 = Color( 30 ,144 ,255 )
   local alphablack0 = Color(0 ,0 ,0 ,255 )
 
-  local color0 = Color(214 ,214 ,214)
-  if CLIENT then
-    MsgC(color0,"┏━━━━━━━━━━━━━━━━━━━━━━CLIENT━━━━━━━━━━━━━━━━━━━━┓\n")
-    MsgC(color0,"┃[ OPTICS ] Debug Info: General Settings Tool OK!┃\n")
-    MsgC(color0,"┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n")
-  else
-    MsgC(color0,"[ OPTICS ] Debug Info: General Settings Tool OK!\n")
-  end
-
   language.Add("tool.optics_settings_tool.name", "General Settings Tool")
   language.Add("tool.optics_settings_tool.0", "Just open the toolmenu.")
 

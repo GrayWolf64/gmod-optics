@@ -1,13 +1,3 @@
-local color0 = Color(214 ,214 ,214)
-
-if CLIENT then
- MsgC(color0,"┏━━━━━━━━━━━━━━━━━━━CLIENT━━━━━━━━━━━━━━━━━━━┓\n")
- MsgC(color0,"┃[ OPTICS ] Debug Info: PopError Function OK!┃\n")
- MsgC(color0,"┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n")
-else
- MsgC(color0,"[ OPTICS ] Debug Info: PopError Function OK!\n")
-end
-
 function Optics_PopError(num)
 
     local errors_table = {

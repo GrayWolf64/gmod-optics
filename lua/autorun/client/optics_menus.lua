@@ -1,8 +1,5 @@
 if CLIENT then
 
-  local color0 = Color(214 ,214 ,214)
-  MsgC(color0,"[ OPTICS ] Debug Info: Menus CLIENTSIDE OK!\n")
-
  hook.Add( "AddToolMenuTabs", "opticstab", function()
     spawnmenu.AddToolTab( "Optics", "Optics", "icon16/color_wheel.png" )
  end )

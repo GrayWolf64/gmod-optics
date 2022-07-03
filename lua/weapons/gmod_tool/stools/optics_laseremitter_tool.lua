@@ -9,15 +9,6 @@ if CLIENT then
  local textcolor1 = Color(190, 190, 190)
  local alphablack0 = Color(0 ,0 ,0 ,255)
 
- local color0 = Color(214 ,214 ,214)
- if CLIENT then
-   MsgC(color0,"┏━━━━━━━━━━━━━━━━━━━━CLIENT━━━━━━━━━━━━━━━━━━┓\n")
-   MsgC(color0,"┃[ OPTICS ] Debug Info: LaserEmitter Tool OK!┃\n")
-   MsgC(color0,"┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n")
- else
-   MsgC(color0,"[ OPTICS ] Debug Info: LaserEmitter Tool OK!\n")
- end
-
  TOOL.Information = { "left", "right" }
  language.Add("tool.optics_laseremitter_tool.name", "Laser Tool")
  language.Add("tool.optics_laseremitter_tool.desc", "Create or modify a Laser Emitter.")
