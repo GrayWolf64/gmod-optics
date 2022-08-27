@@ -1,4 +1,4 @@
-function Optics_DoReflection()  --[[do variation--]]
+function Optics_DoReflection()  --[[do variation(optics phenomenons)--]]
 
 end
 
