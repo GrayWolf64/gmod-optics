@@ -1,5 +1,5 @@
 # OPTICS
-## Options simulation in GMod.
+## Optics simulation in GMod.
 
 Optics for Garry's Mod.
 
