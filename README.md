@@ -1,5 +1,5 @@
 # OPTICS
-## I am slowly picking this project up.
+## Options simulation in GMod.
 
 Optics for Garry's Mod.
 
@@ -15,7 +15,7 @@ There won't be models in this addon so model constructors will be utilized(Plann
 Addon       |Status
 ------------|:--------------------------------------:
 Loader      |Preparing to work on
-Notify      |Preparing to work on
+UI          |Preparing to work on
 
 Contraptions        |Status
 ------------        |:--------------------------------------:
