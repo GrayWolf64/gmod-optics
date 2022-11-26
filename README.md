@@ -1,5 +1,5 @@
 # OPTICS
-##Optics simulation in GMod.
+Optics simulation in GMod.
 ##Refractor Needed.
 Optics for Garry's Mod.
 
