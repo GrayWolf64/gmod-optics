@@ -1,6 +1,6 @@
 # OPTICS
 Optics simulation in GMod.
-##Refractor Needed.
+## Refractor Needed.
 Optics for Garry's Mod.
 
 ![picture_logo](/template-logo.png "simple template logo")
