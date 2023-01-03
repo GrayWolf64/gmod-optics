@@ -54,5 +54,4 @@ if CLIENT then
         shadow = true,
         outline = false,
     })
-    --[[IBM Plex Fonts--]]
 end
