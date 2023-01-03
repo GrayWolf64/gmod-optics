@@ -1,6 +1,5 @@
 if CLIENT then
-
-    surface.CreateFont( "opticsdefaultfont", {
+    surface.CreateFont("opticsdefaultfont", {
         font = "IBM Plex Mono",
         extended = false,
         size = 80,
@@ -12,8 +11,9 @@ if CLIENT then
         strikeout = false,
         shadow = true,
         outline = false,
-       } )
-        surface.CreateFont( "opticsdefaultfontbd", {
+    })
+
+    surface.CreateFont("opticsdefaultfontbd", {
         font = "IBM Plex Mono Bold",
         extended = false,
         size = 35,
@@ -25,8 +25,9 @@ if CLIENT then
         strikeout = false,
         shadow = true,
         outline = false,
-       } )
-       surface.CreateFont( "opticsdefaultfontita", {
+    })
+
+    surface.CreateFont("opticsdefaultfontita", {
         font = "IBM Plex Mono Italic",
         extended = false,
         size = 20,
@@ -38,8 +39,9 @@ if CLIENT then
         strikeout = false,
         shadow = true,
         outline = false,
-       } )
-       surface.CreateFont( "opticsdefaultfontbdita", {
+    })
+
+    surface.CreateFont("opticsdefaultfontbdita", {
         font = "IBM Plex Mono Bold Italic",
         extended = false,
         size = 30,
@@ -51,5 +53,6 @@ if CLIENT then
         strikeout = false,
         shadow = true,
         outline = false,
-       } )  --[[IBM Plex Fonts--]]
+    })
+    --[[IBM Plex Fonts--]]
 end
