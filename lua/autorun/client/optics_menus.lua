@@ -5,10 +5,6 @@ if CLIENT then
 
     local function CreateOpticsCategories()
         spawnmenu.AddToolCategory("Optics", "Lens", "Lens")
-        spawnmenu.AddToolCategory("Optics", "Reflectors", "Reflectors")
-        spawnmenu.AddToolCategory("Optics", "Prisms", "Prisms")
-        spawnmenu.AddToolCategory("Optics", "Light Sources", "Light Sources")
-        spawnmenu.AddToolCategory("Optics", "Maths", "Maths")
         spawnmenu.AddToolCategory("Optics", "Settings", "Settings")
     end
 
