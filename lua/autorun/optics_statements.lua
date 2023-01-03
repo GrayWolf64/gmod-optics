@@ -44,17 +44,3 @@ if CLIENT then
     Optics_LaserEmitterTraces_Front_Table = {} --[[table of traces of laser--]]
     Optics_LaserEmitterTraces_Back_Table = {}
 end
---[[
-  hooks used in the whole addon:
-     Event Name, Identifier
-
-     "", "Optics_DeleteImagingFilesOnLensRemove"
-     "", "Optics_RemoveLaserEmitterBeamRenderablesOnLaserEmitterRemove"
-
-     "PostDrawTranslucentRenderables", "Optics_DebugRenderables01" 
-     "PostDrawTranslucentRenderables", "Optics_DebugRenderables02" 
-     "PostDrawTranslucentRenderables", "Optics_DebugRenderables03" 
-
-     "PostDrawTranslucentRenderables", "Optics_LaserBeamRenderables01"
-     "PostDrawTranslucentRenderables", "Optics_LaserBeamRenderables02"
---]]
